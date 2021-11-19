@@ -2,21 +2,32 @@
   "name": "carprice",
   "private": true,
   "scripts": {
+    "next": "next",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@typescript-eslint/types": "^5.4.0",
+    "@vanilla-extract/babel-plugin": "^1.1.2",
+    "@vanilla-extract/css": "^1.6.3",
+    "@vanilla-extract/next-plugin": "^1.0.1",
     "next": "12.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@types/node": "16.11.9",
+    "@types/node": "16.11.7",
     "@types/react": "17.0.35",
+    "@typescript-eslint/eslint-plugin": "5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "eslint": "7.32.0",
+    "eslint-config-airbnb-typescript": "^16.0.0",
     "eslint-config-next": "12.0.4",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-react": "^7.27.0",
+    "prettier": "2.4.1",
     "typescript": "4.5.2"
   }
 }
