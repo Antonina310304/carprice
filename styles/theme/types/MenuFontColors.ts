@@ -1,3 +1,3 @@
-type MenuFontColors = 'menuPrimary' | 'menuHover';
+type MenuFontColors = 'menuPrimary' | 'menuSecondary' | 'menuTertiary';
 
 export default MenuFontColors;

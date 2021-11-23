@@ -1,15 +1,31 @@
 import BackgroundColors from './types/BackgroundColors';
-import FontsColors from './types/FontsColors';
-import MenuFontColors from './types/MenuFontColors';
-import LinkColors from './types/LinkColors';
 import BorderColors from './types/BorderColors';
+import Durations from './types/Durations';
+import FillColors from './types/FillColors';
+import FontsColors from './types/FontsColors';
+import LinkColors from './types/LinkColors';
+import MenuFontColors from './types/MenuFontColors';
 
-export class Theme {
-  public colors: Record<any, string>;
+import { Colors } from './types';
+
+export default class Theme {
+  colors!: Record<Colors, string>;
 
   constructor() {
     this.colors = this.generateColors();
   }
+
+  static durationTimes: Record<`num_${Durations}`, number> = {
+    num_m250: 250,
+    num_m200: 200,
+    num_m150: 150,
+  };
+
+  static durations: Record<Durations, string> = {
+    m250: `${Theme.durationTimes.num_m250}ms`,
+    m200: `${Theme.durationTimes.num_m200}ms`,
+    m150: `${Theme.durationTimes.num_m150}ms`,
+  };
 
   private generateColors() {
     const backgroundColors: Record<BackgroundColors, string> = {
@@ -25,7 +41,8 @@ export class Theme {
 
     const menuFontColors: Record<MenuFontColors, string> = {
       menuPrimary: '#757A85',
-      menuHover: '#1E1F21',
+      menuSecondary: '#1E1F21',
+      menuTertiary: '#1E1F21',
     };
 
     const linkColors: Record<LinkColors, string> = {
@@ -37,6 +54,14 @@ export class Theme {
 
     const borderColors: Record<BorderColors, string> = {
       borderPrimary: '#D9DDE2', // --black_300
+      borderSecondary: '#37B587',
+    };
+
+    const svgFill: Record<FillColors, string> = {
+      fillPrimary: '#37B587', // --green
+      fillSecondary: '#757A85', // --серый
+      fillTertiary: '#1E1F21', // --темно-серый
+      fillDark: '#46474A', // --темно-серый
     };
 
     return {
@@ -45,6 +70,7 @@ export class Theme {
       ...linkColors,
       ...menuFontColors,
       ...borderColors,
+      ...svgFill,
     };
   }
 }

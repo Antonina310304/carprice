@@ -1,6 +1,21 @@
 {
-    "endOfLine": "lf",
-    "printWidth": 100,
+    "endOfLine": "crlf",
+    "printWidth": 120,
     "tabWidth": 2,
+    "importOrder": [
+        "^next|react(.*)$",
+        "^@mui/(.*)$",
+        "^@components/(.*)$",
+        "^@primitives/(.*)$",
+        "^@hooks/(.*)$",
+        "^./types/(.*)$",
+        "^./elms/(.*)$",
+        "^[./]",
+        "^[../]",
+        "^@constants/(.*)$",
+        "^@styles/(.*)$",
+        "./style.css|^@baseStyle"
+    ],
+    "importOrderSeparation": true,
     "singleQuote": true
 }
