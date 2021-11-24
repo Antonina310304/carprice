@@ -1,13 +1,12 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
-import { mediaQueryDesktop, mediaQueryTablet } from '@constants/mediaQuery';
+import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { globalThemeColorVars } from '@styles/globalTheme';
-import Theme from '@styles/theme';
+import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 
 export const wrapper = style({
   '@media': {
-    [mediaQueryTablet]: {
+    [mediaQueryDesktop]: {
       padding: '12px 0',
       position: 'absolute',
       width: ' max-content',
@@ -26,7 +25,7 @@ export const wrapperToggle = styleVariants({
 
     '@media': {
       [mediaQueryDesktop]: {
-        transition: `opacity ${Theme.durations.m250} ease-in-out`,
+        transition: `opacity ${globalThemeDurationVars.m250} ease-in-out`,
 
         ':before': {
           content: '',

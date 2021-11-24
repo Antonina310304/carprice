@@ -1,7 +1,6 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
-import Theme from '@styles/theme';
 
 export const wrapper = style({
   cursor: 'pointer',
@@ -27,12 +26,12 @@ export const selectedRegion = style({
   lineHeight: '24px',
   margin: 0,
   color: globalThemeColorVars.fontsPrimary,
-  transition: `color ${Theme.durations.m250} ease-in`,
+  transition: `color ${globalThemeDurationVars.m250} ease-in`,
 
   selectors: {
     [` ${wrapper}:hover &`]: {
       color: globalThemeColorVars.linkHoverSecondary,
-      transition: `color ${Theme.durations.m250} ease-in`,
+      transition: `color ${globalThemeDurationVars.m250} ease-in`,
     },
   },
 });
@@ -47,17 +46,8 @@ export const locationIcon = style({
 export const iconWrapper = style({
   marginLeft: '10px',
   display: 'block',
-  transition: `transform ${Theme.durations.m250} ease-in`,
+  transition: `transform ${globalThemeDurationVars.m250} ease-in`,
   transformOrigin: '50% 50%',
   width: '12px',
   height: '5px',
-});
-
-export const toggleIcon = styleVariants({
-  open: {
-    transform: 'rotate(180deg)',
-  },
-  close: {
-    transform: 'rotate(0)',
-  },
 });

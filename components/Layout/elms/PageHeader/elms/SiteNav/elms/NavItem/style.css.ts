@@ -1,9 +1,8 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
-import { mediaQueryDesktop, mediaQueryTablet } from '@constants/mediaQuery';
+import { mediaQueryDesktop } from '@constants/mediaQuery';
 
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
-import Theme from '@styles/theme';
 
 export const dropdownWrapper = style({
   position: 'relative',
@@ -33,8 +32,8 @@ export const toggleTitle = styleVariants({
   },
   close: {
     '@media': {
-      [mediaQueryTablet]: {
-        transition: `color ${Theme.durations.m250} ease-in-out`,
+      [mediaQueryDesktop]: {
+        transition: `color ${globalThemeDurationVars.m250} ease-in-out`,
         color: globalThemeColorVars.menuPrimary,
       },
     },
@@ -54,11 +53,11 @@ export const titleLink = style({
   '@media': {
     [mediaQueryDesktop]: {
       color: globalThemeColorVars.menuPrimary,
-      transition: `color ${Theme.durations.m250} ease-in-out`,
+      transition: `color ${globalThemeDurationVars.m250} ease-in-out`,
 
       ':hover': {
         color: globalThemeColorVars.menuSecondary,
-        transition: `color ${Theme.durations.m250} ease-in-out`,
+        transition: `color ${globalThemeDurationVars.m250} ease-in-out`,
       },
     },
   },
@@ -75,7 +74,7 @@ export const iconWrapper = style({
 export const iconArrow = style({
   '@media': {
     [mediaQueryDesktop]: {
-      transition: `fill ${Theme.durations.m250} ease-in-out`,
+      transition: `fill ${globalThemeDurationVars.m250} ease-in-out`,
       fill: globalThemeColorVars.fillSecondary,
     },
   },
@@ -94,12 +93,12 @@ export const toggleSvg = styleVariants({
   open: {
     '@media': {
       [mediaQueryDesktop]: {
-        transition: `fill ${Theme.durations.m250} ease-in-out`,
+        transition: `fill ${globalThemeDurationVars.m250} ease-in-out`,
         fill: globalThemeColorVars.fillTertiary,
       },
     },
   },
   close: {
-    transition: `fill ${Theme.durations.m250} ease-in-out`,
+    transition: `fill ${globalThemeDurationVars.m250} ease-in-out`,
   },
 });

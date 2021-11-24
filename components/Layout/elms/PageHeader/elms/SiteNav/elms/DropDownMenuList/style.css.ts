@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { mediaQueryTablet } from '@constants/mediaQuery';
+import { mediaQueryDesktop } from '@constants/mediaQuery';
 
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 
@@ -19,7 +19,7 @@ export const title = style({
   color: globalThemeColorVars.menuPrimary,
   textDecoration: 'none',
   '@media': {
-    [mediaQueryTablet]: {
+    [mediaQueryDesktop]: {
       padding: '4px 16px',
       fontSize: '16px',
       lineHeight: '24px',

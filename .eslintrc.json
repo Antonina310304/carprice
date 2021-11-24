@@ -25,6 +25,7 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "@typescript-eslint/comma-dangle": ["off"]
   }
 }

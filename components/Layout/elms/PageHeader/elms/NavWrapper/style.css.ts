@@ -1,7 +1,8 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
-import { globalThemeColorVars } from '@styles/globalTheme';
-import Theme from '@styles/theme';
+import { mediaQueryTablet } from '@constants/mediaQuery';
+
+import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 
 export const menuWrapper = style({
   position: 'fixed',
@@ -10,7 +11,12 @@ export const menuWrapper = style({
   zIndex: 5,
   background: globalThemeColorVars.backgroundPrimary,
   width: '100%',
-  transition: `transform ${Theme.durations.m150} ease-in`,
+  transition: `transform ${globalThemeDurationVars.m150} ease-in`,
+  '@media': {
+    [mediaQueryTablet]: {
+      top: '64px',
+    },
+  },
 });
 
 export const wrapperToggle = styleVariants({

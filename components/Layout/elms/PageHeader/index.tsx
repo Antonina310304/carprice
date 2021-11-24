@@ -5,6 +5,7 @@ import PersonalLink from '@components/Layout/elms/PageHeader/elms/PersonalLink';
 import Region from '@components/Region';
 
 import Burger from '@primitives/Burger';
+import LinkWrapper from '@primitives/LinkWrapper';
 import Logo from '@primitives/Logo';
 import Telephone from '@primitives/Telephone';
 
@@ -26,7 +27,10 @@ import {
 
 import { DESKTOP, TABLET } from '@constants/mediaQuery';
 
-const PageHeader: NextPage = () => {
+interface IPageHeader {
+  openRegionModal: (arg: boolean) => void;
+}
+const PageHeader: NextPage<IPageHeader> = ({ openRegionModal }) => {
   const isDesktop = useMediaQuery(`(min-width: ${DESKTOP}px)`);
   const isTablet = useMediaQuery(`(min-width: ${TABLET}px)`);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -39,7 +43,7 @@ const PageHeader: NextPage = () => {
           <Logo className={logoWrapper} />
           {isTablet && (
             <>
-              <Region className={regionWrapper} />
+              <Region openRegionModal={openRegionModal} className={regionWrapper} />
               <Telephone />
             </>
           )}
@@ -54,10 +58,11 @@ const PageHeader: NextPage = () => {
       )}
       {!isDesktop && ( // выпадающее меню
         <NavWrapper isOpen={isOpenMenu}>
-          <Region className={regionMobileWrapper} />
+          {!isTablet && <Region openRegionModal={openRegionModal} className={regionMobileWrapper} />}
+
           <SiteNav />
           <div className={siteNavWrapper} />
-          <Telephone className={telWrapper} isNeedIcon={true} />
+          {!isTablet && <Telephone className={telWrapper} isNeedIcon={true} />}
         </NavWrapper>
       )}
     </header>

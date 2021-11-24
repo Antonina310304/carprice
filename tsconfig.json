@@ -20,6 +20,7 @@
       "@styles/*": ["styles/*"],
       "@primitives/*": ["primitives/*"],
       "@constants/*": ["constants/*"],
+      "@store/*": ["store/*"],
       "@hooks/*": ["hooks/*"]
     }
 

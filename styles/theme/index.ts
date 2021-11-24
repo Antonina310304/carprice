@@ -1,3 +1,5 @@
+import chroma from 'chroma-js';
+
 import BackgroundColors from './types/BackgroundColors';
 import BorderColors from './types/BorderColors';
 import Durations from './types/Durations';
@@ -8,11 +10,18 @@ import MenuFontColors from './types/MenuFontColors';
 
 import { Colors } from './types';
 
+import { BaseColors } from '@styles/theme/types/BaseColors';
+import { ShadowColors } from '@styles/theme/types/ShadowColors';
+
 export default class Theme {
   colors!: Record<Colors, string>;
 
   constructor() {
     this.colors = this.generateColors();
+  }
+
+  static alphaColor(color: string, alpha: number) {
+    return chroma(color).alpha(alpha).css();
   }
 
   static durationTimes: Record<`num_${Durations}`, number> = {
@@ -28,6 +37,11 @@ export default class Theme {
   };
 
   private generateColors() {
+    const baseColors: Record<BaseColors, string> = {
+      black: '#000000',
+      white: '#ffffff',
+    };
+
     const backgroundColors: Record<BackgroundColors, string> = {
       backgroundPrimary: '#ffffff',
       backgroundSecondary: '#F4F6F9',
@@ -43,6 +57,10 @@ export default class Theme {
       menuPrimary: '#757A85',
       menuSecondary: '#1E1F21',
       menuTertiary: '#1E1F21',
+    };
+
+    const shadowColors: Record<ShadowColors, any> = {
+      shadowModalPrimary: Theme.alphaColor(baseColors.black, 0.2),
     };
 
     const linkColors: Record<LinkColors, string> = {
@@ -71,6 +89,8 @@ export default class Theme {
       ...menuFontColors,
       ...borderColors,
       ...svgFill,
+      ...baseColors,
+      ...shadowColors,
     };
   }
 }

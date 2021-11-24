@@ -1,7 +1,21 @@
+import type { NextPage } from 'next';
+import { memo } from 'react';
+
+import Region from '@components/Region';
+
 import { mainContainer } from '@styles/baseStyle';
 
-const PageFooter = () => {
-  return <div className={mainContainer}>подвал</div>;
+interface IPageFooter {
+  openRegionModal: (arg: boolean) => void;
+}
+
+const PageFooter: NextPage<IPageFooter> = ({ openRegionModal }) => {
+  return (
+    <div className={mainContainer}>
+      <Region openRegionModal={openRegionModal} />
+      подвал
+    </div>
+  );
 };
 
-export default PageFooter;
+export default memo(PageFooter);

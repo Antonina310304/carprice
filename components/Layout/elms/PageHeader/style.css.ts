@@ -90,6 +90,11 @@ export const siteNavWrapper = style({
   margin: '0 12px',
   paddingBottom: '10px',
   borderBottom: `1px solid ${globalThemeColorVars.borderPrimary}`,
+  '@media': {
+    [mediaQueryTablet]: {
+      borderBottom: '0',
+    },
+  },
 });
 
 export const regionMobileWrapper = style({

@@ -6,7 +6,7 @@
       "name": "Москва",
       "region": "Москва и МО",
       "phone": "+7 (495) 134-68-68",
-      "selected": false
+      "selected": true
     },
     {
       "id": 617,
@@ -146,7 +146,7 @@
       "name": "Ростов-на-Дону",
       "region": "Ростов-на-Дону и Ростовская область",
       "phone": "+7 (800) 555-07-41",
-      "selected": true
+      "selected": false
     },
     {
       "id": 946,

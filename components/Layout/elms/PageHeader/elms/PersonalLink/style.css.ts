@@ -2,8 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { globalThemeColorVars } from '@styles/globalTheme';
-import Theme from '@styles/theme';
+import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 
 export const personal = style({
   color: globalThemeColorVars.linkPrimary,
@@ -12,12 +11,12 @@ export const personal = style({
   textDecoration: 'none',
   fontSize: '16px',
   lineHeight: '24px',
-  transition: `color ${Theme.durations.m250} ease-in-out`,
+  transition: `color ${globalThemeDurationVars.m250} ease-in-out`,
   marginLeft: 'auto',
 
   ':hover': {
     color: globalThemeColorVars.linkHoverPrimary,
-    transition: `color ${Theme.durations.m250} ease-in-out`,
+    transition: `color ${globalThemeDurationVars.m250} ease-in-out`,
   },
 });
 
@@ -31,11 +30,11 @@ export const enterIconWrapper = style({
 });
 
 export const iconSvg = style({
-  transition: `fill ${Theme.durations.m250} ease-in-out`,
+  transition: `fill ${globalThemeDurationVars.m250} ease-in-out`,
   selectors: {
     [`${personal}:hover &`]: {
       fill: globalThemeColorVars.fillDark,
-      transition: `fill ${Theme.durations.m250} ease-in-out`,
+      transition: `fill ${globalThemeDurationVars.m250} ease-in-out`,
     },
   },
 });
