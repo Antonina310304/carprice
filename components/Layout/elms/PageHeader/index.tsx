@@ -1,11 +1,10 @@
 import type { NextPage } from 'next';
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 import PersonalLink from '@components/Layout/elms/PageHeader/elms/PersonalLink';
 import Region from '@components/Region';
 
 import Burger from '@primitives/Burger';
-import LinkWrapper from '@primitives/LinkWrapper';
 import Logo from '@primitives/Logo';
 import Telephone from '@primitives/Telephone';
 
@@ -23,9 +22,12 @@ import {
   telWrapper,
   burgerWrapper,
   headerWrapper,
+  burger,
 } from './style.css';
 
 import { DESKTOP, TABLET } from '@constants/mediaQuery';
+
+import { mainContainer } from '@styles/baseStyle';
 
 interface IPageHeader {
   openRegionModal: (arg: boolean) => void;
@@ -35,11 +37,20 @@ const PageHeader: NextPage<IPageHeader> = ({ openRegionModal }) => {
   const isTablet = useMediaQuery(`(min-width: ${TABLET}px)`);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
+  const toggleMenu = useCallback(() => {
+    setIsOpenMenu(!isOpenMenu);
+    document.body.style.overflow = !isOpenMenu ? 'hidden' : '';
+  }, [isOpenMenu]);
+
   return (
     <header>
       <div className={headerWrapper}>
         <div className={tabletWrapper}>
-          {!isDesktop && <Burger className={burgerWrapper} isOpen={isOpenMenu} toggle={setIsOpenMenu} />}
+          {!isDesktop && (
+            <div className={burgerWrapper}>
+              <Burger className={burger} isOpen={isOpenMenu} toggle={toggleMenu} />
+            </div>
+          )}
           <Logo className={logoWrapper} />
           {isTablet && (
             <>
@@ -52,7 +63,7 @@ const PageHeader: NextPage<IPageHeader> = ({ openRegionModal }) => {
       </div>
 
       {isDesktop && (
-        <div className={headerWrapper}>
+        <div className={mainContainer}>
           <SiteNav />
         </div>
       )}

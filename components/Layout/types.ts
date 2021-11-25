@@ -3,3 +3,8 @@ export type IMetaNameItem = 'title' | 'description' | 'keywords';
 
 export type IMetaProperty = Record<IMetaNameProperty, string>;
 export type IMetaName = Record<IMetaNameItem, string>;
+
+export interface NavItem {
+  title: string;
+  href: string;
+}

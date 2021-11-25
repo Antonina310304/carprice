@@ -5,7 +5,7 @@ import { lisItem, list } from '@components/Layout/elms/PageHeader/elms/SiteNav/s
 
 import NavItem from './elms/NavItem';
 
-import { IMenu } from '../../types';
+import { PageHeaderNavElms } from '../../types';
 import menuList from './data';
 
 interface ISiteNav {
@@ -16,7 +16,7 @@ const SiteNav: NextPage<ISiteNav> = ({ className }) => {
   return (
     <nav className={className}>
       <ul className={list}>
-        {menuList.map((item: IMenu) => (
+        {menuList.map((item: PageHeaderNavElms) => (
           <li className={lisItem} key={item.title}>
             <NavItem navElement={item} />
           </li>

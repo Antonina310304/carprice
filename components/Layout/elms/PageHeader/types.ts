@@ -1,10 +1,7 @@
-export interface IMenuItem {
-  title: string;
-  href: string;
-}
+import { NavItem } from '@components/Layout/types';
 
-export interface IMenu {
+export interface PageHeaderNavElms {
   title: string;
   href?: string;
-  dropdown?: IMenuItem[];
+  dropdown?: NavItem[];
 }

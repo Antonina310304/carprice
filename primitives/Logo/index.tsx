@@ -3,13 +3,13 @@ import Image from 'next/image';
 import React, { memo } from 'react';
 
 interface ILogo {
-  className: string;
+  className?: string;
 }
 
 const Logo: NextPage<ILogo> = ({ className }) => {
   return (
     <div className={className}>
-      <Image src={'/static/icons/logo.svg'} width={158} height={24} />
+      <Image src={'/static/icons/logo.svg'} width={158} height={24} alt={'Логотип'} />
     </div>
   );
 };

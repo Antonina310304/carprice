@@ -8,22 +8,19 @@ export const headerTop = style({
 });
 
 export const burger = style({
-  height: '24px',
-  width: '25px',
-  margin: '0',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  height: '40px',
+  width: '40px',
+
   zIndex: '3',
-  '@media': {
-    [mediaQueryTablet]: {
-      width: '31px',
-      height: '31px',
-    },
-  },
 });
 
 export const iconWrapper = style({
-  marginLeft: 'auto',
-  width: '100%',
-  height: '100%',
+  width: '25px',
+  height: '24px',
   '@media': {
     [mediaQueryTablet]: {
       width: 'auto',

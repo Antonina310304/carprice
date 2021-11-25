@@ -46,20 +46,24 @@ export default class Theme {
       backgroundPrimary: '#ffffff',
       backgroundSecondary: '#F4F6F9',
       backgroundTertiary: '#EDFAF5',
+      backgroundQuaternary: Theme.alphaColor('#f0f2f6', 0.74),
     };
 
     const fontsColors: Record<FontsColors, string> = {
       fontsPrimary: '#1E1F21', // --black_900 на текущем сайте
       fontsSecondary: '#757A85', // --black_700
+      fontsTertiary: '#9FA3AD', // --black_500
+      fontsQuaternary: '#8A8E99', // black_600,
     };
 
     const menuFontColors: Record<MenuFontColors, string> = {
       menuPrimary: '#757A85',
       menuSecondary: '#1E1F21',
       menuTertiary: '#1E1F21',
+      menuQuaternary: '#8A8E99',
     };
 
-    const shadowColors: Record<ShadowColors, any> = {
+    const shadowColors: Record<ShadowColors, string> = {
       shadowModalPrimary: Theme.alphaColor(baseColors.black, 0.2),
     };
 

@@ -7,6 +7,7 @@ import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalThe
 export const menuWrapper = style({
   position: 'fixed',
   top: '55px',
+  overflowY: 'auto',
   bottom: 0,
   zIndex: 5,
   background: globalThemeColorVars.backgroundPrimary,

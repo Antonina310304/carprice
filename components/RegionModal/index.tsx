@@ -3,16 +3,24 @@ import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import Modal from '@components/Modal';
-import { IStore } from '@components/Region/types';
 
 import Icon from '@primitives/Icon';
 import RegionList from '@primitives/RegionList';
 import Typography from '@primitives/Typography';
 
-import { locationIcon, selectedRegion, regionWrapper, header, titleCity, wrapper } from './style.css';
-import { inner, listWrapper } from './style.css';
+import { IState } from '@store/types';
 
-import { globalThemeColorVars } from '@styles/globalTheme';
+import {
+  locationIcon,
+  selectedRegion,
+  regionWrapper,
+  header,
+  titleCity,
+  wrapper,
+  closeButton,
+  modal,
+} from './style.css';
+import { inner, listWrapper } from './style.css';
 
 interface IRegionModal {
   isOpen: boolean;
@@ -20,7 +28,7 @@ interface IRegionModal {
 }
 
 const RegionModal: NextPage<IRegionModal> = ({ isOpen, setIsOpen }) => {
-  const activeRegion = useSelector((state: IStore) => {
+  const activeRegion = useSelector((state: IState) => {
     return state.region.activeRegion;
   });
 
@@ -29,14 +37,17 @@ const RegionModal: NextPage<IRegionModal> = ({ isOpen, setIsOpen }) => {
   }, [setIsOpen]);
 
   return (
-    <Modal open={isOpen} handleClose={handleClose}>
+    <Modal className={modal} open={isOpen} handleClose={handleClose}>
       <div className={inner}>
+        <button className={closeButton} onClick={handleClose}>
+          <Icon icon={'cross'} width={16} height={16} />
+        </button>
         <div className={header}>
           <Typography type={'subTitle'} styles={{ margin: '0 0 16px' }}>
             Выберите ваш город
           </Typography>
           <div className={wrapper}>
-            <Typography type={'info'} className={titleCity} as={'span'} color={globalThemeColorVars.fontsSecondary}>
+            <Typography type={'info'} className={titleCity} as={'span'}>
               Текущий город:{' '}
             </Typography>
             <div className={regionWrapper}>

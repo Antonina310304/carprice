@@ -1,6 +1,6 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
-import { mediaQueryDesktop, mediaQueryTablet } from '@constants/mediaQuery';
+import { mediaQueryDesktop, mediaQueryMobile, mediaQueryTablet } from '@constants/mediaQuery';
 
 import { mainContainer } from '@styles/baseStyle';
 import { globalThemeColorVars } from '@styles/globalTheme';
@@ -9,8 +9,9 @@ export const headerWrapper = style([
   mainContainer,
   {
     '@media': {
-      [mediaQueryDesktop]: {
-        padding: '0 64px 0 66px',
+      ['screen and (max-width: 1023px)']: {
+        paddingLeft: 0,
+        paddingRight: 0,
       },
     },
   },
@@ -23,10 +24,14 @@ export const tabletWrapper = style({
   width: '100%',
   boxSizing: 'border-box',
   marginRight: 'auto',
-  padding: '15px 21px 15px 21px',
+  padding: '15px 17px 15px 17px',
   borderBottom: `1px solid ${globalThemeColorVars.borderPrimary}`,
 
   '@media': {
+    [mediaQueryMobile]: {
+      paddingRight: '20px',
+      paddingLeft: '21px',
+    },
     [mediaQueryTablet]: {
       padding: '16px 21px 16px 16px',
     },
@@ -38,10 +43,22 @@ export const tabletWrapper = style({
 });
 
 export const burgerWrapper = style({
-  marginRight: '25px',
+  marginRight: '27px',
   '@media': {
     [mediaQueryTablet]: {
-      marginRight: '27px',
+      marginRight: '35px',
+    },
+  },
+});
+
+export const burger = style({
+  margin: '-15px -15px -15px -8px',
+  '@media': {
+    [mediaQueryMobile]: {
+      marginLeft: '-9px',
+    },
+    [mediaQueryTablet]: {
+      margin: '-5px -15px -4px -5px',
     },
   },
 });
@@ -69,21 +86,6 @@ export const logoWrapper = style({
 
 export const telWrapper = style({
   padding: '21px 12px 20px',
-});
-
-export const menuWrapper = style({
-  position: 'fixed',
-  top: '55px',
-  bottom: 0,
-  zIndex: 5,
-  background: globalThemeColorVars.backgroundPrimary,
-  width: '100%',
-  transition: 'transform 0.3s ease-in',
-});
-
-export const variant = styleVariants({
-  open: { transform: 'translateX(0)' },
-  close: { transform: 'translateX(-100%)' },
 });
 
 export const siteNavWrapper = style({

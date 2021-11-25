@@ -1,10 +1,13 @@
 import { StyleRule, styleVariants } from '@vanilla-extract/css';
 
 import { fontSizeMap } from '@primitives/Typography/css/fontSizeMap';
+import { TypographyTypes } from '@primitives/Typography/types';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-export const typographyVariants = styleVariants<Record<any, any>>({
+import { globalThemeColorVars } from '@styles/globalTheme';
+
+export const typographyVariants = styleVariants<Record<TypographyTypes, StyleRule>>({
   info: {
     ...fontSizeMap['14/20'],
     fontWeight: 400,
@@ -13,12 +16,14 @@ export const typographyVariants = styleVariants<Record<any, any>>({
     ...fontSizeMap['16/24'],
     fontWeight: 400,
   },
-
-  pageTitle: {
-    ...fontSizeMap['24/26'],
+  title: {
+    ...fontSizeMap['24/30'],
     fontWeight: 700,
+    margin: '0 0 16px',
+    color: globalThemeColorVars.fontsPrimary,
     '@media': {
       [mediaQueryDesktop]: {
+        margin: '0 0 24px',
         ...fontSizeMap['54/63'],
       },
     },
@@ -26,6 +31,7 @@ export const typographyVariants = styleVariants<Record<any, any>>({
   subTitle: {
     //подзаголовки
     ...fontSizeMap['16/24'],
+    margin: '0',
     fontWeight: 700,
     '@media': {
       [mediaQueryDesktop]: {

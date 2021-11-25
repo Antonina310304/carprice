@@ -1,3 +1,3 @@
-import { mainContainer } from './baseStyle.css';
+import { baseListStyle, mainContainer, textUppercase } from './baseStyle.css';
 
-export { mainContainer };
+export { mainContainer, textUppercase, baseListStyle };

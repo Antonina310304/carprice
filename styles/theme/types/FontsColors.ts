@@ -1,3 +1,3 @@
-type FontsColors = 'fontsPrimary' | 'fontsSecondary';
+type FontsColors = 'fontsPrimary' | 'fontsSecondary' | 'fontsTertiary' | 'fontsQuaternary';
 
 export default FontsColors;

@@ -6,7 +6,7 @@ export interface IRegion {
   selected: boolean;
 }
 
-export interface IStore {
+export interface IState {
   region: {
     regions: IRegion[];
     activeRegion: IRegion;

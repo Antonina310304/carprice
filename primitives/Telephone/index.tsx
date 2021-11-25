@@ -1,10 +1,13 @@
 import cn from 'classnames';
+
 import type { NextPage } from 'next';
-import Link from 'next/link';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import Icon from '@primitives/Icon';
+import LinkWrapper from '@primitives/LinkWrapper';
+
+import { IState } from '@store/types';
 
 import { iconWrapper, wrapper } from './style.css';
 
@@ -16,20 +19,22 @@ interface ITelephone {
 }
 
 const Telephone: NextPage<ITelephone> = ({ className, isNeedIcon }) => {
-  const { phone } = useSelector((state: any) => state.region.activeRegion);
+  const { phone } = useSelector((state: IState) => state.region.activeRegion);
   const phoneToView = phone || DEFAULT_PHONE;
 
   return (
-    <Link href={`tel:${phoneToView}`}>
-      <div className={cn(className, wrapper)}>
-        {isNeedIcon && (
-          <i className={iconWrapper}>
-            <Icon icon={'phone'} width={16} height={16} />
-          </i>
-        )}
-        <a>{phoneToView}</a>
-      </div>
-    </Link>
+    <>
+      <LinkWrapper className={cn(className, wrapper)} type={'base'} href={`tel:${phoneToView}`} isExternal={false}>
+        <>
+          {isNeedIcon && (
+            <i className={iconWrapper}>
+              <Icon icon={'phone'} width={16} height={16} />
+            </i>
+          )}
+          <span>{phoneToView}</span>
+        </>
+      </LinkWrapper>
+    </>
   );
 };
 

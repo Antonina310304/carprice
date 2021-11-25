@@ -1,6 +1,6 @@
-import { IMenu } from '../../types';
+import { PageHeaderNavElms } from '../../types';
 
-const menuList: IMenu[] = [
+const menuList: PageHeaderNavElms[] = [
   {
     title: 'О компании',
     dropdown: [

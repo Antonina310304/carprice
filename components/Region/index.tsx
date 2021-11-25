@@ -4,9 +4,9 @@ import type { NextPage } from 'next';
 import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
-import { IStore } from '@components/Region/types';
-
 import Icon from '@primitives/Icon';
+
+import { IState } from '@store/types';
 
 import { wrapper, selectedRegion, iconWrapper, regionIcon, locationIcon } from './style.css';
 
@@ -16,7 +16,7 @@ interface IRegion {
 }
 
 const Region: NextPage<IRegion> = ({ className, openRegionModal }) => {
-  const activeRegion = useSelector((state: IStore) => {
+  const activeRegion = useSelector((state: IState) => {
     return state.region.activeRegion;
   });
 

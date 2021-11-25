@@ -1,4 +1,6 @@
-export const fontSizeMap = <Record<any, any>>({
+import { CSSProperties } from 'react';
+
+export const fontSizeMap: Record<string, CSSProperties> = {
   '12/18': {
     fontSize: '12px',
     lineHeight: '18px',
@@ -19,6 +21,10 @@ export const fontSizeMap = <Record<any, any>>({
     fontSize: '20px',
     lineHeight: '30px',
   },
+  '24/30': {
+    fontSize: '24px',
+    lineHeight: '30px',
+  },
   '24/36': {
     fontSize: '24px',
     lineHeight: '36px',
@@ -31,4 +37,4 @@ export const fontSizeMap = <Record<any, any>>({
     fontSize: '54px',
     lineHeight: '63px',
   },
-});
+};

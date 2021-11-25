@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 
-import { IMenuItem } from '@components/Layout/elms/PageHeader/types';
+import { NavItem } from '@components/Layout/types';
 
 import LinkWrapper from '@primitives/LinkWrapper';
 
 import { title, list } from './style.css';
 
 interface IDropDownMenuList {
-  menuList: IMenuItem[];
+  menuList: NavItem[];
 }
 
 const DropDownMenuList = ({ menuList }: IDropDownMenuList) => {
@@ -15,7 +15,7 @@ const DropDownMenuList = ({ menuList }: IDropDownMenuList) => {
     <ul className={list}>
       {menuList.map((item) => (
         <li key={item.href}>
-          <LinkWrapper className={title} href={item.href} isExternal={true}>
+          <LinkWrapper className={title} href={item?.href} isExternal={true}>
             {item.title}
           </LinkWrapper>
         </li>

@@ -1,8 +1,8 @@
-import { forwardRef, ReactNode, Ref } from 'react';
+import { CSSProperties, forwardRef, ReactNode, Ref } from 'react';
 
 interface IWrapper {
   className?: string;
-  styles?: any;
+  styles?: CSSProperties;
   children?: ReactNode;
   [name: string]: any;
 }

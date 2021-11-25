@@ -3,7 +3,7 @@ import cn from 'classnames';
 import type { NextPage } from 'next';
 import React, { createRef, memo, useCallback, useEffect, useState } from 'react';
 
-import { IMenu } from '@components/Layout/elms/PageHeader/types';
+import { PageHeaderNavElms } from '@components/Layout/elms/PageHeader/types';
 
 import Icon from '@primitives/Icon';
 import LinkWrapper from '@primitives/LinkWrapper';
@@ -23,7 +23,7 @@ import {
 } from './style.css';
 
 interface INavItem {
-  navElement: IMenu;
+  navElement: PageHeaderNavElms;
 }
 
 const NavItem: NextPage<INavItem> = ({ navElement }) => {
@@ -42,8 +42,8 @@ const NavItem: NextPage<INavItem> = ({ navElement }) => {
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
     }
   }, [handleClickOutside, isOpen]);
 

@@ -1,39 +1,31 @@
 import cn from 'classnames';
 
-import { NextPage } from 'next';
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, forwardRef, memo } from 'react';
 
 import { typographyAlignVariants, typographyVariants } from '@primitives/Typography/css/index.css';
+import { TypographyTypes } from '@primitives/Typography/types';
 
-import { globalThemeColorVars } from '@styles/globalTheme';
-
-interface ITypography {
+interface ITypographyProps {
   as?: React.FC<any> | React.ComponentClass<any> | string;
-  type: string;
+  type: TypographyTypes;
   className?: string;
   styles?: CSSProperties;
   align?: 'left' | 'center' | 'right';
-  color?: string;
-  onClick?: (arg: any) => any;
+  onClick?: (arg: any) => void;
   [name: string]: any;
 }
 
-const Typography: NextPage<ITypography> = ({
-  as = 'p',
-  type,
-  className,
-  styles,
-  align = 'left',
-  color,
-  onClick,
-  ...props
-}) => {
+const Typography = (
+  { as = 'p', type, className, styles, align = 'left', onClick, ...props }: ITypographyProps,
+  ref: React.Ref<HTMLSpanElement>
+) => {
   return React.createElement(as, {
     className: cn(typographyVariants[type], typographyAlignVariants[align], className),
-    style: { color, ...styles },
+    style: styles,
+    ref,
     onClick,
     ...props,
   });
 };
 
-export default Typography;
+export default memo(forwardRef(Typography));

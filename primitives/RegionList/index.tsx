@@ -5,16 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@primitives/Typography';
 
 import { changeRegion } from '@store/regionSlice';
+import { IRegion, IState } from '@store/types';
 
 import { item, list } from './style.css';
 
 interface IRegionList {
-  cb: () => any;
+  cb: () => void;
 }
 
 const RegionList: NextPage<IRegionList> = ({ cb }) => {
   const dispatch = useDispatch();
-  const regionList = useSelector((state: any) => state.region.regions);
+  const regionList = useSelector((state: IState) => state.region.regions);
 
   const handleClick = useCallback(
     (name) => {
@@ -26,7 +27,7 @@ const RegionList: NextPage<IRegionList> = ({ cb }) => {
 
   return (
     <div className={list}>
-      {regionList.map((region: any, ind: number) => (
+      {regionList.map((region: IRegion, ind: number) => (
         <Typography
           key={region.name + ind}
           type={'base'}

@@ -9,12 +9,12 @@ import { burger, iconWrapper } from './style.css';
 interface IBurger {
   isOpen: boolean;
   className?: string;
-  toggle: (arg: (prevState: boolean) => boolean) => void;
+  toggle: () => void;
 }
 
 const Burger = ({ isOpen, className, toggle }: IBurger) => {
   const handlerClick = useCallback(() => {
-    toggle((prevState) => !prevState);
+    toggle();
   }, [toggle]);
 
   return (
