@@ -1,1 +1,9 @@
-export type TypographyTypes = 'info' | 'base' | 'title' | 'subTitle';
+export type TypographyTypes =
+  | 'info'
+  | 'base'
+  | 'title'
+  | 'subTitle'
+  | 'sectionTitle'
+  | 'sectionSubTitle'
+  | 'headLine'
+  | 'main';

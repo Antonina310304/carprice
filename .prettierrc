@@ -9,11 +9,12 @@
         "^@primitives/(.*)$",
         "^@hooks/(.*)$",
         "^@store/(.*)$",
+        "^@constants/(.*)$",
+        "^@utils/(.*)$",
         "^./types/(.*)$",
         "^./elms/(.*)$",
         "^[./]",
         "^[../]",
-        "^@constants/(.*)$",
         "^@styles/(.*)$",
         "./style.css|^@baseStyle"
     ],

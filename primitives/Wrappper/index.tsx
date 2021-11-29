@@ -1,21 +1,34 @@
-import { CSSProperties, forwardRef, ReactNode, Ref } from 'react';
+import React, { CSSProperties, forwardRef, memo, ReactNode, Ref, useMemo } from 'react';
+
+import BackgroundColors from '@styles/theme/types/BackgroundColors';
 
 interface IWrapper {
   className?: string;
+  as: string;
   styles?: CSSProperties;
+  spacing?: any;
+  padding?: any;
+  borderRadius?: number;
+  bgColor?: BackgroundColors;
   children?: ReactNode;
   [name: string]: any;
 }
 
 const Wrapper = forwardRef(function (props: IWrapper, ref: Ref<HTMLInputElement>) {
-  const { styles, as, className, children, ...otherProps } = props;
-  return (
-    <div ref={ref} className={className} style={styles} {...otherProps}>
-      {children}
-    </div>
+  const { styles, as = 'div', className, spacing, bgColor, children, padding, borderRadius, ...otherProps } = props;
+  console.log(padding);
+  return React.createElement(
+    as,
+    {
+      className: className,
+      style: { ...styles, backgroundColor: bgColor, borderRadius, padding: padding, margin: spacing?.m },
+      ref,
+      ...otherProps,
+    },
+    children
   );
 });
 
 Wrapper.displayName = 'Wrapper';
 
-export default Wrapper;
+export default memo(Wrapper);

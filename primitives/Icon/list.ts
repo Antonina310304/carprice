@@ -11,4 +11,11 @@ export const internalIcons = {
   instagram: require('./icons/instagram.svg'),
   youtube: require('./icons/youtube.svg'),
   cross: require('./icons/cross.svg'),
+  yandex: require('./icons/yandex.svg'),
+  google: require('./icons/google.svg'),
+  otzovik: require('./icons/otzovik.svg'),
+  arrowNext: require('./icons/arrow-next.svg'),
+  arrowPrev: require('./icons/arrow-prev.svg'),
+  starEmpty: require('./icons/star.svg'),
+  starFull: require('./icons/star_full.svg'),
 } as const;

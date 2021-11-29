@@ -1,1 +1,1 @@
-export type BaseColors = 'black' | 'white';
+export type BaseColors = 'black' | 'white' | 'green';

@@ -10,7 +10,7 @@ interface ITypographyProps {
   type: TypographyTypes;
   className?: string;
   styles?: CSSProperties;
-  align?: 'left' | 'center' | 'right';
+  align?: 'left' | 'center' | 'right' | 'inherit';
   onClick?: (arg: any) => void;
   [name: string]: any;
 }

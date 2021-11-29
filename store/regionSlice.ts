@@ -17,7 +17,6 @@ const regionSlice = createSlice({
     },
 
     changeRegion(state, action: PayloadAction<{ name: string }>) {
-      console.log(action);
       state.activeRegion = state.regions.find((item: IRegion) => item.name === action.payload.name);
     },
   },

@@ -1,4 +1,5 @@
 import cn from 'classnames';
+
 import type { NextPage } from 'next';
 import { memo, useMemo } from 'react';
 
@@ -8,8 +9,8 @@ import { internalIcons } from './list';
 
 interface IInternalSvg {
   icon: keyof typeof internalIcons;
-  width?: number;
-  height?: number;
+  width?: number | 'auto';
+  height?: number | 'auto';
   className?: string;
   onClick?: () => void;
 }

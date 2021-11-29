@@ -4,13 +4,12 @@ import { useDispatch } from 'react-redux';
 
 import Layout from '@components/Layout';
 import { IMetaName, IMetaProperty } from '@components/Layout/types';
-import { IRegion } from '@components/Region/types';
-
-import Wrapper from '@primitives/Wrappper';
+import MainPage from '@components/MainPage';
 
 import { changeRegion, pushRegions } from '@store/regionSlice';
+import { IRegion } from '@store/types';
 
-import { mainContainer } from '@styles/baseStyle';
+import Theme from '@styles/theme';
 
 const PAGE_TITLE = 'Выкуп автомобилей в Москве и области - «CarPrice» – быстро, дорого, надежно';
 
@@ -47,7 +46,7 @@ const Index: NextPage<IIndex> = ({ locations: serverLocations }) => {
 
   return (
     <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
-      <Wrapper className={mainContainer}>главная страница</Wrapper>
+      <MainPage />
     </Layout>
   );
 };

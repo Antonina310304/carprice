@@ -1,3 +1,3 @@
-import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme/index.css';
+import { globalThemeColorVars, globalThemeDurationVars, globalBorderRadius } from '@styles/globalTheme/index.css';
 
-export { globalThemeColorVars, globalThemeDurationVars };
+export { globalThemeColorVars, globalThemeDurationVars, globalBorderRadius };

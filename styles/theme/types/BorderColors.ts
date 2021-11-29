@@ -1,3 +1,3 @@
-type BorderColors = 'borderPrimary' | 'borderSecondary';
+type BorderColors = 'borderPrimary' | 'borderSecondary' | 'borderTertiary';
 
 export default BorderColors;

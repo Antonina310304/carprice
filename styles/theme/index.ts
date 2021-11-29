@@ -11,13 +11,19 @@ import MenuFontColors from './types/MenuFontColors';
 import { Colors } from './types';
 
 import { BaseColors } from '@styles/theme/types/BaseColors';
+import { BorderRadius } from '@styles/theme/types/BorderRadius';
 import { ShadowColors } from '@styles/theme/types/ShadowColors';
 
 export default class Theme {
   colors!: Record<Colors, string>;
 
+  spacing: Record<number, string>;
+
+  static spacingStep = 8;
+
   constructor() {
     this.colors = this.generateColors();
+    this.spacing = this.generateSpacing();
   }
 
   static alphaColor(color: string, alpha: number) {
@@ -36,13 +42,27 @@ export default class Theme {
     m150: `${Theme.durationTimes.num_m150}ms`,
   };
 
+  static borderRadius: Record<BorderRadius, string> = {
+    base: '4px',
+    medium: '8px',
+  };
+
+  private generateSpacing() {
+    return new Array(15).fill('').reduce((acc, item, idx) => {
+      acc[idx] = `${idx * Theme.spacingStep}px`;
+      return acc;
+    }, {});
+  }
+
   private generateColors() {
     const baseColors: Record<BaseColors, string> = {
       black: '#000000',
       white: '#ffffff',
+      green: '#38AE83',
     };
 
     const backgroundColors: Record<BackgroundColors, string> = {
+      transparent: 'transparent',
       backgroundPrimary: '#ffffff',
       backgroundSecondary: '#F4F6F9',
       backgroundTertiary: '#EDFAF5',
@@ -54,6 +74,8 @@ export default class Theme {
       fontsSecondary: '#757A85', // --black_700
       fontsTertiary: '#9FA3AD', // --black_500
       fontsQuaternary: '#8A8E99', // black_600,
+      fontsLightGreen: Theme.alphaColor(baseColors.green, 0.3), // greenTransparent,
+      fontsBaseGreen: '#37B587', // greenTransparent,
     };
 
     const menuFontColors: Record<MenuFontColors, string> = {
@@ -77,6 +99,7 @@ export default class Theme {
     const borderColors: Record<BorderColors, string> = {
       borderPrimary: '#D9DDE2', // --black_300
       borderSecondary: '#37B587',
+      borderTertiary: '#9FA3AD',
     };
 
     const svgFill: Record<FillColors, string> = {
@@ -84,6 +107,7 @@ export default class Theme {
       fillSecondary: '#757A85', // --серый
       fillTertiary: '#1E1F21', // --темно-серый
       fillDark: '#46474A', // --темно-серый
+      fontsGray: '#9FA3AD',
     };
 
     return {

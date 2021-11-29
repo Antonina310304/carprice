@@ -21,7 +21,8 @@
       "@primitives/*": ["primitives/*"],
       "@constants/*": ["constants/*"],
       "@store/*": ["store/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@utils/*": ["utils/*"]
     }
 
   },

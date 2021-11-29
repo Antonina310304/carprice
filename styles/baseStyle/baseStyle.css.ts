@@ -1,6 +1,8 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
 
 import { mediaQueryDesktop, mediaQueryMobile } from '@constants/mediaQuery';
+
+import { globalThemeColorVars } from '@styles/globalTheme';
 
 export const mainContainer = style({
   maxWidth: '1032px',
@@ -30,4 +32,13 @@ export const baseListStyle = style({
 
 export const textUppercase = style({
   textTransform: 'uppercase',
+});
+
+export const link = style({
+  color: globalThemeColorVars.linkPrimary,
+  textDecoration: 'none',
+  cursor: 'pointer',
+  ':hover': {
+    textDecoration: 'underline',
+  },
 });
