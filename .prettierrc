@@ -6,6 +6,7 @@
         "^next|react(.*)$",
         "^@mui/(.*)$",
         "^@components/(.*)$",
+        "^@pages/(.*)$",
         "^@primitives/(.*)$",
         "^@hooks/(.*)$",
         "^@store/(.*)$",

@@ -11,7 +11,7 @@ import useMediaQuery from '@hooks/useMediaQuery';
 
 import { DESKTOP } from '@constants/mediaQuery';
 
-import { arrowsWrapper, dotsMobileWrapper, dotsWrapper, slide, slider, slideWrapper } from './style.css';
+import { arrowsWrapper, dotsMobileWrapper, dotsWrapper, mainWrapper, slide, slider, slideWrapper } from './style.css';
 
 interface ISlider {
   sliderLength: number;
@@ -54,8 +54,10 @@ const Slider: NextPage<ISlider> = ({ template, list, className, sliderLength, ..
   return (
     <div className={cn(className, slider)}>
       <SwipeableViews
+        slideStyle={{ boxSizing: 'border-box' }}
         slideClassName={slideWrapper}
-        style={{ margin: '0 -12px' }}
+        style={{ overflowX: 'visible' }}
+        className={mainWrapper}
         index={currentIndex}
         enableMouseEvents
         onChangeIndex={onChangeIndex}

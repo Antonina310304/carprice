@@ -17,6 +17,11 @@ export const headerWrapper = style([
   },
 ]);
 
+export const header = style({
+  position: 'relative',
+  zIndex: '3',
+});
+
 export const tabletWrapper = style({
   display: 'flex',
   justifyContent: 'space-between',

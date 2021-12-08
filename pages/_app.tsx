@@ -1,15 +1,22 @@
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 
+import { ThemeProvider } from '@mui/material';
+
+import theme from '@components/themeOptions';
+
 import store from '../store/';
 
 import '@styles/globals.css';
+import '@styles/normalize.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </ThemeProvider>
   );
 }
 

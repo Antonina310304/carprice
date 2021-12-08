@@ -58,6 +58,7 @@ export const titleLink = style({
       ':hover': {
         color: globalThemeColorVars.menuSecondary,
         transition: `color ${globalThemeDurationVars.m250} ease-in-out`,
+        textDecoration: 'none',
       },
     },
   },

@@ -1,4 +1,6 @@
 export type TypographyTypes =
+  | 'caption'
+  | 'min'
   | 'info'
   | 'base'
   | 'title'

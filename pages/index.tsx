@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux';
 
 import Layout from '@components/Layout';
 import { IMetaName, IMetaProperty } from '@components/Layout/types';
-import MainPage from '@components/MainPage';
 
+import MainPage from '@pages/MainPage';
+
+import { loadState } from '@store/localStorage';
 import { changeRegion, pushRegions } from '@store/regionSlice';
 import { IRegion } from '@store/types';
-
-import Theme from '@styles/theme';
 
 const PAGE_TITLE = 'Выкуп автомобилей в Москве и области - «CarPrice» – быстро, дорого, надежно';
 
@@ -37,9 +37,15 @@ const Index: NextPage<IIndex> = ({ locations: serverLocations }) => {
   useEffect(() => {
     if (serverLocations) {
       dispatch(pushRegions(serverLocations));
-      const region = serverLocations.find((item: IRegion) => item.selected);
+      const region = loadState()?.region?.activeRegion;
+
       if (region) {
         dispatch(changeRegion({ name: region.name }));
+        return;
+      }
+      const activeServerRegion = serverLocations.find((item: IRegion) => item.selected);
+      if (activeServerRegion) {
+        dispatch(changeRegion({ name: activeServerRegion.name }));
       }
     }
   }, [dispatch, serverLocations]);

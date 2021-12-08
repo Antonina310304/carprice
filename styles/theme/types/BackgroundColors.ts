@@ -3,6 +3,7 @@ type BackgroundColors =
   | 'backgroundSecondary'
   | 'backgroundTertiary'
   | 'backgroundQuaternary'
-  | 'transparent';
+  | 'transparent'
+  | 'backgroundGray';
 
 export default BackgroundColors;

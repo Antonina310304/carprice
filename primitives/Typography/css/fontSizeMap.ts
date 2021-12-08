@@ -1,6 +1,10 @@
 import { CSSProperties } from 'react';
 
 export const fontSizeMap: Record<string, CSSProperties> = {
+  '12/14': {
+    fontSize: '12px',
+    lineHeight: '14px',
+  },
   '12/18': {
     fontSize: '12px',
     lineHeight: '18px',

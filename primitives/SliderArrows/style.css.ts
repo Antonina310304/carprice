@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 
 export const wrapper = style({
-  display: 'flex',
+  display: 'inline-flex',
   alignItems: 'center',
 });
 export const navButton = style({

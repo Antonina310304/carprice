@@ -42,3 +42,16 @@ export const link = style({
     textDecoration: 'underline',
   },
 });
+
+// TODO стили со старого сайта пришли
+//  при верстке шапки и подвала,подумать как оптимизировать
+export const baseSpacing = style({
+  paddingLeft: '12px',
+  paddingRight: '12px',
+  '@media': {
+    [mediaQueryMobile]: {
+      paddingLeft: '16px',
+      paddingRight: '16px',
+    },
+  },
+});

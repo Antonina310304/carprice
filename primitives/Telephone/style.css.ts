@@ -14,6 +14,7 @@ export const wrapper = style({
   ':hover': {
     color: globalThemeColorVars.linkHoverSecondary,
     transition: `color ${globalThemeDurationVars.m250} ease-in-out`,
+    textDecoration: 'none',
   },
 });
 

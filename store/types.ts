@@ -12,3 +12,15 @@ export interface IState {
     activeRegion: IRegion;
   };
 }
+
+export interface ICarData {
+  vin: string;
+  number: string;
+  year: number;
+  model: string;
+  brand: string;
+  mail: string;
+  agreement: string;
+}
+
+export type KeyCarData = keyof ICarData;

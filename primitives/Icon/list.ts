@@ -16,6 +16,8 @@ export const internalIcons = {
   otzovik: require('./icons/otzovik.svg'),
   arrowNext: require('./icons/arrow-next.svg'),
   arrowPrev: require('./icons/arrow-prev.svg'),
+  arrowDown: require('./icons/arrow-down.svg'),
   starEmpty: require('./icons/star.svg'),
   starFull: require('./icons/star_full.svg'),
+  checkOutline: require('./icons/check_outline.svg'),
 } as const;

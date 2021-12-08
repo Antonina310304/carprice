@@ -17,6 +17,7 @@ export const personal = style({
   ':hover': {
     color: globalThemeColorVars.linkHoverPrimary,
     transition: `color ${globalThemeDurationVars.m250} ease-in-out`,
+    textDecoration: 'none',
   },
 });
 

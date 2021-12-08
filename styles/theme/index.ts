@@ -67,6 +67,7 @@ export default class Theme {
       backgroundSecondary: '#F4F6F9',
       backgroundTertiary: '#EDFAF5',
       backgroundQuaternary: Theme.alphaColor('#f0f2f6', 0.74),
+      backgroundGray: '#EEF0F4',
     };
 
     const fontsColors: Record<FontsColors, string> = {
@@ -100,6 +101,7 @@ export default class Theme {
       borderPrimary: '#D9DDE2', // --black_300
       borderSecondary: '#37B587',
       borderTertiary: '#9FA3AD',
+      borderLight: '#9FA3AD',
     };
 
     const svgFill: Record<FillColors, string> = {

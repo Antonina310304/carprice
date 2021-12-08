@@ -8,11 +8,20 @@ import { mediaQueryDesktop } from '@constants/mediaQuery';
 import { globalThemeColorVars } from '@styles/globalTheme';
 
 export const typographyVariants = styleVariants<Record<TypographyTypes, StyleRule>>({
+  min: {
+    ...fontSizeMap['12/18'],
+    margin: 0,
+  },
+  caption: {
+    ...fontSizeMap['12/14'],
+    margin: 0,
+  },
   info: {
     ...fontSizeMap['14/20'],
     margin: 0,
     fontWeight: 400,
   },
+
   base: {
     ...fontSizeMap['16/24'],
     fontWeight: 400,

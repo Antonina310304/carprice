@@ -8,6 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -15,11 +16,16 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
+    "typeRoots": [
+      "./client/src/declaration.d.ts",
+      "./node_modules/@types"
+    ],
     "paths": {
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
       "@primitives/*": ["primitives/*"],
       "@constants/*": ["constants/*"],
+      "@pages/*": ["pageComponents/*"],
       "@store/*": ["store/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"]

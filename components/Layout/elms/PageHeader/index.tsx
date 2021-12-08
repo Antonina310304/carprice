@@ -10,6 +10,8 @@ import Telephone from '@primitives/Telephone';
 
 import useMediaQuery from '@hooks/useMediaQuery';
 
+import { DESKTOP, TABLET } from '@constants/mediaQuery';
+
 import NavWrapper from './elms/NavWrapper';
 import SiteNav from './elms/SiteNav';
 
@@ -23,9 +25,8 @@ import {
   burgerWrapper,
   headerWrapper,
   burger,
+  header,
 } from './style.css';
-
-import { DESKTOP, TABLET } from '@constants/mediaQuery';
 
 import { mainContainer } from '@styles/baseStyle';
 
@@ -43,7 +44,7 @@ const PageHeader: NextPage<IPageHeader> = ({ openRegionModal }) => {
   }, [isOpenMenu]);
 
   return (
-    <header>
+    <header className={header}>
       <div className={headerWrapper}>
         <div className={tabletWrapper}>
           {!isDesktop && (

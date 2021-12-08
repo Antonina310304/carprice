@@ -16,12 +16,18 @@ interface IWrapper {
 
 const Wrapper = forwardRef(function (props: IWrapper, ref: Ref<HTMLInputElement>) {
   const { styles, as = 'div', className, spacing, bgColor, children, padding, borderRadius, ...otherProps } = props;
-  console.log(padding);
   return React.createElement(
     as,
     {
       className: className,
-      style: { ...styles, backgroundColor: bgColor, borderRadius, padding: padding, margin: spacing?.m },
+      style: {
+        ...styles,
+        boxSizing: 'border-box',
+        backgroundColor: bgColor,
+        borderRadius,
+        padding: padding,
+        margin: spacing?.m,
+      },
       ref,
       ...otherProps,
     },

@@ -1,0 +1,25 @@
+{
+  "number": {
+    "error": "true",
+    "errors": [
+      {
+        "name": "number",
+        "text": "Номерной знак введён некорректно или не найден в справочнике"
+      }
+    ]
+  },
+  "vin": {
+    "error": "false",
+    "errors": [],
+    "data": {
+      "volume": "4-Cyl, 2.5 Liter",
+      "transmission": "Auto, CVT Xtronic"
+    }
+  },
+  "data": {
+    "brand": "Chery",
+    "model": "IndiS (S18D) I",
+    "year": "2018",
+    "mail": "310301@list.ru"
+  }
+}
