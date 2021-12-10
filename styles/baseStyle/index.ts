@@ -1,3 +1,3 @@
-import { baseListStyle, link, mainContainer, textUppercase } from './baseStyle.css';
+import { baseListStyle, link, mainContainer, textUppercase, basePageWrapper, textMedium } from './baseStyle.css';
 
-export { mainContainer, textUppercase, baseListStyle, link };
+export { mainContainer, textUppercase, baseListStyle, link, basePageWrapper, textMedium };

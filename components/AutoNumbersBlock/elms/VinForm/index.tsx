@@ -4,9 +4,9 @@ import Router from 'next/router';
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import NumOfferForm from '@components/AutoNumbersBlock/elms/NumOfferForm';
+import NumOfferForm from '@components/NumOfferForm';
 
-import { changeCarDetail } from '@store/carSlice';
+import { fetchCarDetail } from '@store/carSlice';
 
 import { SERVER_ERROR_TEXT } from '../../constants';
 
@@ -49,7 +49,8 @@ const VinForm = () => {
           if (data.error === 'true') {
             showErrors(data.errors);
           } else {
-            dispatch(changeCarDetail(data.data));
+            console.log(data.data);
+            dispatch(fetchCarDetail(data.data));
             Router.push('/almost_done');
           }
         })

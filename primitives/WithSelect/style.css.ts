@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/core/styles';
 import { style } from '@vanilla-extract/css';
 
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
@@ -48,4 +49,12 @@ export const progressIcon = style({
 
 export const successProgressIcon = style({
   color: globalThemeColorVars.fontsGray,
+});
+
+export const useStyles = makeStyles({
+  root: {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: globalThemeColorVars.borderLight,
+    },
+  },
 });

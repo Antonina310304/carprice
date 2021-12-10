@@ -6,28 +6,6 @@ export const modal = style({
   position: 'relative',
 });
 
-export const inner = style({
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-});
-
-export const closeButton = style({
-  cursor: 'pointer',
-  position: 'absolute',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  right: '0px',
-  top: '0px',
-  padding: 0,
-  boxSizing: 'border-box',
-  background: 'transparent',
-  width: '45px',
-  height: '45px',
-  border: 0,
-});
-
 export const listWrapper = style({
   width: '100%',
   maxHeight: '100%',

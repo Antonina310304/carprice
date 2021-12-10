@@ -2,8 +2,6 @@ import { NextPage } from 'next';
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { blockWrapper } from '@components/BrandForm/style.css';
-
 import WithSelect from '@primitives/WithSelect';
 
 import { changeBrand } from '@store/carSlice';
@@ -14,9 +12,10 @@ import { loadingStatus } from '@constants/loadingStatus';
 const BRAND_TYPE = 0;
 interface IBrand {
   handleChange: (arg: string) => void;
+  className?: string;
 }
 
-const Brand: NextPage<IBrand> = ({ handleChange }) => {
+const Brand: NextPage<IBrand> = ({ className, handleChange }) => {
   const dispatch = useDispatch();
 
   const { brand } = useSelector((state: any) => {
@@ -46,7 +45,7 @@ const Brand: NextPage<IBrand> = ({ handleChange }) => {
     <WithSelect
       name={'brand'}
       style={{ padding: 0 }}
-      className={blockWrapper}
+      className={className}
       handleChange={handleChangeBrand}
       currValue={brand}
       disabled={disabled}

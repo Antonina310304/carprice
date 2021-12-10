@@ -1,10 +1,13 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
+import React from 'react';
 
 import { Modal as MaterialModal } from '@mui/material';
 
-import { modalContent, mainWrapper } from './style.css';
+import Icon from '@primitives/Icon';
+
+import { modalContent, mainWrapper, inner, closeButton } from './style.css';
 
 interface IModal {
   open: boolean;
@@ -21,7 +24,15 @@ const Modal: NextPage<IModal> = ({ open, className, handleClose, children }) => 
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <div className={cn(modalContent, className)}>{children}</div>
+      <div className={cn(modalContent, className)}>
+        <div className={inner}>
+          <button className={closeButton} onClick={handleClose}>
+            <Icon icon={'cross'} width={16} height={16} />
+          </button>
+
+          {children}
+        </div>
+      </div>
     </MaterialModal>
   );
 };

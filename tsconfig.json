@@ -28,7 +28,8 @@
       "@pages/*": ["pageComponents/*"],
       "@store/*": ["store/*"],
       "@hooks/*": ["hooks/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@types/*": ["types/*"]
     }
 
   },

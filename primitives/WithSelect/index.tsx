@@ -8,7 +8,7 @@ import { CircularProgress, FormControl, InputAdornment, MenuItem, OutlinedInput,
 
 import Icon from '@primitives/Icon';
 
-import { wrapper, icon, successIcon, disabledIcon, progressIcon, successProgressIcon } from './style.css';
+import { wrapper, icon, successIcon, disabledIcon, progressIcon, successProgressIcon, useStyles } from './style.css';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 
@@ -66,13 +66,6 @@ const WithSelect: NextPage<IWithSelect> = ({
     [handleChange, name]
   );
 
-  const useStyles = makeStyles({
-    root: {
-      '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: globalThemeColorVars.borderLight,
-      },
-    },
-  });
   const classes = useStyles();
   return (
     <FormControl focused={changed} fullWidth>

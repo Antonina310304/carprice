@@ -38,10 +38,7 @@ const RegionModal: NextPage<IRegionModal> = ({ isOpen, setIsOpen }) => {
 
   return (
     <Modal className={modal} open={isOpen} handleClose={handleClose}>
-      <div className={inner}>
-        <button className={closeButton} onClick={handleClose}>
-          <Icon icon={'cross'} width={16} height={16} />
-        </button>
+      <>
         <div className={header}>
           <Typography type={'subTitle'} styles={{ margin: '0 0 16px' }}>
             Выберите ваш город
@@ -63,7 +60,7 @@ const RegionModal: NextPage<IRegionModal> = ({ isOpen, setIsOpen }) => {
         <div className={listWrapper}>
           <RegionList cb={handleClose} />
         </div>
-      </div>
+      </>
     </Modal>
   );
 };

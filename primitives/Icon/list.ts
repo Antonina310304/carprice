@@ -20,4 +20,6 @@ export const internalIcons = {
   starEmpty: require('./icons/star.svg'),
   starFull: require('./icons/star_full.svg'),
   checkOutline: require('./icons/check_outline.svg'),
+  edit: require('./icons/edit.svg'),
+  check: require('./icons/check.svg'),
 } as const;

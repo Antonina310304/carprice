@@ -2,15 +2,17 @@ import { NextPage } from 'next';
 import React, { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { blockWrapper } from '@components/BrandForm/style.css';
-
 import WithSelect from '@primitives/WithSelect';
 
 import { changeCarData } from '@store/carSlice';
 
 import { loadingStatus } from '@constants/loadingStatus';
 
-const Model: NextPage = () => {
+interface IModel {
+  className?: string;
+}
+
+const Model: NextPage<IModel> = ({ className }) => {
   const dispatch = useDispatch();
   const { model } = useSelector((state: any) => {
     return state.carData;
@@ -32,7 +34,7 @@ const Model: NextPage = () => {
   return (
     <WithSelect
       name={'model'}
-      className={blockWrapper}
+      className={className}
       handleChange={handleChangeYear}
       currValue={model}
       disabled={disabled}

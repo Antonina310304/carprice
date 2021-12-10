@@ -5,12 +5,6 @@ import { spacing } from '@utils/spacing';
 
 export const blockWrapper = style({
   marginBottom: spacing(2),
-
-  selectors: {
-    // ['input']: {
-    //   textTransform: 'uppercase',
-    // },
-  },
 });
 
 export const button = style({

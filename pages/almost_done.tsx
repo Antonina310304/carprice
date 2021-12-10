@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import Layout from '@components/Layout';
 import { IMetaName, IMetaProperty } from '@components/Layout/types';
 
+import AlmostDonePage from '@pages/AlmostDonePage';
+
 import { loadState } from '@store/localStorage';
 import { changeRegion, pushRegions } from '@store/regionSlice';
 import { IRegion } from '@store/types';
@@ -29,28 +31,10 @@ interface IDone {
   locations: IRegion[];
 }
 
-const Done: NextPage<IDone> = ({ locations: serverLocations }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (serverLocations) {
-      dispatch(pushRegions(serverLocations));
-      const region = loadState()?.region?.activeRegion;
-
-      if (region) {
-        dispatch(changeRegion({ name: region.name }));
-        return;
-      }
-      const activeServerRegion = serverLocations.find((item: IRegion) => item.selected);
-      if (activeServerRegion) {
-        dispatch(changeRegion({ name: activeServerRegion.name }));
-      }
-    }
-  }, [dispatch, serverLocations]);
-
+const Done: NextPage<IDone> = () => {
   return (
     <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
-      <h1>Почти готово!</h1>
+      <AlmostDonePage />
     </Layout>
   );
 };

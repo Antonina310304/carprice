@@ -1,11 +1,9 @@
-import cn from 'classnames';
-
 import { NextPage } from 'next';
 import React, { memo, SyntheticEvent } from 'react';
 
-import { Button, CircularProgress } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
-import { button } from './style.css';
+import WithButton from '@primitives/WithButton';
 
 interface IButtonSubmit {
   handleSubmit?: (e: SyntheticEvent) => void;
@@ -15,21 +13,14 @@ interface IButtonSubmit {
   className?: string;
 }
 const ButtonSubmit: NextPage<IButtonSubmit> = ({ className, handleSubmit, disabled, submitting, buttonText }) => {
-  console.log(submitting);
   return (
-    <Button
-      {...(handleSubmit ? { onClick: handleSubmit } : {})}
+    <WithButton
+      text={buttonText}
       disabled={disabled}
-      color="primary"
-      className={cn(className, button)}
-      variant="contained"
-      size="large"
-      fullWidth
-      type="submit"
+      {...(handleSubmit ? { onClick: handleSubmit } : {})}
+      className={className}
       startIcon={submitting && <CircularProgress style={{ width: '20px', height: '20px' }} className={'test'} />}
-    >
-      {buttonText}
-    </Button>
+    />
   );
 };
 

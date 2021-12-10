@@ -14,16 +14,21 @@ interface ITextMaskCustom {
 const TextMaskCustom: NextPage<ITextMaskCustom> = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, mask, definitions, ...other } = props;
 
-  const handleAccept = useCallback((value) => {
-    if (onChange) {
-      onChange({ target: { name: props.name, value } });
-    }
-  }, []);
+  const handleAccept = useCallback(
+    (value) => {
+      if (onChange) {
+        onChange({ target: { name: props.name, value } });
+      }
+    },
+    [onChange, props.name]
+  );
   return (
     <IMaskInput
       {...other}
       mask={mask}
       {...(definitions ? { definitions: definitions } : {})}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       onAccept={handleAccept}
       overwrite
     />

@@ -65,6 +65,7 @@ export default class Theme {
       transparent: 'transparent',
       backgroundPrimary: '#ffffff',
       backgroundSecondary: '#F4F6F9',
+      backgroundSecondaryLight: '#ECF1FF',
       backgroundTertiary: '#EDFAF5',
       backgroundQuaternary: Theme.alphaColor('#f0f2f6', 0.74),
       backgroundGray: '#EEF0F4',
@@ -110,6 +111,7 @@ export default class Theme {
       fillTertiary: '#1E1F21', // --темно-серый
       fillDark: '#46474A', // --темно-серый
       fontsGray: '#9FA3AD',
+      fillSecondaryLight: '#4B7AF4', // Голубой
     };
 
     return {

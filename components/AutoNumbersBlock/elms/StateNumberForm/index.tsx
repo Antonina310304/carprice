@@ -3,7 +3,7 @@ import axios from 'axios';
 import { NextPage } from 'next';
 import React, { memo, useCallback } from 'react';
 
-import NumOfferForm from '@components/AutoNumbersBlock/elms/NumOfferForm';
+import NumOfferForm from '@components/NumOfferForm';
 
 import { SERVER_ERROR_TEXT } from '../../constants';
 

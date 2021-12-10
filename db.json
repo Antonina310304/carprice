@@ -12,14 +12,17 @@
     "error": "false",
     "errors": [],
     "data": {
-      "volume": "4-Cyl, 2.5 Liter",
-      "transmission": "Auto, CVT Xtronic"
+      "brand": "Cadillac",
+      "year": "2020",
+      "model": "XT5 I",
+      "volume": "XT5 I",
+      "transmission": "XT5 I"
     }
   },
   "data": {
-    "brand": "Chery",
-    "model": "IndiS (S18D) I",
-    "year": "2018",
-    "mail": "310301@list.ru"
+    "brand": "Cadillac",
+    "model": "XT5 I",
+    "year": "2020",
+    "mail": "310324@lit.ru"
   }
 }

@@ -2,8 +2,6 @@ import { NextPage } from 'next';
 import React, { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { blockWrapper } from '@components/BrandForm/style.css';
-
 import WithSelect from '@primitives/WithSelect';
 
 import { changeCarData } from '@store/carSlice';
@@ -12,9 +10,10 @@ import { loadingStatus } from '@constants/loadingStatus';
 
 interface IYear {
   handleChange: (arg: number) => void;
+  className?: string;
 }
 
-const Year: NextPage<IYear> = ({ handleChange }) => {
+const Year: NextPage<IYear> = ({ className, handleChange }) => {
   const dispatch = useDispatch();
 
   const { year } = useSelector((state: any) => {
@@ -38,7 +37,7 @@ const Year: NextPage<IYear> = ({ handleChange }) => {
   return (
     <WithSelect
       name={'year'}
-      className={blockWrapper}
+      className={className}
       handleChange={handleChangeYear}
       currValue={year}
       disabled={disabled}

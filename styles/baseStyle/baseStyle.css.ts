@@ -1,8 +1,20 @@
-import { createVar, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 import { mediaQueryDesktop, mediaQueryMobile } from '@constants/mediaQuery';
 
+import { spacing } from '@utils/spacing';
+
 import { globalThemeColorVars } from '@styles/globalTheme';
+
+export const basePageWrapper = style({
+  paddingTop: spacing(6),
+
+  '@media': {
+    [mediaQueryDesktop]: {
+      paddingTop: spacing(10),
+    },
+  },
+});
 
 export const mainContainer = style({
   maxWidth: '1032px',
@@ -17,7 +29,8 @@ export const mainContainer = style({
       paddingRight: '15px',
     },
     [mediaQueryDesktop]: {
-      padding: '0 64px 0 66px',
+      paddingLeft: '66px',
+      paddingRight: '66px',
       maxWidth: '1162px',
     },
   },
@@ -54,4 +67,8 @@ export const baseSpacing = style({
       paddingRight: '16px',
     },
   },
+});
+
+export const textMedium = style({
+  fontWeight: '500',
 });

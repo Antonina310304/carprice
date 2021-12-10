@@ -30,6 +30,7 @@ export const typographyVariants = styleVariants<Record<TypographyTypes, StyleRul
     ...fontSizeMap['14/20'],
     fontWeight: 400,
     margin: 0,
+
     '@media': {
       [mediaQueryDesktop]: {
         ...fontSizeMap['16/24'],
