@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { mediaQueryDesktop, mediaQueryMobileM, mediaQueryTablet, MOBILE_M } from '@constants/mediaQuery';
+import { mediaQueryDesktop, mediaQueryMobileM } from '@constants/mediaQuery';
 
 import { spacing } from '@utils/spacing';
 

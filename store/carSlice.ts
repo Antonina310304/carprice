@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { transformDataForStorage } from '@store/utils';
-
-import FieldsNames from '@constants/fields';
+import fields, { carDetailFields } from '@constants/fields';
 import { loadingStatus } from '@constants/loadingStatus';
 
 export const detectCar = createAsyncThunk(
@@ -26,42 +24,35 @@ export const detectCar = createAsyncThunk(
 const carSlice = createSlice({
   name: 'car',
   initialState: {
-    [FieldsNames.REG_NUMBER]: '',
-    agreement: true,
-    mileage: '', //пробег
-    [FieldsNames.VIN]: '',
-    [FieldsNames.MODIFICATION]: '', //
-    [FieldsNames.BODY]: '', //кузов
-    [FieldsNames.MAIL]: '',
-    carDetail: {
-      //получаю с сервера
-      [FieldsNames.BRAND]: '',
-      [FieldsNames.YEAR]: 0,
-      [FieldsNames.MODEL]: '',
-      [FieldsNames.COLOR]: '',
-      [FieldsNames.TRANSMISSION]: '',
-      [FieldsNames.ENGINE_TYPE]: '',
-      [FieldsNames.ENGINE_VOLUME]: 0,
-      [FieldsNames.ENGINE_POWER]: 0,
-      [FieldsNames.WHEEL]: '', // тип руля
-    },
     statusRequest: '',
     errorRequest: '',
     statusDetect: '',
     errorDetect: '',
-    [FieldsNames.CREDIT]: '',
-    [FieldsNames.WHEEL]: '', // тип руля
+    agreement: true,
+
+    [fields.REG_NUMBER]: '',
+    [fields.VIN]: '',
+
+    carDetail: {
+      [carDetailFields.BRAND]: '',
+      [carDetailFields.YEAR]: null,
+      [carDetailFields.MODEL]: '',
+      [carDetailFields.BODY]: '', //кузов
+      [carDetailFields.MODIFICATION]: '', //
+    },
   },
 
   reducers: {
-    fetchCarDetail(state, action: PayloadAction<{ brandId: string; yearId: string; modelId: string }>) {
-      state.carDetail[FieldsNames.BRAND] = action.payload.brandId;
-      state.carDetail[FieldsNames.YEAR] = action.payload.yearId;
-      state.carDetail[FieldsNames.MODEL] = action.payload.modelId;
+    fetchCarDetail(state, action: PayloadAction<{ brandId: string; yearId: number; modelId: string }>) {
+      state.carDetail[carDetailFields.BRAND] = action.payload.brandId;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      state.carDetail[carDetailFields.YEAR] = action.payload.yearId;
+      state.carDetail[carDetailFields.MODEL] = action.payload.modelId;
     },
 
     changeModification(state, action: PayloadAction<string>) {
-      state.modification = action.payload;
+      state.carDetail[carDetailFields.MODIFICATION] = action.payload;
     },
 
     changeData(state, action: PayloadAction<{ key: string; value: string | boolean }>) {
@@ -69,11 +60,13 @@ const carSlice = createSlice({
     },
 
     changeCarBody(state, action: PayloadAction<string>) {
-      state.body = action.payload;
+      state.carDetail[carDetailFields.BODY] = action.payload;
     },
 
     changeVin(state, action: PayloadAction<string>) {
-      state[FieldsNames.VIN] = action.payload;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      state[fields.VIN] = action.payload;
       state.statusDetect = '';
       state.statusRequest = '';
       state.errorDetect = '';
@@ -81,26 +74,29 @@ const carSlice = createSlice({
 
     /*при измении бренда всегда сбрасываются остальные данные (созависимые поля) */
     changeBrand(state, action: PayloadAction<string>) {
-      state.carDetail[FieldsNames.BRAND] = action.payload;
-      state.carDetail[FieldsNames.YEAR] = 0;
-      state.carDetail[FieldsNames.MODEL] = '';
-      state[FieldsNames.MODIFICATION] = '';
-      state[FieldsNames.BODY] = '';
+      state.carDetail[carDetailFields.BRAND] = action.payload;
+      state.carDetail[carDetailFields.YEAR] = null;
+      state.carDetail[carDetailFields.MODEL] = '';
+      state.carDetail[carDetailFields.MODIFICATION] = '';
+      state.carDetail[carDetailFields.BODY] = '';
     },
 
     /*при измении года всегда сбрасываются остальные данные (созависимые поля) */
     changeYear(state, action: PayloadAction<number>) {
-      state.carDetail[FieldsNames.YEAR] = action.payload;
-      state.carDetail[FieldsNames.MODEL] = '';
-      state[FieldsNames.MODIFICATION] = '';
-      state[FieldsNames.BODY] = '';
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      state.carDetail[carDetailFields.YEAR] = action.payload;
+      state.carDetail[carDetailFields.MODEL] = '';
+      state.carDetail[carDetailFields.MODIFICATION] = '';
+      state.carDetail[carDetailFields.BODY] = '';
     },
 
     /*при измении модели всегда сбрасываются остальные данные (созависимые поля) */
     changeModel(state, action: PayloadAction<string>) {
-      state.carDetail[FieldsNames.MODEL] = action.payload;
-      state[FieldsNames.MODIFICATION] = '';
-      state[FieldsNames.BODY] = '';
+      state.carDetail[carDetailFields.MODEL] = action.payload;
+      state.carDetail[carDetailFields.MODEL_NAME] = action.payload;
+      state.carDetail[carDetailFields.MODIFICATION] = '';
+      state.carDetail[carDetailFields.BODY] = '';
     },
 
     changeCarData(state, action: PayloadAction<{ key: string; value: string | boolean }>) {
@@ -123,12 +119,16 @@ const carSlice = createSlice({
 
     // при распозрании автомобиля сбрасываю тип кузова и модификацию
     [detectCar.fulfilled.type]: (state, action) => {
+      const data = action.payload.data[0];
       state.statusRequest = loadingStatus.RESOLVED;
-      state.carDetail = transformDataForStorage(action.payload.data[0]);
+
+      state.carDetail[carDetailFields.BRAND] = data?.brand;
+      state.carDetail[carDetailFields.YEAR] = data?.year;
+      state.carDetail[carDetailFields.MODEL] = data?.model;
       state.statusDetect = action.payload.success;
       state.errorDetect = action.payload.error.message;
-      state[FieldsNames.MODIFICATION] = '';
-      state[FieldsNames.BODY] = '';
+      state.carDetail[carDetailFields.MODIFICATION] = '';
+      state.carDetail[carDetailFields.BODY] = '';
     },
   },
 });

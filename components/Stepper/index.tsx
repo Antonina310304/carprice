@@ -10,7 +10,7 @@ const Stepper: NextPage<IStepper> = ({ className, headers }) => {
   return (
     <div className={className}>
       {headers.map((item) => (
-        <div>
+        <div key={item}>
           <div>{item}</div>
         </div>
       ))}

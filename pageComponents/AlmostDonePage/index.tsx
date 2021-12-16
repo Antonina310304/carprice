@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import AutoDetail from '@components/AutoDetail';
@@ -68,7 +68,7 @@ const AlmostDonePage = () => {
       </div>
       {isDesktop && (
         <AutoDetail
-          showDetail={almostDoneStep === almostDoneStepMap.FEATURES}
+          showDetail={almostDoneStep !== almostDoneStepMap.CONFIRM}
           className={aside}
           handleClick={openModal}
         />

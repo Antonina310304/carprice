@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useEffect, useMemo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
@@ -15,8 +15,8 @@ interface ICarModifications {
 
 const CarModifications: NextPage<ICarModifications> = ({ className }) => {
   const dispatch = useDispatch();
-  const { modification } = useSelector((state: IState) => {
-    return state.carData;
+  const { modificationId } = useSelector((state: IState) => {
+    return state.carData.carDetail;
   });
 
   const { modifications, statusModifications } = useSelector((state: IState) => {
@@ -37,7 +37,7 @@ const CarModifications: NextPage<ICarModifications> = ({ className }) => {
       name={'model'}
       className={className}
       handleChange={handleChangeYear}
-      currValue={modification}
+      currValue={modificationId}
       disabled={disabled}
       menuItemList={modifications}
       placeholder={'Модификация'}

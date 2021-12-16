@@ -72,10 +72,25 @@ const userDataSlice = createSlice({
 
   reducers: {
     resetAll(state) {
-      Object.keys(state.bodyDamage).forEach((key) => (state.bodyDamage[key] = false));
-      Object.keys(state.salonDamage).forEach((key) => (state.salonDamage[key] = false));
-      Object.keys(state.baseDamage).forEach((key) => (state.baseDamage[key] = false));
-      Object.keys(state.questionsStepThree).forEach((key) => (state.questionsStepThree[key] = ''));
+      Object.keys(state.bodyDamage).forEach((key) => {
+        state.bodyDamage[key] = key === BodyDamageFields.BODY_DESCRIPTION ? '' : false;
+      });
+
+      Object.keys(state.salonDamage).forEach((key) => {
+        state.salonDamage[key] = key === SalonDamageFields.SALON_DESCRIPTION ? '' : false;
+      });
+
+      Object.keys(state.baseDamage).forEach((key) => {
+        state.baseDamage[key] = key === BaseDamageFields.BASE_DESCRIPTION ? '' : false;
+      });
+
+      Object.keys(state.questionsStepThree).forEach((key) => {
+        state.questionsStepThree[key] = key === questionsStepThreeFields.REPAIR_COST ? null : '';
+      });
+
+      Object.keys(state.questionsStepOne).forEach((key) => {
+        state.questionsStepOne[key] = key === questionsStepOneFields.MILEAGE ? null : '';
+      });
     },
 
     updateHasDTP(state, action: PayloadAction<string>) {

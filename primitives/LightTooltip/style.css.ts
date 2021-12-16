@@ -14,7 +14,7 @@ globalStyle(`${wrapper} .css-kudwh-MuiTooltip-arrow`, {
   color: globalThemeColorVars.white,
 });
 
-export const tooltipStyle = ({ theme }) => ({
+export const tooltipStyle = ({ theme }: any) => ({
   ['&']: {
     filter: 'drop-shadow(0px 20px 20px rgba(150, 152, 156, 0.12)) drop-shadow(20px 0px 20px rgba(150, 152, 156, 0.12))',
   },

@@ -5,7 +5,6 @@ import { typographyVariants } from '@primitives/Typography/css/index.css';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { padding } from '@utils/padding';
 import { spacing } from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';

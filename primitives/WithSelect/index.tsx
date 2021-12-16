@@ -36,7 +36,7 @@ interface IWithSelect {
   menuItemList: any[];
   name: string;
   className?: string;
-  currValue: string;
+  currValue: string | number | null;
   disabled?: boolean;
   placeholder: string;
   isLoading: boolean;
@@ -107,14 +107,13 @@ const WithSelect: NextPage<IWithSelect> = ({
         )}
         MenuProps={MenuProps}
         renderValue={(selected) => {
-          if (selected?.length === 0) {
+          if (!selected) {
             return <span style={{ color: globalThemeColorVars.fontsQuaternary }}>{placeholder}</span>;
           }
           const select = menuItemList.find((item: any) => item.value == selected)?.text;
           if (!select) {
             return <span style={{ color: globalThemeColorVars.fontsQuaternary }}>{placeholder}</span>;
           }
-
           return select;
         }}
         inputProps={{ ...inputProps, ...{ 'aria-label': 'Without label' } }}

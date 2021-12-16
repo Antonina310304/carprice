@@ -36,7 +36,7 @@ const useStateNumber = (initialValue: string) => {
     errorText: validate.errorText,
   });
 
-  const handleBlur = useCallback(() => {
+  const onBlur = useCallback(() => {
     setState((prevState) => ({ ...prevState, touched: true }));
   }, []);
 
@@ -66,7 +66,7 @@ const useStateNumber = (initialValue: string) => {
     errorText: state.errorText,
 
     handleChange,
-    handleBlur,
+    onBlur,
     setErrors,
     setValue,
   };

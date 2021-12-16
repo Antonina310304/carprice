@@ -1,6 +1,8 @@
 import {
   TypeBaseDamage,
   TypeBodyDamage,
+  TypeCarData,
+  TypeCarDetail,
   TypeQuestionsStepOne,
   TypeQuestionsStepThree,
   TypeSalonDamage,
@@ -59,21 +61,23 @@ export const questionsStepThreeFields: Record<string, TypeQuestionsStepThree> = 
   MAIL: 'mail',
 };
 
-const fields = {
-  VIN: 'vin',
-  REG_NUMBER: 'regNumber',
-
+export const carDetailFields: Record<string, TypeCarDetail> = {
   BRAND: 'brandId', // приходит с сервера
   YEAR: 'yearId', // приходит с сервера
   MODEL: 'modelId', // приходит с сервера
+  MODIFICATION: 'modificationId',
+  BODY: 'bodyId', // из справочника
+};
 
-  BODY: 'body', // из справочника
-  TRANSMISSION: 'transmission', // из справочника
+const fields: Record<string, TypeCarData> = {
+  VIN: 'vin',
+  REG_NUMBER: 'regNumber',
 
-  ENGINE_TYPE: 'engineType', //?
-  ENGINE_VOLUME: 'engineVolume', //?
-  ENGINE_POWER: 'enginePower', //?
-  MODIFICATION: 'modification', // ?
+  // TRANSMISSION: 'transmission', // из справочника
+  //ENGINE_TYPE: 'engineType', //?
+  // ENGINE_VOLUME: 'engineVolume', //?
+  // ENGINE_POWER: 'enginePower', //?
+  // ?
 };
 
 export default fields;

@@ -15,8 +15,8 @@ interface ICarBody {
 
 const CarBody: NextPage<ICarBody> = ({ className }) => {
   const dispatch = useDispatch();
-  const { body } = useSelector((state: IState) => {
-    return state.carData;
+  const bodyId = useSelector((state: IState) => {
+    return state.carData.carDetail.bodyId;
   });
 
   const { statusCarBodyList, carBodyList } = useSelector((state: IState) => {
@@ -37,7 +37,7 @@ const CarBody: NextPage<ICarBody> = ({ className }) => {
       name={'model'}
       className={className}
       handleChange={handleChangeYear}
-      currValue={body}
+      currValue={bodyId}
       disabled={disabled}
       menuItemList={carBodyList}
       placeholder={'Тип кузова'}

@@ -1,16 +1,18 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import Icon from '@primitives/Icon';
+import { colorMap } from '@primitives/RadioColor/colorMap';
+import { ColorType } from '@primitives/RadioColor/types';
 import Typography from '@primitives/Typography';
 import Wrapper from '@primitives/Wrappper';
 
 import { IState } from '@store/types';
 
-import fields from '@constants/fields';
+import { questionsStepOneFields } from '@constants/fields';
 
 import { spacing } from '@utils/spacing';
 
@@ -19,17 +21,18 @@ import { head, item, listItem, main, value, wrapper, edit } from './style.css';
 import { textMedium } from '@styles/baseStyle';
 import { globalThemeColorVars } from '@styles/globalTheme';
 
+const mileage = questionsStepOneFields.MILEAGE;
+const color = questionsStepOneFields.COLOR;
+const wheel = questionsStepOneFields.WHEEL;
+
 const carDetailMap = {
-  [fields.COLOR]: 'Цвет',
-  [fields.TRANSMISSION]: 'Трансмиссия',
-  [fields.WHEEL]: 'Руль',
-  [fields.ENGINE_VOLUME]: 'Объем двигателя',
+  [mileage]: 'Пробег',
+  [color]: 'Цвет',
+  [wheel]: 'Руль',
 };
 
 const VIN = 'VIN';
 const NUMBER = 'Номер';
-
-type Keys = keyof typeof carDetailMap;
 
 interface IAutoDetail {
   className?: string;
@@ -38,9 +41,29 @@ interface IAutoDetail {
 }
 
 const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, className }) => {
-  const { vin, regNumber, carDetail } = useSelector((state: IState) => {
+  const {
+    vin,
+    regNumber,
+    carDetail: { brandId, modelId, yearId },
+  } = useSelector((state: IState) => {
     return state.carData;
   });
+
+  const questionsStepOne = useSelector((state: IState) => {
+    return state.userData.questionsStepOne;
+  });
+  const { models, brands } = useSelector((state: IState) => {
+    return state.catalogs;
+  });
+
+  const model = useMemo(() => {
+    return models.find((modelItem) => modelItem.value === modelId)?.text;
+  }, [modelId, models]);
+
+  const brand = useMemo(() => {
+    return brands.find((modelItem) => modelItem.value === brandId)?.text;
+  }, [brandId, brands]);
+
   return (
     <Wrapper
       className={cn(wrapper, className)}
@@ -50,7 +73,7 @@ const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, cla
     >
       <div className={head}>
         <Typography as={'p'} type={'base'} className={cn(item, textMedium)}>
-          {`${carDetail.brandId}  ${carDetail.yearId}  ${carDetail.modelId}`}
+          {`${brand}  ${yearId}  ${model}`}
           &nbsp;&nbsp;
           <Icon icon={'edit'} width={20} height={20} onClick={handleClick} className={edit} />
         </Typography>
@@ -72,14 +95,27 @@ const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, cla
       </div>
       {showDetail && (
         <div className={main}>
-          {Object.keys(carDetailMap).map((key: string) => (
-            <Typography key={key} as={'p'} type={'base'} className={cn(item, listItem)}>
-              <>
-                <span className={value}>{carDetailMap[key as Keys]}</span>
-                <span className={value}> {carDetail[key] === '' ? '-' : carDetail[key]}</span>
-              </>
-            </Typography>
-          ))}
+          <Typography as={'p'} type={'base'} className={cn(item, listItem)}>
+            <>
+              <span className={value}>{carDetailMap[mileage]}</span>
+              <span className={value}>
+                {' '}
+                {questionsStepOne[mileage] ? Number(questionsStepOne[mileage]).toLocaleString('ru-RU') : '-'}
+              </span>
+            </>
+          </Typography>
+          <Typography as={'p'} type={'base'} className={cn(item, listItem)}>
+            <>
+              <span className={value}>{carDetailMap[color]}</span>
+              <span className={value}> {colorMap[questionsStepOne[color] as ColorType]}</span>
+            </>
+          </Typography>
+          <Typography as={'p'} type={'base'} className={cn(item, listItem)}>
+            <>
+              <span className={value}>{carDetailMap[wheel]}</span>
+              <span className={value}> {questionsStepOne[wheel] === 'Left' ? 'Левый' : 'Правый'}</span>
+            </>
+          </Typography>
         </div>
       )}
     </Wrapper>

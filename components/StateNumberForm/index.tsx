@@ -1,5 +1,3 @@
-// @ts-ignore
-import EventMui from '@types/eventMui';
 import axios from 'axios';
 
 import { memo, useCallback, useEffect, useState } from 'react';
@@ -24,7 +22,7 @@ const definitions = { '#': /[а-яА-Я]/ };
 const StateNumberForm = () => {
   const dispatch = useDispatch();
   const [submitting, setSubmitting] = useState(false);
-  const { value, touched, valid, errorText, handleChange, handleBlur, setErrors, setValue } = useStateNumber('');
+  const { value, touched, valid, errorText, handleChange, onBlur, setErrors, setValue } = useStateNumber('');
 
   useEffect(() => {
     const localStorageData = loadState();
@@ -36,7 +34,7 @@ const StateNumberForm = () => {
   }, [setValue]);
 
   const handleChangeVin = useCallback(
-    (e: EventMui) => {
+    (e: any) => {
       const newValue = e.target.value;
 
       dispatch(changeCarData({ key: KEY, value: newValue }));
@@ -65,7 +63,7 @@ const StateNumberForm = () => {
               dispatch(fetchData(catalogs));
             }
           })
-          .catch(function (error) {
+          .catch(function () {
             setErrors({ valid: false, errorText: SERVER_ERROR_TEXT });
             setSubmitting(false);
           });
@@ -87,7 +85,7 @@ const StateNumberForm = () => {
         name={KEY}
         value={value}
         onChange={handleChangeVin}
-        handleBlur={handleBlur}
+        handleBlur={onBlur}
         placeholder={'X000XX 000'}
       />
       <ButtonSubmit buttonText={BUTTON_TEXT} disabled={!valid || submitting} submitting={submitting} />

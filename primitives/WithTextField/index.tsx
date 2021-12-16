@@ -41,7 +41,7 @@ const WithTextField: NextPage<IWithTextField> = ({
   const classes = useStyles();
   const [touched, setTouched] = useState(!!value);
 
-  const handleBlur = useCallback(() => {
+  const handleBlurInput = useCallback(() => {
     if (touched) return;
     setTouched(true);
     if (onBlur) {
@@ -67,7 +67,7 @@ const WithTextField: NextPage<IWithTextField> = ({
       fullWidth={true}
       value={value}
       onChange={onChange}
-      onBlur={handleBlur}
+      onBlur={handleBlurInput}
       helperText={touched && errorText}
       placeholder={placeholder}
       {...props}

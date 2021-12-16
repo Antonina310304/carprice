@@ -77,20 +77,15 @@ export interface ICarDetail {
   brandId: string;
   yearId: number;
   modelId: string;
-  color: string;
-  transmission: string;
-  engineType: string;
-  engineVolume: number;
-  enginePower: number;
-  wheel: string;
+  modificationId: string;
+  bodyId: string;
 }
 
 export interface ICarData {
-  agreement: boolean;
   vin: string;
   regNumber: string;
-  modification: string;
-  body: string;
+
+  agreement: boolean;
   carDetail: ICarDetail;
   statusRequest: string;
   errorRequest: string;
@@ -180,3 +175,5 @@ export type TypeBaseDamage = keyof IBaseDamage;
 //export type TypeMainQuestions = keyof IMainQuestions;
 export type TypeQuestionsStepOne = keyof IQuestionsStepOne;
 export type TypeQuestionsStepThree = keyof IQuestionsStepThree;
+export type TypeCarData = keyof ICarData;
+export type TypeCarDetail = keyof ICarDetail;

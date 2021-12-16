@@ -34,11 +34,10 @@ const Brand: NextPage<IBrand> = ({ className, handleChange }) => {
 
   const handleChangeBrand = useCallback(
     ({ target: { value } }) => {
-      console.log(value);
       dispatch(changeBrand(value));
       handleChange(value);
     },
-    [dispatch, brands]
+    [dispatch, handleChange]
   );
 
   return (

@@ -27,22 +27,18 @@ const CarDetailStep = () => {
   const [isValid, setIsValid] = useState(false);
   const goToStep = useCallback((stepTo) => dispatch(changeAlmostDoneStep(stepTo)), [dispatch]);
 
-  const {
-    carDetail: { brandId, modelId, yearId },
-    modification,
-    body,
-  } = useSelector((state: IState) => {
-    return state.carData;
+  const { brandId, modelId, yearId, modificationId, bodyId } = useSelector((state: IState) => {
+    return state.carData.carDetail;
   });
 
   useEffect(() => {
-    const validateField = [brandId, modelId, yearId, modification, body];
+    const validateField = [brandId, modelId, yearId, modificationId, bodyId];
     const isValidField = validateField.every((item) => !!item);
     setIsValid(isValidField);
-  }, [brandId, modelId, yearId, modification, body]);
+  }, [brandId, modelId, yearId, modificationId, bodyId]);
 
   useEffect(() => {
-    if (modelId !== '' && yearId !== 0) {
+    if (modelId !== '' && yearId) {
       //если полня модели и года заполнены сделать запрос на тип кузова
       dispatch(fetchCarBody({ modelId, yearId }));
     } else {
@@ -51,7 +47,7 @@ const CarDetailStep = () => {
   }, [dispatch, modelId, yearId]);
 
   useEffect(() => {
-    if (brandId !== '' && modelId !== '' && yearId !== 0) {
+    if (brandId !== '' && modelId !== '' && yearId) {
       // если поля бренда, модели и года заполнены сделать запрос на модификацию
       dispatch(fetchModifications({ brandId, modelId, yearId }));
     } else {

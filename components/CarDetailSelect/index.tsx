@@ -29,6 +29,7 @@ const CarDetailSelect: NextPage<ICarDetailSelect> = ({ classNameWrapper }) => {
         dispatch(changeStatusModel(''));
       }
     }
+    /*  eslint-disable-next-line react-hooks/exhaustive-deps*/
   }, []);
 
   /*нужно только при первой отрисовке*/

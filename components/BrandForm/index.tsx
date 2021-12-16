@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { NextPage } from 'next';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CarDetailSelect from '@components/CarDetailSelect';
@@ -14,7 +14,7 @@ import WithCheckbox from '@primitives/WithCheckbox';
 import { changeCarData, changeData } from '@store/carSlice';
 import { IState } from '@store/types';
 
-import fields from '@constants/fields';
+import { questionsStepThreeFields } from '@constants/fields';
 
 import { regEmail } from '@utils/regExp';
 
@@ -35,27 +35,28 @@ interface IBrandForm {
 
 const BrandForm: NextPage<IBrandForm> = ({ onChangeForm }) => {
   const dispatch = useDispatch();
-
   const [submitting, setSubmitting] = useState(false);
 
   const {
     carDetail: { brandId, modelId, yearId },
-    mail,
     agreement,
   } = useSelector((state: IState) => {
     return state.carData;
   });
 
-  const isValid = () => {
+  const mail = useSelector((state: IState) => {
+    return state.userData.questionsStepThree.mail;
+  });
+
+  const isValid = useMemo(() => {
     const isValidEmail = regEmail.test(mail);
-    const fields = [brandId, modelId, yearId, mail, agreement, isValidEmail];
-    return fields.every((item) => !!item);
-  };
+    const validateFields = [brandId, modelId, yearId, mail, agreement, isValidEmail];
+    return validateFields.every((item) => !!item);
+  }, [agreement, brandId, mail, modelId, yearId]);
 
   const handleChangeMail = useCallback(
     ({ target: { value } }) => {
-      console.log(value);
-      dispatch(changeData({ key: fields.MAIL, value }));
+      dispatch(changeData({ key: questionsStepThreeFields.MAIL, value }));
     },
     [dispatch]
   );
@@ -95,7 +96,7 @@ const BrandForm: NextPage<IBrandForm> = ({ onChangeForm }) => {
         <ButtonSubmit
           className={blockWrapper}
           handleSubmit={handleSubmit}
-          disabled={!isValid() || submitting}
+          disabled={!isValid || submitting}
           submitting={submitting}
           buttonText={BUTTON_TEXT}
         />

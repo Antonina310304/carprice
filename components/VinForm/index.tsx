@@ -1,6 +1,3 @@
-// @ts-ignore
-import EventMui from '@types/eventMui';
-
 import { NextPage } from 'next';
 import { memo, useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -61,7 +58,7 @@ const VinForm: NextPage<IVinForm> = ({ handleSuccess }) => {
 
   // сюда будет приходить ошибка
   const handleChange = useCallback(
-    (e: EventMui) => {
+    (e: any) => {
       const newValue = e.target.value;
 
       dispatch(changeVin(newValue));

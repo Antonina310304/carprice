@@ -15,8 +15,6 @@ const textError = {
 const getError = (value: string): { valid: boolean; errorText: string } => {
   let errorText: string, valid: boolean;
 
-  console.log(value);
-
   if (value.length === 0) {
     errorText = textError.EMPTY;
     valid = false;

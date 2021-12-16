@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
 
-import { changeCarData } from '@store/carSlice';
+import { changeYear } from '@store/carSlice';
 import { IState } from '@store/types';
 
-import FieldsNames from '@constants/fields';
 import { loadingStatus } from '@constants/loadingStatus';
 
 interface IYear {
@@ -30,8 +29,7 @@ const Year: NextPage<IYear> = ({ className, handleChange }) => {
 
   const handleChangeYear = useCallback(
     ({ target: { value } }) => {
-      console.log(value);
-      dispatch(changeCarData({ key: FieldsNames.YEAR, value }));
+      dispatch(changeYear(value as number));
       handleChange(value);
     },
     [dispatch, handleChange]
@@ -42,7 +40,7 @@ const Year: NextPage<IYear> = ({ className, handleChange }) => {
       name={'year'}
       className={className}
       handleChange={handleChangeYear}
-      currValue={yearId === 0 ? '' : String(yearId)}
+      currValue={yearId === 0 ? null : yearId}
       disabled={disabled}
       menuItemList={years}
       placeholder={'Год выпуска'}

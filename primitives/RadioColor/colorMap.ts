@@ -14,7 +14,7 @@ export const colorMap: Record<ColorType, string> = {
   beige: 'Бежевый',
   gold: 'Золотой',
   orange: 'Оранжевый',
-  yellow: 'Желтвый',
+  yellow: 'Желтый',
   green: 'Зеленый',
   another: 'Другой',
 };

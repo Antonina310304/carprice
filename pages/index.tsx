@@ -9,7 +9,7 @@ import MainPage from '@pages/MainPage';
 
 import { loadState } from '@store/localStorage';
 import { changeRegion, pushRegions } from '@store/regionSlice';
-import { IRegion } from '@store/types';
+import { IActiveRegion } from '@store/types';
 
 const PAGE_TITLE = 'Выкуп автомобилей в Москве и области - «CarPrice» – быстро, дорого, надежно';
 
@@ -28,7 +28,7 @@ const metaName: IMetaName = {
 };
 
 interface IIndex {
-  locations: IRegion[];
+  locations: IActiveRegion[];
 }
 
 const Index: NextPage<IIndex> = ({ locations: serverLocations }) => {
@@ -36,6 +36,7 @@ const Index: NextPage<IIndex> = ({ locations: serverLocations }) => {
 
   useEffect(() => {
     if (serverLocations) {
+      console.log(serverLocations);
       dispatch(pushRegions(serverLocations));
       const region = loadState()?.region?.activeRegion;
 
@@ -43,7 +44,8 @@ const Index: NextPage<IIndex> = ({ locations: serverLocations }) => {
         dispatch(changeRegion({ name: region.name }));
         return;
       }
-      const activeServerRegion = serverLocations.find((item: IRegion) => item.selected);
+      const activeServerRegion = serverLocations.find((item: IActiveRegion) => item.selected);
+      console.log(activeServerRegion);
       if (activeServerRegion) {
         dispatch(changeRegion({ name: activeServerRegion.name }));
       }
