@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
 
-import { changeCarData } from '@store/carSlice';
+import { changeModel } from '@store/carSlice';
+import { IState } from '@store/types';
 
 import { loadingStatus } from '@constants/loadingStatus';
 
@@ -14,19 +15,19 @@ interface IModel {
 
 const Model: NextPage<IModel> = ({ className }) => {
   const dispatch = useDispatch();
-  const { model } = useSelector((state: any) => {
-    return state.carData;
+  const { modelId } = useSelector((state: IState) => {
+    return state.carData.carDetail;
   });
 
-  const { statusModel, models } = useSelector((state: any) => {
-    return state.collectionCar;
+  const { statusModel, models } = useSelector((state: IState) => {
+    return state.catalogs;
   });
 
-  const disabled = useMemo(() => statusModel !== 'resolved', [statusModel]);
+  const disabled = useMemo(() => statusModel !== loadingStatus.RESOLVED, [statusModel]);
 
   const handleChangeYear = useCallback(
-    ({ value }) => {
-      dispatch(changeCarData({ key: 'model', value }));
+    ({ target: { value } }) => {
+      dispatch(changeModel(value));
     },
     [dispatch]
   );
@@ -36,7 +37,7 @@ const Model: NextPage<IModel> = ({ className }) => {
       name={'model'}
       className={className}
       handleChange={handleChangeYear}
-      currValue={model}
+      currValue={modelId}
       disabled={disabled}
       menuItemList={models}
       placeholder={'Модель'}

@@ -3,8 +3,9 @@ import throttle from 'lodash.throttle';
 
 import carReducer from '../store/carSlice';
 import regionReducer from '../store/regionSlice';
-import collectionCar from './collectionCarSlice';
+import catalogsReducer from './catalogsSlice';
 import { loadState, saveState } from './localStorage';
+import userDataReducer from './userDataSlice';
 import viewSlice from './viewSlice';
 
 const persistedStore = loadState();
@@ -12,8 +13,9 @@ const store = configureStore({
   reducer: {
     region: regionReducer,
     carData: carReducer,
-    collectionCar: collectionCar,
+    catalogs: catalogsReducer,
     view: viewSlice,
+    userData: userDataReducer,
   },
   preloadedState: persistedStore,
 });

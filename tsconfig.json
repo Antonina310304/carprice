@@ -29,7 +29,8 @@
       "@store/*": ["store/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@validateRules/*": ["validateRules/*"]
     }
 
   },

@@ -1,9 +1,7 @@
 import cn from 'classnames';
-import { stat } from 'fs';
-import { json } from 'stream/consumers';
 
 import { NextPage } from 'next';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 
 import AutoNumbersBlock from '@components/AutoNumbersBlock';
 import BrandForm from '@components/BrandForm';
@@ -34,4 +32,4 @@ const OfferForm: NextPage<IOfferForm> = ({ className }) => {
   );
 };
 
-export default OfferForm;
+export default memo(OfferForm);

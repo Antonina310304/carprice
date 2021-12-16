@@ -1,9 +1,7 @@
 import { NextPage } from 'next';
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 
 import { InputAdornment, TextField } from '@mui/material';
-
-import { blockWrapper } from '@components/BrandForm/style.css';
 
 import Icon from '@primitives/Icon';
 
@@ -16,6 +14,8 @@ const textError = {
 
 const getError = (value: string): { valid: boolean; errorText: string } => {
   let errorText: string, valid: boolean;
+
+  console.log(value);
 
   if (value.length === 0) {
     errorText = textError.EMPTY;
@@ -35,48 +35,41 @@ interface IEmailField {
   name: string;
   defaultValue: string;
   onChange?: any;
+  className?: string;
 }
 
-const EmailField: NextPage<IEmailField> = ({ name, defaultValue, onChange }) => {
-  const [state, setState] = useState({
-    value: defaultValue,
-    touched: defaultValue !== '',
-    valid: regEmail.test(defaultValue),
-    error: getError(defaultValue).errorText,
-  });
+const EmailField: NextPage<IEmailField> = ({ className, name, defaultValue, onChange }) => {
+  const [touched, setTouched] = useState(false);
 
-  const handleChange = useCallback(
-    ({ target: { value } }) => {
-      const { valid, errorText } = getError(value);
-      setState((prevState) => ({ ...prevState, value, valid, error: errorText }));
-
-      if (onChange) {
-        onChange({ value, valid });
-      }
-    },
-    [onChange]
-  );
+  const properties = useMemo(() => {
+    const { valid, errorText } = getError(defaultValue);
+    return {
+      valid: valid,
+      error: errorText,
+    };
+  }, [defaultValue]);
 
   const handleBlur = useCallback(() => {
-    setState((prevState) => ({ ...prevState, touched: true }));
-  }, []);
+    if (touched) return;
+    setTouched(true);
+  }, [touched]);
 
   return (
     <TextField
-      {...(state.touched && state.valid ? { focused: true } : {})}
-      error={state.touched && !state.valid}
+      {...(touched && properties.valid ? { focused: true } : {})}
+      error={touched && !properties.valid}
       name={name}
-      value={state.value}
-      className={blockWrapper}
+      value={defaultValue}
+      className={className}
       fullWidth={true}
       placeholder={'Email'}
       onBlur={handleBlur}
-      onChange={handleChange}
-      helperText={state.touched && !state.valid && state.error}
+      onChange={onChange}
+      helperText={touched && !properties.valid && properties.error}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            {state.touched && state.valid && <Icon icon={'checkOutline'} width={16} height={16} />}
+            {touched && properties.valid && <Icon icon={'checkOutline'} width={16} height={16} />}
           </InputAdornment>
         ),
       }}
@@ -84,4 +77,4 @@ const EmailField: NextPage<IEmailField> = ({ name, defaultValue, onChange }) => 
   );
 };
 
-export default EmailField;
+export default memo(EmailField);

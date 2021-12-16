@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import WithSelect from '@primitives/WithSelect';
 
 import { changeCarData } from '@store/carSlice';
+import { IState } from '@store/types';
 
+import FieldsNames from '@constants/fields';
 import { loadingStatus } from '@constants/loadingStatus';
 
 interface IYear {
@@ -16,19 +18,20 @@ interface IYear {
 const Year: NextPage<IYear> = ({ className, handleChange }) => {
   const dispatch = useDispatch();
 
-  const { year } = useSelector((state: any) => {
-    return state.carData;
+  const { yearId } = useSelector((state: IState) => {
+    return state.carData.carDetail;
   });
 
-  const { years, statusYears } = useSelector((state: any) => {
-    return state.collectionCar;
+  const { years, statusYears } = useSelector((state: IState) => {
+    return state.catalogs;
   });
 
   const disabled = useMemo(() => statusYears !== 'resolved', [statusYears]);
 
   const handleChangeYear = useCallback(
-    ({ value }) => {
-      dispatch(changeCarData({ key: 'year', value }));
+    ({ target: { value } }) => {
+      console.log(value);
+      dispatch(changeCarData({ key: FieldsNames.YEAR, value }));
       handleChange(value);
     },
     [dispatch, handleChange]
@@ -39,7 +42,7 @@ const Year: NextPage<IYear> = ({ className, handleChange }) => {
       name={'year'}
       className={className}
       handleChange={handleChangeYear}
-      currValue={year}
+      currValue={yearId === 0 ? '' : String(yearId)}
       disabled={disabled}
       menuItemList={years}
       placeholder={'Год выпуска'}

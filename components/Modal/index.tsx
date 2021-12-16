@@ -13,9 +13,11 @@ interface IModal {
   open: boolean;
   handleClose: () => void;
   className?: string;
+  modalContentWidth?: number;
+  closeIcon?: boolean;
 }
 
-const Modal: NextPage<IModal> = ({ open, className, handleClose, children }) => {
+const Modal: NextPage<IModal> = ({ open, className, handleClose, children, modalContentWidth, closeIcon = true }) => {
   return (
     <MaterialModal
       className={mainWrapper}
@@ -24,12 +26,13 @@ const Modal: NextPage<IModal> = ({ open, className, handleClose, children }) => 
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <div className={cn(modalContent, className)}>
+      <div className={cn(modalContent, className)} style={{ width: `${modalContentWidth}px` }}>
         <div className={inner}>
-          <button className={closeButton} onClick={handleClose}>
-            <Icon icon={'cross'} width={16} height={16} />
-          </button>
-
+          {closeIcon && (
+            <button className={closeButton} onClick={handleClose}>
+              <Icon icon={'cross'} width={16} height={16} />
+            </button>
+          )}
           {children}
         </div>
       </div>

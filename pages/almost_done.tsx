@@ -1,14 +1,11 @@
 import { NextPage } from 'next';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { memo } from 'react';
 
 import Layout from '@components/Layout';
 import { IMetaName, IMetaProperty } from '@components/Layout/types';
 
 import AlmostDonePage from '@pages/AlmostDonePage';
 
-import { loadState } from '@store/localStorage';
-import { changeRegion, pushRegions } from '@store/regionSlice';
 import { IRegion } from '@store/types';
 
 const PAGE_TITLE = 'Выкуп автомобилей в Москве и области - «CarPrice» – быстро, дорого, надежно';
@@ -39,4 +36,4 @@ const Done: NextPage<IDone> = () => {
   );
 };
 
-export default Done;
+export default memo(Done);

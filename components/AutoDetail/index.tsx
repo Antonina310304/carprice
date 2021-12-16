@@ -8,6 +8,10 @@ import Icon from '@primitives/Icon';
 import Typography from '@primitives/Typography';
 import Wrapper from '@primitives/Wrappper';
 
+import { IState } from '@store/types';
+
+import fields from '@constants/fields';
+
 import { spacing } from '@utils/spacing';
 
 import { head, item, listItem, main, value, wrapper, edit } from './style.css';
@@ -16,11 +20,10 @@ import { textMedium } from '@styles/baseStyle';
 import { globalThemeColorVars } from '@styles/globalTheme';
 
 const carDetailMap = {
-  mileage: 'Пробег',
-  color: 'Цвет',
-  transmission: 'Трансмиссия',
-  wheel: 'Руль',
-  volume: 'Объем двигателя',
+  [fields.COLOR]: 'Цвет',
+  [fields.TRANSMISSION]: 'Трансмиссия',
+  [fields.WHEEL]: 'Руль',
+  [fields.ENGINE_VOLUME]: 'Объем двигателя',
 };
 
 const VIN = 'VIN';
@@ -35,8 +38,8 @@ interface IAutoDetail {
 }
 
 const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, className }) => {
-  const { carData } = useSelector((state: any) => {
-    return state;
+  const { vin, regNumber, carDetail } = useSelector((state: IState) => {
+    return state.carData;
   });
   return (
     <Wrapper
@@ -47,22 +50,22 @@ const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, cla
     >
       <div className={head}>
         <Typography as={'p'} type={'base'} className={cn(item, textMedium)}>
-          {`${carData.brand}  ${carData.year}  ${carData.model}`}
+          {`${carDetail.brandId}  ${carDetail.yearId}  ${carDetail.modelId}`}
           &nbsp;&nbsp;
-          {showDetail && <Icon icon={'edit'} width={20} height={20} onClick={handleClick} className={edit} />}
+          <Icon icon={'edit'} width={20} height={20} onClick={handleClick} className={edit} />
         </Typography>
         <Typography as={'p'} type={'base'} className={item}>
-          {!carData.number && (
+          {!regNumber && (
             <>
               <span className={textMedium}>{VIN}: </span>
-              {carData.vin}
+              {vin}
             </>
           )}
 
-          {carData.number && !carData.vin && (
+          {regNumber && !vin && (
             <>
               <span className={textMedium}>{NUMBER}: </span>
-              {carData.number}
+              {regNumber}
             </>
           )}
         </Typography>
@@ -73,7 +76,7 @@ const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, cla
             <Typography key={key} as={'p'} type={'base'} className={cn(item, listItem)}>
               <>
                 <span className={value}>{carDetailMap[key as Keys]}</span>
-                <span className={value}> {carData[key] === '' ? '-' : carData[key]}</span>
+                <span className={value}> {carDetail[key] === '' ? '-' : carDetail[key]}</span>
               </>
             </Typography>
           ))}

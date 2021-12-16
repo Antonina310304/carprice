@@ -103,6 +103,8 @@ export default class Theme {
       borderSecondary: '#37B587',
       borderTertiary: '#9FA3AD',
       borderLight: '#9FA3AD',
+      borderDropDown: '#EEF0F4',
+      borderDefaultInputs: '#DADADA',
     };
 
     const svgFill: Record<FillColors, string> = {
@@ -112,6 +114,7 @@ export default class Theme {
       fillDark: '#46474A', // --темно-серый
       fontsGray: '#9FA3AD',
       fillSecondaryLight: '#4B7AF4', // Голубой
+      fillCheck: '#C2C5CB', // Голубой
     };
 
     return {

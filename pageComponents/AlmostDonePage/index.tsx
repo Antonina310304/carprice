@@ -1,57 +1,41 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import AutoDetail from '@components/AutoDetail';
-import CarDetailSelect from '@components/CarDetailSelect';
 
 import { almostDoneStepMap } from '@pages/AlmostDonePage/constants';
+import CarDetailStep from '@pages/AlmostDonePage/elms/CarDetailStep';
 import ChangeCarModal from '@pages/AlmostDonePage/elms/ChangeCarModal';
 import PageHeader from '@pages/AlmostDonePage/elms/PageHeader';
 import Steps from '@pages/AlmostDonePage/elms/Steps';
 
 import Typography from '@primitives/Typography';
-import WithButton from '@primitives/WithButton';
 
 import useMediaQuery from '@hooks/useMediaQuery';
 
-import { changeAlmostDoneStep } from '@store/viewSlice';
+import { IState } from '@store/types';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import {
-  aside,
-  carDetail,
-  carDetailInner,
-  carDetailWrapper,
-  mainContent,
-  page,
-  sectionWrapper,
-  subtitle,
-  text,
-} from './style.css';
+import { aside, carDetail, carDetailWrapper, mainContent, page, sectionWrapper, subtitle, text } from './style.css';
 
 import { textMedium } from '@styles/baseStyle';
 
-const BUTTON_TEXT = 'Подтвердить';
-
 const AlmostDonePage = () => {
   const isDesktop = useMediaQuery(mediaQueryDesktop);
-  const dispatch = useDispatch();
+
   const [showModal, setShowModal] = useState(false);
 
-  const { almostDoneStep } = useSelector((state: any) => {
+  const { almostDoneStep } = useSelector((state: IState) => {
     return state.view;
   });
 
-  const { brand, year, model } = useSelector((state: any) => {
-    return state.carData;
+  const { brandId, yearId, modelId } = useSelector((state: IState) => {
+    return state.carData.carDetail;
   });
 
-  useEffect(() => {}, []);
   const openModal = useCallback(() => setShowModal(true), [setShowModal]);
   const hideModal = useCallback(() => setShowModal(false), [setShowModal]);
-
-  const goToStep = useCallback((stepTo) => dispatch(changeAlmostDoneStep(stepTo)), [dispatch]);
 
   return (
     <div className={page}>
@@ -68,18 +52,13 @@ const AlmostDonePage = () => {
 
           {almostDoneStep === almostDoneStepMap.CONFIRM && (
             <div className={carDetailWrapper}>
-              <CarDetailSelect classNameWrapper={carDetailInner} />
-              <WithButton
-                className={carDetailInner}
-                text={BUTTON_TEXT}
-                onClick={() => goToStep(almostDoneStepMap.FEATURES)}
-              />
+              <CarDetailStep />
             </div>
           )}
           {almostDoneStep !== almostDoneStepMap.CONFIRM && (
             <p className={carDetail}>
-              <span className={textMedium}>{`${brand}  ${year} `}</span>
-              {model}
+              <span className={textMedium}>{`${brandId}  ${yearId} `}</span>
+              {modelId}
             </p>
           )}
         </section>
@@ -99,4 +78,4 @@ const AlmostDonePage = () => {
   );
 };
 
-export default AlmostDonePage;
+export default memo(AlmostDonePage);

@@ -1,3 +1,10 @@
-type FillColors = 'fillPrimary' | 'fillSecondary' | 'fillTertiary' | 'fillDark' | 'fontsGray' | 'fillSecondaryLight';
+type FillColors =
+  | 'fillPrimary'
+  | 'fillSecondary'
+  | 'fillTertiary'
+  | 'fillDark'
+  | 'fontsGray'
+  | 'fillSecondaryLight'
+  | 'fillCheck';
 
 export default FillColors;

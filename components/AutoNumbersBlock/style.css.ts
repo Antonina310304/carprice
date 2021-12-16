@@ -4,7 +4,7 @@ import { padding } from '@utils/padding';
 import { spacing } from '@utils/spacing';
 
 export const blockWrapper = style({
-  marginBottom: spacing(2),
+  marginBottom: spacing(1),
 });
 
 export const button = style({

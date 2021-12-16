@@ -1,6 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
-import { mediaQueryDesktop, mediaQueryMobile } from '@constants/mediaQuery';
+import {
+  mediaQueryDesktop,
+  mediaQueryMobile,
+  mediaQueryMobileM,
+  mediaQueryTablet,
+  TABLET,
+} from '@constants/mediaQuery';
 
 import { spacing } from '@utils/spacing';
 
@@ -71,4 +77,23 @@ export const baseSpacing = style({
 
 export const textMedium = style({
   fontWeight: '500',
+});
+
+export const row = style({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+  gap: '8px 24px',
+});
+
+export const twoColumn = style({
+  display: 'flex',
+  flex: '0 1 auto',
+  width: '100%',
+
+  '@media': {
+    [mediaQueryTablet]: {
+      width: 'calc(50% - 12px)',
+    },
+  },
 });

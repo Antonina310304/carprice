@@ -10,17 +10,8 @@ import Typography from '@primitives/Typography';
 
 import { IState } from '@store/types';
 
-import {
-  locationIcon,
-  selectedRegion,
-  regionWrapper,
-  header,
-  titleCity,
-  wrapper,
-  closeButton,
-  modal,
-} from './style.css';
-import { inner, listWrapper } from './style.css';
+import { locationIcon, selectedRegion, regionWrapper, header, titleCity, wrapper, modal } from './style.css';
+import { listWrapper } from './style.css';
 
 interface IRegionModal {
   isOpen: boolean;

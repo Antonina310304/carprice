@@ -13,12 +13,14 @@ interface IInternalSvg {
   height?: number | 'auto';
   className?: string;
   onClick?: () => void;
+  fill?: string;
 }
 
-const Icon: NextPage<IInternalSvg> = ({ icon: rawIcon, onClick, width, height, className }) => {
+const Icon: NextPage<IInternalSvg> = ({ fill, icon: rawIcon, onClick, width, height, className }) => {
   const RenderIcon = useMemo(() => internalIcons[rawIcon].default, [rawIcon]);
   return (
     <RenderIcon
+      {...(fill ? { fill: fill } : {})}
       className={cn(icon, className)}
       height={height && `${height}px`}
       width={width && `${width}px`}

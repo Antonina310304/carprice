@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
 
-import PageContentHeader from '@components/PageContentHeader';
-
 import { image, pageHeader, titleBlock } from '@pages/AlmostDonePage/style.css';
 
 import Typography from '@primitives/Typography';

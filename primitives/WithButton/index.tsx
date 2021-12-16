@@ -1,6 +1,7 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
+import { memo } from 'react';
 
 import { Button } from '@mui/material';
 
@@ -28,4 +29,4 @@ const WithButton: NextPage<IWithButton> = ({ className, text, ...props }) => {
   );
 };
 
-export default WithButton;
+export default memo(WithButton);

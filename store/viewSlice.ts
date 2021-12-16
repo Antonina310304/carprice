@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AlmostDoneStepTypes } from 'types/almostDoneStepTypes';
+import AlmostDoneStepTypes from 'types/almostDoneStepTypes';
 
 const viewSlice = createSlice({
   name: 'view',
@@ -9,7 +9,6 @@ const viewSlice = createSlice({
 
   reducers: {
     changeAlmostDoneStep(state, action: PayloadAction<AlmostDoneStepTypes>) {
-      console.log(action.payload);
       state.almostDoneStep = action.payload;
     },
   },

@@ -1,4 +1,5 @@
 export const internalIcons = {
+  tooltip: require('./icons/tooltip.svg'),
   burgerOpen: require('./icons/burger-open.svg'),
   burgerClose: require('./icons/burger-close.svg'),
   arrow: require('./icons/arrow.svg'),

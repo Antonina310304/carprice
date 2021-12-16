@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@primitives/Typography';
 
 import { changeRegion } from '@store/regionSlice';
-import { IRegion, IState } from '@store/types';
+import { IActiveRegion, IState } from '@store/types';
 
 import { item, list } from './style.css';
 
@@ -27,7 +27,7 @@ const RegionList: NextPage<IRegionList> = ({ cb }) => {
 
   return (
     <div className={list}>
-      {regionList.map((region: IRegion, ind: number) => (
+      {regionList.map((region: IActiveRegion, ind: number) => (
         <Typography
           key={region.name + ind}
           type={'base'}

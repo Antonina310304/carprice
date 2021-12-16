@@ -1,13 +1,14 @@
 import { NextPage } from 'next';
-import React, { useCallback } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Brand from '@components/CarDetailSelect/elms/Brand';
 import Model from '@components/CarDetailSelect/elms/Model';
 import Year from '@components/CarDetailSelect/elms/Year';
 
-import { changeCarData } from '@store/carSlice';
-import { changeStatusModel, fetchModels, fetchYears } from '@store/collectionCarSlice';
+import { changeYear } from '@store/carSlice';
+import { changeStatusModel, fetchModels, fetchYears } from '@store/catalogsSlice';
+import { IState } from '@store/types';
 
 interface ICarDetailSelect {
   classNameWrapper?: string;
@@ -16,19 +17,30 @@ interface ICarDetailSelect {
 const CarDetailSelect: NextPage<ICarDetailSelect> = ({ classNameWrapper }) => {
   const dispatch = useDispatch();
 
-  const { brand, model } = useSelector((state: any) => {
-    return state.carData;
+  const { brandId, yearId, modelId } = useSelector((state: IState) => {
+    return state.carData.carDetail;
   });
 
-  const { brands } = useSelector((state: any) => {
-    return state.collectionCar;
-  });
+  /*нужно только при первой отрисовке*/
+  useEffect(() => {
+    if (yearId !== 0 && !!brandId) {
+      if (brandId) {
+        dispatch(fetchYears(brandId));
+        dispatch(changeStatusModel(''));
+      }
+    }
+  }, []);
+
+  /*нужно только при первой отрисовке*/
+  useEffect(() => {
+    if (modelId !== '' && !!yearId) {
+      dispatch(fetchModels({ yearId, brandId }));
+    }
+  }, [brandId, dispatch, modelId, yearId]);
 
   const handleChangeBrand = useCallback(
-    (brandId) => {
-      dispatch(fetchYears(brandId));
-      dispatch(changeCarData({ key: 'year', value: '' }));
-      dispatch(changeCarData({ key: 'model', value: '' }));
+    (idBrand) => {
+      dispatch(fetchYears(idBrand));
       dispatch(changeStatusModel(''));
     },
     [dispatch]
@@ -36,11 +48,10 @@ const CarDetailSelect: NextPage<ICarDetailSelect> = ({ classNameWrapper }) => {
 
   const handleChangeYear = useCallback(
     (selectedYear: number) => {
-      dispatch(changeCarData({ key: model, value: '' }));
-      const brandId = brands.find((item: any) => item.text === brand).value as number;
-      dispatch(fetchModels({ year: selectedYear, brandId }));
+      dispatch(changeYear(selectedYear));
+      dispatch(fetchModels({ yearId: selectedYear, brandId }));
     },
-    [brand, brands, dispatch, model]
+    [brandId, dispatch]
   );
 
   return (
@@ -52,4 +63,4 @@ const CarDetailSelect: NextPage<ICarDetailSelect> = ({ classNameWrapper }) => {
   );
 };
 
-export default CarDetailSelect;
+export default memo(CarDetailSelect);

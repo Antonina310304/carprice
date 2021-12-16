@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
-import { useCallback, useState } from 'react';
+import Router from 'next/router';
+import { memo, useCallback, useState } from 'react';
 
 import Switch from '@primitives/Switch';
 import Typography from '@primitives/Typography';
 
-import StateNumberForm from './elms/StateNumberForm';
-import VinForm from './elms/VinForm';
-
+import StateNumberForm from '../StateNumberForm';
+import VinForm from '../VinForm';
 import { blockWrapper } from './style.css';
 
 import { link } from '@styles/baseStyle';
@@ -37,6 +37,10 @@ const AutoNumbersBlock: NextPage<IVinForm> = ({ onChangeForm }) => {
     [setTypeNumber]
   );
 
+  const handleSuccess = useCallback(() => {
+    Router.push('/almost_done');
+  }, []);
+
   return (
     <>
       <Switch
@@ -50,7 +54,7 @@ const AutoNumbersBlock: NextPage<IVinForm> = ({ onChangeForm }) => {
       </Typography>
       <div className={blockWrapper}>
         {STATE_NUMBER === typeNumber && <StateNumberForm />}
-        {VIN === typeNumber && <VinForm />}
+        {VIN === typeNumber && <VinForm handleSuccess={handleSuccess} />}
       </div>
       <div>
         <Typography as={'span'} className={blockWrapper} type={'min'}>
@@ -64,4 +68,4 @@ const AutoNumbersBlock: NextPage<IVinForm> = ({ onChangeForm }) => {
   );
 };
 
-export default AutoNumbersBlock;
+export default memo(AutoNumbersBlock);

@@ -1,6 +1,8 @@
 import { NextPage } from 'next';
-import React, { useCallback } from 'react';
+import { forwardRef, memo, useCallback } from 'react';
 import { IMaskInput } from 'react-imask';
+
+const defaultMask = /^\w+$/;
 
 interface ITextMaskCustom {
   onChange?: (arg: any) => any;
@@ -11,8 +13,8 @@ interface ITextMaskCustom {
   [key: string]: any;
 }
 
-const TextMaskCustom: NextPage<ITextMaskCustom> = React.forwardRef(function TextMaskCustom(props, ref) {
-  const { onChange, mask, definitions, ...other } = props;
+const TextMaskCustom: NextPage<ITextMaskCustom> = forwardRef(function TextMaskCustom(props, ref) {
+  const { onChange, mask = defaultMask, definitions, ...other } = props;
 
   const handleAccept = useCallback(
     (value) => {
@@ -35,4 +37,4 @@ const TextMaskCustom: NextPage<ITextMaskCustom> = React.forwardRef(function Text
   );
 });
 
-export default TextMaskCustom;
+export default memo(TextMaskCustom);

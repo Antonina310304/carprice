@@ -16,7 +16,6 @@ const Logo: NextPage<ILogo> = ({ className }) => {
     return router.pathname === '/';
   }, [router.pathname]);
 
-  console.log(isMainPage);
   return (
     <>
       {isMainPage && (

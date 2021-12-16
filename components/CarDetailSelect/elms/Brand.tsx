@@ -5,40 +5,40 @@ import { useDispatch, useSelector } from 'react-redux';
 import WithSelect from '@primitives/WithSelect';
 
 import { changeBrand } from '@store/carSlice';
-import { fetchBrand } from '@store/collectionCarSlice';
+import { fetchBrand } from '@store/catalogsSlice';
+import { IState } from '@store/types';
 
 import { loadingStatus } from '@constants/loadingStatus';
 
-const BRAND_TYPE = 0;
 interface IBrand {
-  handleChange: (arg: string) => void;
   className?: string;
+  handleChange: (arg: string) => void;
 }
-
+const BRAND_TYPE = 0;
 const Brand: NextPage<IBrand> = ({ className, handleChange }) => {
   const dispatch = useDispatch();
 
-  const { brand } = useSelector((state: any) => {
-    return state.carData;
+  const { brandId } = useSelector((state: IState) => {
+    return state.carData.carDetail;
   });
-
-  const { brands, statusBrand } = useSelector((state: any) => {
-    return state.collectionCar;
-  });
-
-  const disabled = useMemo(() => statusBrand !== loadingStatus.RESOLVED, [statusBrand]);
 
   useEffect(() => {
     dispatch(fetchBrand(BRAND_TYPE));
   }, [dispatch]);
 
+  const { brands, statusBrand } = useSelector((state: IState) => {
+    return state.catalogs;
+  });
+
+  const disabled = useMemo(() => statusBrand !== loadingStatus.RESOLVED, [statusBrand]);
+
   const handleChangeBrand = useCallback(
-    ({ value }) => {
+    ({ target: { value } }) => {
+      console.log(value);
       dispatch(changeBrand(value));
-      const brandId = brands.find((item: any) => item.text === value).value;
-      handleChange(brandId);
+      handleChange(value);
     },
-    [dispatch, brands, handleChange]
+    [dispatch, brands]
   );
 
   return (
@@ -47,7 +47,7 @@ const Brand: NextPage<IBrand> = ({ className, handleChange }) => {
       style={{ padding: 0 }}
       className={className}
       handleChange={handleChangeBrand}
-      currValue={brand}
+      currValue={brandId}
       disabled={disabled}
       menuItemList={brands}
       placeholder={'Марка авто'}

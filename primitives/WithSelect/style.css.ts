@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { style } from '@vanilla-extract/css';
 
+import { padding } from '@utils/padding';
+
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 
 export const wrapper = style({
@@ -54,7 +56,12 @@ export const successProgressIcon = style({
 export const useStyles = makeStyles({
   root: {
     '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: globalThemeColorVars.borderLight,
+      borderColor: globalThemeColorVars.borderDefaultInputs,
     },
   },
+});
+
+export const dropDownList = style({
+  ...padding(2),
+  borderBottom: `1px solid ${globalThemeColorVars.borderDropDown}`,
 });

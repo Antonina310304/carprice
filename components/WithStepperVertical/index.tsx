@@ -9,7 +9,7 @@ import { stepState } from '@pages/AlmostDonePage/elms/Steps/constants';
 
 import StepIcon from './elms/StepIcon';
 
-import { content, label, step, stepper, success, wait } from './style.css';
+import { content, contentInner, label, step, stepper, success, wait } from './style.css';
 
 interface IWithStepperVertical {
   steps: string[];
@@ -69,7 +69,9 @@ const WithStepperVertical: NextPage<IWithStepperVertical> = ({
               {item}
             </StepLabel>
 
-            <StepContent className={content}>{children(handleNext, activeStep)}</StepContent>
+            <StepContent className={content}>
+              <div className={contentInner}>{children(handleNext, activeStep, idx)}</div>
+            </StepContent>
           </Step>
         );
       })}

@@ -5,6 +5,7 @@ import { typographyVariants } from '@primitives/Typography/css/index.css';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
+import { padding } from '@utils/padding';
 import { spacing } from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
@@ -17,6 +18,18 @@ export const step = style({
 export const content = style({
   margin: 0,
   padding: 0,
+});
+
+export const contentInner = style({
+  margin: 0,
+  paddingTop: spacing(2),
+
+  '@media': {
+    [mediaQueryDesktop]: {
+      paddingTop: spacing(3),
+      paddingBottom: spacing(1),
+    },
+  },
 });
 
 export const title = style({
@@ -74,9 +87,9 @@ globalStyle(`${stepper} .css-16ubnlw-MuiStepLabel-labelContainer`, {
   color: globalThemeColorVars.fontsPrimary,
 });
 
-globalStyle(`${stepper} .Mui-disabled`, {
-  width: 'auto',
-});
+// globalStyle(`${stepper} .Mui-disabled`, {
+//   width: 'auto',
+// });
 
 globalStyle(`${stepper} .css-mt2lf4-MuiStepLabel-label`, {
   width: 'auto',

@@ -1,28 +1,94 @@
 {
   "number": {
-    "error": "true",
-    "errors": [
+    "success": "false",
+    "data": [
       {
-        "name": "number",
-        "text": "Номерной знак введён некорректно или не найден в справочнике"
+        "brand": "108",
+        "model": "16986",
+        "year": 2019,
+        "body": "string",
+        "color": "string",
+        "drive": "string",
+        "transmission": "string",
+        "engine_type": "string",
+        "engine_volume": 0,
+        "engine_power": 0,
+        "wheel": "string",
+        "owners_number": 0,
+        "accidents_number": 0,
+        "reg_number": "string",
+        "pts": "string",
+        "vin": "string",
+        "last_owner": {
+          "type": "string",
+          "reg_date": "string"
+        }
+      }
+    ],
+    "count": 1,
+    "request_id": "80ec9d84eac67216d5fc",
+    "error": {
+      "message": "Текст ошибки c сервера"
+    },
+    "warnings": [
+      {
+        "message": "string",
+        "code": "invalid",
+        "detail": [
+          {
+            "detail": "Не понятно что тут должно быть"
+          }
+        ]
       }
     ]
   },
-  "vin": {
-    "error": "false",
-    "errors": [],
-    "data": {
-      "brand": "Cadillac",
-      "year": "2020",
-      "model": "XT5 I",
-      "volume": "XT5 I",
-      "transmission": "XT5 I"
-    }
-  },
   "data": {
-    "brand": "Cadillac",
-    "model": "XT5 I",
-    "year": "2020",
-    "mail": "310324@lit.ru"
+    "brandId": "14",
+    "modelId": "16618",
+    "yearId": "2019",
+    "mail": "asdfasdf@list.ru"
+  },
+  "detect": {
+    "success": "true",
+    "data": [
+      {
+        "brand": "108",
+        "model": "16986",
+        "year": 2019,
+        "body": "",
+        "color": "",
+        "drive": "",
+        "transmission": "",
+        "engine_type": "string",
+        "engine_volume": 0,
+        "engine_power": 0,
+        "wheel": "string",
+        "owners_number": 0,
+        "accidents_number": 0,
+        "reg_number": "string",
+        "pts": "string",
+        "vin": "string",
+        "last_owner": {
+          "type": "string",
+          "reg_date": "string"
+        }
+      }
+    ],
+    "count": 1,
+    "request_id": "80ec9d84eac67216d5fc",
+    "error": {
+      "message": "Текст ошибки или null"
+    },
+    "warnings": [
+      {
+        "message": "string",
+        "code": "invalid",
+        "detail": [
+          {
+            "detail": "Не понятно что тут должно быть"
+          }
+        ]
+      }
+    ]
   }
 }

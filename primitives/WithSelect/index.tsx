@@ -1,14 +1,22 @@
-import { makeStyles } from '@material-ui/core/styles';
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 
 import { CircularProgress, FormControl, InputAdornment, MenuItem, OutlinedInput, Select } from '@mui/material';
 
 import Icon from '@primitives/Icon';
 
-import { wrapper, icon, successIcon, disabledIcon, progressIcon, successProgressIcon, useStyles } from './style.css';
+import {
+  wrapper,
+  icon,
+  successIcon,
+  disabledIcon,
+  progressIcon,
+  successProgressIcon,
+  useStyles,
+  dropDownList,
+} from './style.css';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 
@@ -50,33 +58,24 @@ const WithSelect: NextPage<IWithSelect> = ({
   ...otherProps
 }) => {
   const [changed, setChanged] = useState(false);
-
   const disabledSelect = useMemo(() => disabled || isLoading, [disabled, isLoading]);
 
   useEffect(() => {
-    const filledValue = currValue !== '';
-    setChanged(filledValue);
+    setChanged(!!currValue);
   }, [currValue]);
-
-  const onChange = useCallback(
-    ({ target: { value } }) => {
-      setChanged(true);
-      handleChange({ name, value });
-    },
-    [handleChange, name]
-  );
 
   const classes = useStyles();
   return (
     <FormControl focused={changed} fullWidth>
       <Select
+        name={name}
         className={cn(className, classes.root)}
         fullWidth={true}
         displayEmpty
         disabled={disabledSelect}
         value={currValue}
         input={<OutlinedInput />}
-        onChange={onChange}
+        onChange={handleChange}
         endAdornment={
           <InputAdornment
             position="end"
@@ -111,13 +110,18 @@ const WithSelect: NextPage<IWithSelect> = ({
           if (selected?.length === 0) {
             return <span style={{ color: globalThemeColorVars.fontsQuaternary }}>{placeholder}</span>;
           }
-          return selected;
+          const select = menuItemList.find((item: any) => item.value == selected)?.text;
+          if (!select) {
+            return <span style={{ color: globalThemeColorVars.fontsQuaternary }}>{placeholder}</span>;
+          }
+
+          return select;
         }}
         inputProps={{ ...inputProps, ...{ 'aria-label': 'Without label' } }}
         {...otherProps}
       >
         {menuItemList.map((item: any) => (
-          <MenuItem key={item.value} value={item.text}>
+          <MenuItem className={dropDownList} key={item.value} value={item.value}>
             {item.text}
           </MenuItem>
         ))}

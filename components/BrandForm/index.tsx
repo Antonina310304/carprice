@@ -5,14 +5,16 @@ import React, { memo, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CarDetailSelect from '@components/CarDetailSelect';
-import Year from '@components/CarDetailSelect/elms/Year';
 
-import ButtonSubmit from '@primitives/ButtonSubmit/ButtonSubmit';
+import ButtonSubmit from '@primitives/ButtonSubmit';
 import EmailField from '@primitives/EmailField';
 import Typography from '@primitives/Typography';
 import WithCheckbox from '@primitives/WithCheckbox';
 
-import { changeCarData } from '@store/carSlice';
+import { changeCarData, changeData } from '@store/carSlice';
+import { IState } from '@store/types';
+
+import fields from '@constants/fields';
 
 import { regEmail } from '@utils/regExp';
 
@@ -36,19 +38,24 @@ const BrandForm: NextPage<IBrandForm> = ({ onChangeForm }) => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const { brand, model, year, mail, agreement } = useSelector((state: any) => {
+  const {
+    carDetail: { brandId, modelId, yearId },
+    mail,
+    agreement,
+  } = useSelector((state: IState) => {
     return state.carData;
   });
 
   const isValid = () => {
     const isValidEmail = regEmail.test(mail);
-    const fields = [brand, model, year, mail, agreement, isValidEmail];
+    const fields = [brandId, modelId, yearId, mail, agreement, isValidEmail];
     return fields.every((item) => !!item);
   };
 
   const handleChangeMail = useCallback(
-    ({ value }) => {
-      dispatch(changeCarData({ key: 'mail', value }));
+    ({ target: { value } }) => {
+      console.log(value);
+      dispatch(changeData({ key: fields.MAIL, value }));
     },
     [dispatch]
   );
@@ -62,9 +69,9 @@ const BrandForm: NextPage<IBrandForm> = ({ onChangeForm }) => {
       e.preventDefault();
       setSubmitting(true);
       const data = {
-        brand,
-        model,
-        year,
+        brandId,
+        modelId,
+        yearId,
         mail,
       };
       axios
@@ -77,13 +84,13 @@ const BrandForm: NextPage<IBrandForm> = ({ onChangeForm }) => {
           console.log(error);
         });
     },
-    [brand, mail, model, year]
+    [brandId, mail, modelId, yearId]
   );
   return (
     <>
       <form className={blockWrapper}>
         <CarDetailSelect classNameWrapper={blockWrapper} />
-        <EmailField name={'mail'} defaultValue={mail} onChange={handleChangeMail} />
+        <EmailField className={blockWrapper} name={'mail'} defaultValue={mail} onChange={handleChangeMail} />
 
         <ButtonSubmit
           className={blockWrapper}
