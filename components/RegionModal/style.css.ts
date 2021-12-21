@@ -44,5 +44,4 @@ export const regionWrapper = style({
 
 export const selectedRegion = style({
   display: 'inline-block',
-  margin: '0',
 });

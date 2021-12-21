@@ -1,4 +1,5 @@
 import {
+  IUserContacts,
   TypeBaseDamage,
   TypeBodyDamage,
   TypeCarData,
@@ -6,6 +7,7 @@ import {
   TypeQuestionsStepOne,
   TypeQuestionsStepThree,
   TypeSalonDamage,
+  TypeUserContacts,
 } from '@store/types';
 
 export const questionsStepOneFields: Record<string, TypeQuestionsStepOne> = {
@@ -26,6 +28,10 @@ export const BaseDamageFields: Record<string, TypeBaseDamage> = {
   AIRBAG_DAMAGE: 'airbagDamage',
   NO_BASE_DAMAGE: 'noBaseDamage',
   BASE_DESCRIPTION: 'baseDescription',
+};
+export const userContactsFields: Record<string, TypeUserContacts> = {
+  USER_NAME: 'userName',
+  USER_PHONE: 'userPhone',
 };
 
 export const SalonDamageFields: Record<string, TypeSalonDamage> = {

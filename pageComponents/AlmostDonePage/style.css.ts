@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css';
-import cn from 'classnames';
 
 import { typographyVariants } from '@primitives/Typography/css/index.css';
 

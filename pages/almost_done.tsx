@@ -28,12 +28,10 @@ interface IDone {
   locations: IRegion[];
 }
 
-const Done: NextPage<IDone> = () => {
-  return (
-    <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
-      <AlmostDonePage />
-    </Layout>
-  );
-};
+const Done: NextPage<IDone> = () => (
+  <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
+    <AlmostDonePage />
+  </Layout>
+);
 
 export default memo(Done);

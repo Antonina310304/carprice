@@ -1,9 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-import { fontSizeMap } from '@primitives/Typography/css/fontSizeMap';
-
-import { mediaQueryDesktop } from '@constants/mediaQuery';
-
 import { padding } from '@utils/padding';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
@@ -26,13 +22,4 @@ export const labelStyle = style({
 
 export const textStyle = style({
   display: 'block',
-  ...fontSizeMap['12/18'],
-  margin: 0,
-  color: globalThemeColorVars.fontsQuaternary,
-
-  '@media': {
-    [mediaQueryDesktop]: {
-      ...fontSizeMap['14/20'],
-    },
-  },
 });

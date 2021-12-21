@@ -34,7 +34,7 @@ export const wrapperToggle = styleVariants({
           height: 0,
           left: '25px',
           top: '-10px',
-          borderBottom: '10px solid #D9DDE2',
+          borderBottom: `10px solid  ${globalThemeColorVars.borderPrimary}`,
           borderLeft: '15px solid transparent',
           borderRight: '15px solid transparent',
         },

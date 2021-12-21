@@ -5,6 +5,8 @@ import { TypographyTypes } from '@primitives/Typography/types';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
+import { spacing } from '@utils/spacing';
+
 import { globalThemeColorVars } from '@styles/globalTheme';
 
 export const typographyVariants = styleVariants<Record<TypographyTypes, StyleRule>>({
@@ -17,7 +19,7 @@ export const typographyVariants = styleVariants<Record<TypographyTypes, StyleRul
     margin: 0,
   },
   info: {
-    ...fontSizeMap['14/20'],
+    ...fontSizeMap[' 14/20'],
     margin: 0,
     fontWeight: 400,
   },
@@ -25,6 +27,7 @@ export const typographyVariants = styleVariants<Record<TypographyTypes, StyleRul
   base: {
     ...fontSizeMap['16/24'],
     fontWeight: 400,
+    margin: 0,
   },
   main: {
     ...fontSizeMap['14/20'],
@@ -89,6 +92,28 @@ export const typographyVariants = styleVariants<Record<TypographyTypes, StyleRul
     '@media': {
       [mediaQueryDesktop]: {
         ...fontSizeMap['20/30'],
+      },
+    },
+  },
+
+  lead: {
+    ...fontSizeMap['12/18'],
+    color: globalThemeColorVars.fontsQuaternary,
+    margin: 0,
+    '@media': {
+      [mediaQueryDesktop]: {
+        ...fontSizeMap['14/20'],
+      },
+    },
+  },
+
+  subheadOfferPage: {
+    ...fontSizeMap['16/24'],
+    fontWeight: 500,
+    margin: spacing(0, 0, 1),
+    '@media': {
+      [mediaQueryDesktop]: {
+        ...fontSizeMap['24/36'],
       },
     },
   },

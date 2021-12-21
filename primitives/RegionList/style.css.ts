@@ -1,8 +1,8 @@
 import { style } from '@vanilla-extract/css';
 
-import { padding } from '@utils/padding';
-
 import { mediaQueryMobileM, mediaQueryTablet } from '@constants/mediaQuery';
+
+import { padding } from '@utils/padding';
 
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 
@@ -23,7 +23,6 @@ export const list = style({
 });
 
 export const item = style({
-  margin: '0',
   cursor: 'pointer',
   ...padding(1, 0),
   color: globalThemeColorVars.fontsPrimary,

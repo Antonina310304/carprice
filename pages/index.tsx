@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from 'next';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Layout from '@components/Layout';

@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 
 import {
   mediaQueryDesktop,
@@ -96,4 +96,13 @@ export const twoColumn = style({
       width: 'calc(50% - 12px)',
     },
   },
+});
+
+export const textLeft = style({
+  textAlign: 'left',
+});
+
+export const flex = style({
+  display: 'flex',
+  flexWrap: 'wrap',
 });

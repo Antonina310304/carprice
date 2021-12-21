@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { memo, ReactNode, useState } from 'react';
+import React, { memo, ReactNode, useState } from 'react';
 
 import RegionModal from '@components/RegionModal';
 

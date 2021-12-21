@@ -24,6 +24,7 @@ export const wrapper = style({
 });
 
 export const textareaWrap = style({});
+
 export const textarea = style({
   width: 'calc(100% - 34px)',
   resize: 'none',
@@ -50,7 +51,7 @@ export const textarea = style({
       height: '8px',
     },
     '&::-webkit-scrollbar-thumb': {
-      backgroundColor: '#D9DDE2',
+      backgroundColor: globalThemeColorVars.fontsQuaternary,
       borderRadius: '32px',
       cursor: 'pointer',
       width: '4px',

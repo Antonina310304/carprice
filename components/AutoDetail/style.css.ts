@@ -19,7 +19,6 @@ export const main = style({
 });
 
 export const item = style({
-  margin: 0,
   paddingBottom: spacing(1),
   alignItems: 'center',
 });

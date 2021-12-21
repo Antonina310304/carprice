@@ -24,6 +24,9 @@ import { textMedium } from '@styles/baseStyle';
 const AlmostDonePage = () => {
   const isDesktop = useMediaQuery(mediaQueryDesktop);
 
+  // тут сделать запросы на получение списков
+  // и тут же добавить в стейт названия по ID
+
   const [showModal, setShowModal] = useState(false);
 
   const { almostDoneStep } = useSelector((state: IState) => {

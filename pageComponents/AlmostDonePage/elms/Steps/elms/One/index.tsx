@@ -54,19 +54,19 @@ const One: NextPage<IOne> = ({ handleNext }) => {
 
   const questionsStepOne = useSelector((state: IState) => state.userData.questionsStepOne);
 
-  const mileageState = useMemo(() => {
-    //
-    return emptyRules(questionsStepOne[mileage]);
-  }, [questionsStepOne]);
+  const mileageState = useMemo(
+    () =>
+      //
+      emptyRules(questionsStepOne[mileage]),
+    [questionsStepOne]
+  );
 
-  const disabled = useMemo(() => {
-    return !Object.values(questionsStepOne).every((value) => !!value);
-  }, [questionsStepOne]);
+  const disabled = useMemo(() => !Object.values(questionsStepOne).every((value) => !!value), [questionsStepOne]);
 
   const onChange = useCallback(
     (e: any) => {
       const { name, value: val } = e.target;
-      dispatch(updateQuestionsStepOne({ name: name, value: val }));
+      dispatch(updateQuestionsStepOne({ name, value: val }));
     },
     [dispatch]
   );
@@ -77,8 +77,8 @@ const One: NextPage<IOne> = ({ handleNext }) => {
         <div className={row}>
           <NumberField
             className={twoColumn}
-            postfix={'км'}
-            placeholder={'Пробег'}
+            postfix="км"
+            placeholder="Пробег"
             name={mileage}
             value={questionsStepOne[mileage]}
             onChange={onChange}
@@ -93,7 +93,7 @@ const One: NextPage<IOne> = ({ handleNext }) => {
         </div>
       </Wrapper>
       <Wrapper>
-        <Caption title={'Цвет'} />
+        <Caption title="Цвет" />
         <RadioColor name={color} handleChange={onChange} value={questionsStepOne[color] as string} />
       </Wrapper>
       <Wrapper>

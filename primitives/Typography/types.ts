@@ -8,4 +8,6 @@ export type TypographyTypes =
   | 'sectionTitle'
   | 'sectionSubTitle'
   | 'headLine'
-  | 'main';
+  | 'lead'
+  | 'main'
+  | 'subheadOfferPage';

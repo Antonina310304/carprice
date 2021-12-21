@@ -9,6 +9,9 @@ import userDataReducer from './userDataSlice';
 import viewSlice from './viewSlice';
 
 const persistedStore = loadState();
+
+console.log(loadState());
+
 const store = configureStore({
   reducer: {
     region: regionReducer,
@@ -20,6 +23,6 @@ const store = configureStore({
   preloadedState: persistedStore,
 });
 
-store.subscribe(throttle(() => saveState(store.getState()), 1000));
+//store.subscribe(throttle(() => saveState(store.getState()), 1000));
 
 export default store;

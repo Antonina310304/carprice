@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+// поля заполняемые пользователем на странице почти готово
 import {
   TypeBaseDamage,
   TypeBodyDamage,
   TypeQuestionsStepOne,
   TypeQuestionsStepThree,
   TypeSalonDamage,
+  TypeUserContacts,
 } from '@store/types';
 
 import {
@@ -14,7 +16,9 @@ import {
   questionsStepOneFields,
   questionsStepThreeFields,
   SalonDamageFields,
+  userContactsFields,
 } from '@constants/fields';
+import { TypePaymentType } from '@constants/fieldsValues';
 
 const userDataSlice = createSlice({
   name: 'userData',
@@ -68,9 +72,25 @@ const userDataSlice = createSlice({
       [questionsStepThreeFields.CAR_CONDITION]: '',
       [questionsStepThreeFields.MAIL]: '',
     },
+
+    userContacts: {
+      [userContactsFields.USER_NAME]: '',
+      [userContactsFields.USER_PHONE]: null,
+    },
+
+    paymentType: '',
+    meetingType: '',
   },
 
   reducers: {
+    changeMeetingType(state, action: PayloadAction<TypePaymentType>) {
+      state.meetingType = action.payload;
+    },
+
+    changePaymentType(state, action: PayloadAction<TypePaymentType>) {
+      state.paymentType = action.payload;
+    },
+
     resetAll(state) {
       Object.keys(state.bodyDamage).forEach((key) => {
         state.bodyDamage[key] = key === BodyDamageFields.BODY_DESCRIPTION ? '' : false;
@@ -100,6 +120,11 @@ const userDataSlice = createSlice({
         state.questionsStepThree[questionsStepThreeFields.REPAIR_COST] = null;
         state.questionsStepThree[questionsStepThreeFields.DRIVEABLE] = '';
       }
+    },
+
+    changeUserContacts(state, action: PayloadAction<{ name: TypeUserContacts; value: string }>) {
+      const { name, value } = action.payload;
+      state.userContacts[name] = value;
     },
 
     updateQuestionsStepThree(state, action: PayloadAction<{ name: TypeQuestionsStepThree; value: string }>) {
@@ -150,4 +175,7 @@ export const {
   resetAll,
   updateHasDTP,
   updateQuestionsStepOne,
+  changeUserContacts,
+  changePaymentType,
+  changeMeetingType,
 } = userDataSlice.actions;

@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { fetchModifications } from '@store/catalogsSlice';
+
 import fields, { carDetailFields } from '@constants/fields';
 import { loadingStatus } from '@constants/loadingStatus';
 
@@ -107,6 +109,10 @@ const carSlice = createSlice({
   },
 
   extraReducers: {
+    [fetchModifications.fulfilled.type]: (state, action) => {
+      console.log(action.payload);
+    },
+
     [detectCar.rejected.type]: (state, action) => {
       state.statusRequest = loadingStatus.REJECTED;
       state.errorRequest = action.payload;

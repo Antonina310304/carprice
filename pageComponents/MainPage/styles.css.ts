@@ -1,8 +1,8 @@
 import { style } from '@vanilla-extract/css';
 
-import { spacing } from '@utils/spacing';
-
 import { mediaQueryDesktop } from '@constants/mediaQuery';
+
+import { spacing } from '@utils/spacing';
 
 export const sectionWrapper = style({
   paddingTop: spacing(8),

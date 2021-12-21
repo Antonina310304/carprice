@@ -12,7 +12,7 @@ export const wrapper = style({
       height: '8px',
     },
     '&::-webkit-scrollbar-thumb': {
-      backgroundColor: '#D9DDE2',
+      backgroundColor: globalThemeColorVars.borderPrimary,
       borderRadius: '32px',
       cursor: 'pointer',
       width: '4px',

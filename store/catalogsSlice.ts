@@ -1,4 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import store from '@store/index';
 
 import { loadingStatus } from '@constants/loadingStatus';
 

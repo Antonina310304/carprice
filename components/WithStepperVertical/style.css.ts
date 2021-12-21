@@ -86,10 +86,6 @@ globalStyle(`${stepper} .css-16ubnlw-MuiStepLabel-labelContainer`, {
   color: globalThemeColorVars.fontsPrimary,
 });
 
-// globalStyle(`${stepper} .Mui-disabled`, {
-//   width: 'auto',
-// });
-
 globalStyle(`${stepper} .css-mt2lf4-MuiStepLabel-label`, {
   width: 'auto',
   color: globalThemeColorVars.fontsPrimary,

@@ -24,10 +24,12 @@ const TextMaskCustom: NextPage<ITextMaskCustom> = forwardRef(function TextMaskCu
     },
     [onChange, props.name]
   );
+
   return (
     <IMaskInput
       {...other}
       mask={mask}
+      unmask={true}
       {...(definitions ? { definitions: definitions } : {})}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore

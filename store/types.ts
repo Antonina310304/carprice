@@ -1,3 +1,5 @@
+import { TypeAppointment, TypePaymentType } from '@constants/fieldsValues';
+
 export interface IActiveRegion {
   id: number;
   name: string;
@@ -125,6 +127,11 @@ export interface IBaseDamage {
   baseDescription: string;
 }
 
+export interface IUserContacts {
+  userName: string;
+  userPhone: number;
+}
+
 export interface ISalonDamage {
   spots: boolean;
   seatDamage: boolean;
@@ -156,9 +163,6 @@ export interface IQuestionsStepThree {
   jumpsInMileage: string;
   carCondition: string;
 }
-// export interface IMainQuestions {
-//
-// }
 
 export interface IUserData {
   bodyDamage: IBodyDamage;
@@ -167,13 +171,16 @@ export interface IUserData {
   mainQuestions: any;
   questionsStepOne: IQuestionsStepOne;
   questionsStepThree: IQuestionsStepThree;
+  userContacts: IUserContacts;
+  paymentType: TypePaymentType;
+  meetingType: TypeAppointment;
 }
 
 export type TypeBodyDamage = keyof IBodyDamage;
 export type TypeSalonDamage = keyof ISalonDamage;
 export type TypeBaseDamage = keyof IBaseDamage;
-//export type TypeMainQuestions = keyof IMainQuestions;
 export type TypeQuestionsStepOne = keyof IQuestionsStepOne;
 export type TypeQuestionsStepThree = keyof IQuestionsStepThree;
 export type TypeCarData = keyof ICarData;
 export type TypeCarDetail = keyof ICarDetail;
+export type TypeUserContacts = keyof IUserContacts;

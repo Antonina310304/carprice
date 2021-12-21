@@ -1,9 +1,12 @@
+import cn from 'classnames';
+
 import { NextPage } from 'next';
 import React, { memo } from 'react';
 
 import { Checkbox, FormControlLabel } from '@mui/material';
 
 import Typography from '@primitives/Typography';
+import { typographyVariants } from '@primitives/Typography/css/index.css';
 import Wrapper from '@primitives/Wrappper';
 
 import { labelStyle, textStyle, wrapper } from './style.css';
@@ -35,7 +38,7 @@ const CheckBoxGroup: NextPage<ICheckBoxGroup> = ({ className, name, label, text,
               {label}
             </Typography>
             {text && (
-              <Typography as={'span'} type={'main'} className={textStyle}>
+              <Typography as={'span'} type={'main'} className={cn(typographyVariants.lead, textStyle)}>
                 {text}
               </Typography>
             )}
