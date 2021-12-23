@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { mediaQueryDesktop, mediaQueryMobileM } from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 
@@ -16,7 +16,7 @@ export const label = style({
   width: '100%',
   display: 'block',
   padding: '12px 0',
-  //margin: spacing(0),
+  // margin: spacing(0),
 
   '@media': {
     [mediaQueryMobileM]: {

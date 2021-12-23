@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import { NavItem } from '@components/Layout/types';
 
@@ -10,12 +10,12 @@ interface IDropDownMenuList {
   menuList: NavItem[];
 }
 
-const DropDownMenuList = ({ menuList }: IDropDownMenuList) => {
+const DropDownMenuList = function ({ menuList }: IDropDownMenuList) {
   return (
     <ul className={list}>
       {menuList.map((item) => (
         <li key={item.href}>
-          <LinkWrapper className={title} href={item?.href} isExternal={true}>
+          <LinkWrapper className={title} href={item?.href} isExternal>
             {item.title}
           </LinkWrapper>
         </li>

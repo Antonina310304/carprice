@@ -1,4 +1,4 @@
-export const getDate = (date: string) => {
+const getDate = (date: string) => {
   const monthNames = [
     'января',
     'февраля',
@@ -17,3 +17,5 @@ export const getDate = (date: string) => {
   const numberMonth = new Date(date).getMonth();
   return `${numberDay} ${monthNames[numberMonth]}`;
 };
+
+export default getDate;

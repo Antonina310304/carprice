@@ -1,7 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { padding } from '@utils/padding';
-import { spacing } from '@utils/spacing';
+import padding from '@utils/padding';
+import spacing from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 

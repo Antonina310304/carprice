@@ -3,7 +3,7 @@ import getLocalStorage from './getLocalStorage';
 const setLocalStorage = (key: string, value: string) => {
   const isBrowser = typeof window === 'object';
   if (!isBrowser) {
-    return undefined;
+    return;
   }
   const localStorageData = getLocalStorage('car');
 

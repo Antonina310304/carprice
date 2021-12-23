@@ -1,8 +1,10 @@
 import { style } from '@vanilla-extract/css';
 
-import { mediaQuery670, mediaQueryDesktop, mediaQueryMobile, mediaQueryTablet } from '@constants/mediaQuery';
+import {
+  mediaQuery670, mediaQueryDesktop, mediaQueryMobile, mediaQueryTablet,
+} from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 export const flex = style({
   display: 'flex',

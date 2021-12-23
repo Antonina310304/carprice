@@ -1,7 +1,7 @@
 import emptyRules from '@validateRules/emptyRules';
 
 import { NextPage } from 'next';
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithRadioGroup from '@components/WithRadioGroup';
@@ -19,11 +19,10 @@ import { updateQuestionsStepOne } from '@store/userDataSlice';
 
 import { questionsStepOneFields, questionsStepThreeFields } from '@constants/fields';
 
+import { row, twoColumn } from '@styles/baseStyle/baseStyle.css';
 import { BUTTON_TEXT } from '../../constants';
 import TooltipContentCredit from './TooltipContentCredit';
 import { creditList, wheelList } from './data';
-
-import { row, twoColumn } from '@styles/baseStyle/baseStyle.css';
 
 interface IOne {
   handleNext: () => void;
@@ -46,7 +45,7 @@ const credit = questionsStepOneFields.CREDIT;
 const wheel = questionsStepOneFields.WHEEL;
 const city = questionsStepOneFields.CITY;
 
-const One: NextPage<IOne> = ({ handleNext }) => {
+const One: NextPage<IOne> = function ({ handleNext }) {
   const dispatch = useDispatch();
   const handleClick = useCallback(() => {
     handleNext();
@@ -55,10 +54,8 @@ const One: NextPage<IOne> = ({ handleNext }) => {
   const questionsStepOne = useSelector((state: IState) => state.userData.questionsStepOne);
 
   const mileageState = useMemo(
-    () =>
-      //
-      emptyRules(questionsStepOne[mileage]),
-    [questionsStepOne]
+    () => emptyRules(questionsStepOne[mileage]),
+    [questionsStepOne],
   );
 
   const disabled = useMemo(() => !Object.values(questionsStepOne).every((value) => !!value), [questionsStepOne]);
@@ -68,7 +65,7 @@ const One: NextPage<IOne> = ({ handleNext }) => {
       const { name, value: val } = e.target;
       dispatch(updateQuestionsStepOne({ name, value: val }));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (

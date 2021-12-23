@@ -1,6 +1,6 @@
 import { IHowItWorks } from './types';
 
-export const howItWorks: IHowItWorks[] = [
+const howItWorks: IHowItWorks[] = [
   {
     img: '/static/images/howItWorks/offer.svg',
     title: 'Получите предложение онлайн',
@@ -17,3 +17,5 @@ export const howItWorks: IHowItWorks[] = [
     text: 'Проверим состояние вашего автомобиля и заключим сделку',
   },
 ];
+
+export default howItWorks;

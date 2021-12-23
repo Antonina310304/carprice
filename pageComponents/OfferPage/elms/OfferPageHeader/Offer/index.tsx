@@ -1,21 +1,16 @@
-import React from 'react';
-
 import Typography from '@primitives/Typography';
 import { typographyVariants } from '@primitives/Typography/css/index.css';
 import WithButton from '@primitives/WithButton';
-
 import useMediaQuery from '@hooks/useMediaQuery';
-
 import { mediaQueryDesktop } from '@constants/mediaQuery';
-
-import { getDate } from '@utils/getDate';
-import { getNameDay } from '@utils/getNameDay';
-
+import getDate from '@utils/getDate';
+import getNameDay from '@utils/getNameDay';
 import { textMedium } from '@styles/baseStyle';
 import { globalThemeColorVars } from '@styles/globalTheme';
 import { NextPage } from 'next';
 import {
   button, price, textWrapper, wrapper, blockWrapper, mainOfferBlock, text,
+// eslint-disable-next-line import/extensions
 } from './style.css.ts';
 
 const BUTTON_TEXT = 'Сохранить';
@@ -27,7 +22,7 @@ interface IOffer {
   handleClick: () => void
 }
 
-const Offer: NextPage<IOffer> = ({ handleClick }) => {
+const Offer: NextPage<IOffer> = function ({ handleClick }) {
   const isDesktop = useMediaQuery(mediaQueryDesktop);
   return (
     <div className={wrapper}>

@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, {
+import {
   memo, ReactNode, useEffect, useMemo, useState,
 } from 'react';
 
@@ -22,6 +22,7 @@ import {
   successProgressIcon,
   useStyles,
   dropDownList,
+// eslint-disable-next-line import/extensions
 } from './style.css.ts';
 
 const ITEM_HEIGHT = 48;
@@ -50,7 +51,7 @@ interface IWithSelect {
   [key: string]: any;
 }
 
-const WithSelect: NextPage<IWithSelect> = ({
+const WithSelect: NextPage<IWithSelect> = function ({
   disabled = false,
   className,
   placeholder,
@@ -63,7 +64,7 @@ const WithSelect: NextPage<IWithSelect> = ({
   selectItem = (item: any) => <DropDownBaseItem item={item} />,
   isLoading,
   ...otherProps
-}) => {
+}) {
   const [changed, setChanged] = useState(false);
   const disabledSelect = useMemo(() => disabled || isLoading, [disabled, isLoading]);
 
@@ -117,7 +118,7 @@ const WithSelect: NextPage<IWithSelect> = ({
           if (!selected) {
             return <span style={{ color: globalThemeColorVars.fontsQuaternary }}>{placeholder}</span>;
           }
-          const select = menuItemList.find((item: any) => item.value == selected)?.text;
+          const select = menuItemList.find((item: any) => item.value === selected)?.text;
           if (!select) {
             return <span style={{ color: globalThemeColorVars.fontsQuaternary }}>{placeholder}</span>;
           }

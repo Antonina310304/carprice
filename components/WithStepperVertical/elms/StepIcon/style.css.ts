@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { fontSizeMap } from '@primitives/Typography/css/fontSizeMap';
+import fontSizeMap from '@primitives/Typography/css/fontSizeMap';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 

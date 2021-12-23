@@ -1,4 +1,5 @@
-export const internalIcons = {
+/* eslint-disable global-require */
+const internalIcons = {
   tooltip: require('./icons/tooltip.svg'),
   burgerOpen: require('./icons/burger-open.svg'),
   burgerClose: require('./icons/burger-close.svg'),
@@ -24,3 +25,5 @@ export const internalIcons = {
   edit: require('./icons/edit.svg'),
   check: require('./icons/check.svg'),
 } as const;
+
+export default internalIcons;

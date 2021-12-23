@@ -1,11 +1,11 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { fontSizeMap } from '@primitives/Typography/css/fontSizeMap';
+import fontSizeMap from '@primitives/Typography/css/fontSizeMap';
 import { typographyVariants } from '@primitives/Typography/css/index.css';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 

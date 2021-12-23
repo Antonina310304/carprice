@@ -7,7 +7,7 @@ interface IDropDownMenuWrapper {
   isOpen: boolean;
 }
 
-const DropDownMenuWrapper: NextPage<IDropDownMenuWrapper> = ({ isOpen, children }) => {
+const DropDownMenuWrapper: NextPage<IDropDownMenuWrapper> = function ({ isOpen, children }) {
   return <div className={cn(wrapper, wrapperToggle[isOpen ? 'open' : 'close'])}>{children}</div>;
 };
 

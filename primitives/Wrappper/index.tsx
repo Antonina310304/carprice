@@ -1,4 +1,7 @@
-import React, { CSSProperties, forwardRef, memo, ReactNode, Ref, useMemo } from 'react';
+/* eslint-disable react/require-default-props */
+import {
+  CSSProperties, forwardRef, memo, ReactNode, Ref, createElement,
+} from 'react';
 
 import BackgroundColors from '@styles/theme/types/BackgroundColors';
 
@@ -14,24 +17,26 @@ interface IWrapper {
   [name: string]: any;
 }
 
-const Wrapper = forwardRef(function (props: IWrapper, ref: Ref<HTMLInputElement>) {
-  const { styles, as = 'div', className, spacing, bgColor, children, padding, borderRadius, ...otherProps } = props;
-  return React.createElement(
+const Wrapper = forwardRef((props: IWrapper, ref: Ref<HTMLInputElement>) => {
+  const {
+    styles, as = 'div', className, spacing, bgColor, children, padding, borderRadius, ...otherProps
+  } = props;
+  return createElement(
     as,
     {
-      className: className,
+      className,
       style: {
         ...styles,
         boxSizing: 'border-box',
         backgroundColor: bgColor,
         borderRadius,
-        padding: padding,
+        padding,
         margin: spacing?.m,
       },
       ref,
       ...otherProps,
     },
-    children
+    children,
   );
 });
 

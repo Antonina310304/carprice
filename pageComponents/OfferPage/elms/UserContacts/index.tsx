@@ -1,8 +1,8 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, {
-  memo, useCallback, useEffect, useMemo, useState,
+import {
+  memo, useCallback, useEffect, useState,
 } from 'react';
 import { IMaskInput } from 'react-imask';
 import { useSelector } from 'react-redux';
@@ -15,11 +15,13 @@ import { IState } from '@store/types';
 
 import { userContactsFields } from '@constants/fields';
 
-import phoneValidate from '@validateRules/phoneValidate';
+// import phoneValidate from '@validateRules/phoneValidate';
 import contactsBlockValidate from '@validateRules/contactsBlockValidate';
 import FieldsList from './FieldsList';
 
+// eslint-disable-next-line import/extensions
 import { accordionTitle } from '../CarDetail/style.css.ts';
+// eslint-disable-next-line import/extensions
 import { input, wrapper } from './style.css.ts';
 
 interface IAccordionUserContact {
@@ -27,7 +29,7 @@ interface IAccordionUserContact {
   toNextStep: () => void;
   isActive: boolean;
 }
-const UserContacts: NextPage<IAccordionUserContact> = ({ toNextStep, isActive }) => {
+const UserContacts: NextPage<IAccordionUserContact> = function ({ toNextStep, isActive }) {
   const [expanded, setExpanded] = useState(isActive);
   const [dirty, setDirty] = useState(false);
   const userContacts = useSelector((state: IState) => state.userData.userContacts);

@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
@@ -7,21 +7,17 @@ import WithSelect from '@primitives/WithSelect';
 import { changeModel } from '@store/carSlice';
 import { IState } from '@store/types';
 
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 interface IModel {
   className?: string;
 }
 
-const Model: NextPage<IModel> = ({ className }) => {
+const Model: NextPage<IModel> = function ({ className }) {
   const dispatch = useDispatch();
-  const { modelId } = useSelector((state: IState) => {
-    return state.carData.carDetail;
-  });
+  const { modelId } = useSelector((state: IState) => state.carData.carDetail);
 
-  const { statusModel, models } = useSelector((state: IState) => {
-    return state.catalogs;
-  });
+  const { statusModel, models } = useSelector((state: IState) => state.catalogs);
 
   const disabled = useMemo(() => statusModel !== loadingStatus.RESOLVED, [statusModel]);
 
@@ -29,18 +25,18 @@ const Model: NextPage<IModel> = ({ className }) => {
     ({ target: { value } }) => {
       dispatch(changeModel(value));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (
     <WithSelect
-      name={'model'}
+      name="model"
       className={className}
       handleChange={handleChangeYear}
       currValue={modelId}
       disabled={disabled}
       menuItemList={models}
-      placeholder={'Модель'}
+      placeholder="Модель"
       isLoading={statusModel === loadingStatus.LOADING}
     />
   );

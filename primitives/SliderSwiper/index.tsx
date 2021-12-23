@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 import { Global, css } from '@emotion/react';
-import Swiper from 'react-id-swiper';
+import Swiper from 'swiper';
 
-const SliderSwiper = () => {
+const SliderSwiper = function () {
   return (
     <>
       <Global

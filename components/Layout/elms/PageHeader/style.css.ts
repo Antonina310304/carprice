@@ -9,7 +9,7 @@ export const headerWrapper = style([
   mainContainer,
   {
     '@media': {
-      ['screen and (max-width: 1023px)']: {
+      'screen and (max-width: 1023px)': {
         paddingLeft: 0,
         paddingRight: 0,
       },

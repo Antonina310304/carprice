@@ -10,8 +10,10 @@ interface IBox {
   className?: string;
 }
 
-const Wrapper: NextPage<IBox> = ({ children, className }) => {
-  return <div className={cn(className, wrapper)}>{children}</div>;
-};
+const Wrapper: NextPage<IBox> = ({ children, className }) => (
+  <div className={cn(className, wrapper)}>
+    {children}
+  </div>
+);
 
 export default memo(Wrapper);

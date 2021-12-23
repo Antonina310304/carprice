@@ -4,7 +4,7 @@ import { Appointment } from '@constants/fieldsValues';
 
 import Remote from '../Remote';
 
-export const MeetingList: Record<Appointment, any> = {
+const meetingList: Record<Appointment, any> = {
   [Appointment.REMOTE]: {
     title: 'Вызвать эвакуатор',
     content: Remote,
@@ -14,3 +14,5 @@ export const MeetingList: Record<Appointment, any> = {
     content: BlockSelectSalon,
   },
 };
+
+export default meetingList;

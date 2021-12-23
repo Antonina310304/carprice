@@ -1,8 +1,9 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import cn from 'classnames';
 import { NextPage } from 'next';
 import {
   iconStatus, iconMedium, iconHigh,
+// eslint-disable-next-line import/extensions
 } from './style.css.ts';
 
 const statusOffice = {
@@ -20,7 +21,7 @@ interface ISelectItem {
   }
 
 }
-const SelectItem: NextPage<ISelectItem> = ({ item }) => {
+const SelectItem: NextPage<ISelectItem> = function ({ item }) {
   const { text, code, codeText } = item;
   return (
     <>

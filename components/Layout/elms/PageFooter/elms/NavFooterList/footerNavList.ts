@@ -1,6 +1,6 @@
 import { NavItem } from '@components/Layout/types';
 
-export const FooterNavList: NavItem[] = [
+const footerNavList: NavItem[] = [
   {
     title: 'Отзывы',
     href: 'https://www.carprice.ru/otzyvy',
@@ -46,3 +46,5 @@ export const FooterNavList: NavItem[] = [
     href: 'https://www.carprice.ru/sitemap',
   },
 ];
+
+export default footerNavList;

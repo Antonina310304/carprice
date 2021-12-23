@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { mediaQueryDesktop, mediaQueryTablet } from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 
@@ -53,7 +53,7 @@ export const ratingCount = style([
     color: globalThemeColorVars.fontsBaseGreen,
     fontSize: '60px',
     lineHeight: '60px',
-    //fontFeatureSettings: "'tnum' on, 'lnum' on",
+    // fontFeatureSettings: "'tnum' on, 'lnum' on",
     fontWeight: 700,
 
     '@media': {

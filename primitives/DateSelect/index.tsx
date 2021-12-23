@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useEffect, useMemo } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
@@ -7,7 +7,7 @@ import WithSelect from '@primitives/WithSelect';
 import { fetchOffices } from '@store/catalogsSlice';
 import { IState } from '@store/types';
 
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 interface IDateSelect {
   className?: string;
@@ -15,7 +15,7 @@ interface IDateSelect {
   handleChange: (arg: any) => void;
 }
 
-const DateSelect: NextPage<IDateSelect> = ({ className, name = 'date', handleChange }) => {
+const DateSelect: NextPage<IDateSelect> = function ({ className, name = 'date', handleChange }) {
   const dispatch = useDispatch();
 
   const dateListMeeting = useSelector((state: IState) => state.catalogs.dateListMeeting);

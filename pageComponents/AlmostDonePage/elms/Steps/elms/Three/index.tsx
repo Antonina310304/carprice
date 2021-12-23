@@ -2,7 +2,7 @@ import emptyRules from '@validateRules/emptyRules';
 import mailRules from '@validateRules/mailRules';
 import { omit } from 'ramda';
 
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithRadioGroup from '@components/WithRadioGroup';
@@ -53,7 +53,7 @@ const jumpsInMileage = questionsStepThreeFields.JUMPS_IN_MILEAGE;
 const carCondition = questionsStepThreeFields.CAR_CONDITION;
 const mail = questionsStepThreeFields.MAIL;
 
-const Three = () => {
+const Three = function () {
   const dispatch = useDispatch();
 
   const {
@@ -71,13 +71,17 @@ const Three = () => {
     [dispatch],
   );
 
-  const emailState = useMemo(() => mailRules(questionsStepThree[mail] as string),
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-    [questionsStepThree[mail]]);
+  const emailState = useMemo(
+    () => mailRules(questionsStepThree[mail] as string),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [questionsStepThree[mail]],
+  );
 
-  const repairCostState = useMemo(() => emptyRules(questionsStepThree[repairCost]),
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-    [questionsStepThree[repairCost]]);
+  const repairCostState = useMemo(
+    () => emptyRules(questionsStepThree[repairCost]),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [questionsStepThree[repairCost]],
+  );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const dtp = useMemo(() => questionsStepThree[hasDtp], [questionsStepThree[hasDtp]]);

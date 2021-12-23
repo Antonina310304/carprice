@@ -15,7 +15,7 @@ interface IChangeCarModal {
   hideModal: () => void;
 }
 
-const ChangeCarModal: NextPage<IChangeCarModal> = ({ showModal, hideModal }) => {
+const ChangeCarModal: NextPage<IChangeCarModal> = function ({ showModal, hideModal }) {
   const dispatch = useDispatch();
 
   const handleSuccess = useCallback(() => {

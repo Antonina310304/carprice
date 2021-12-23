@@ -1,15 +1,15 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import BlockSelectSalon from '@pages/OfferPage/elms/BlockSelectSalon';
-import { MeetingList } from '@pages/OfferPage/elms/Meeting/data';
+import meetingList from '@pages/OfferPage/elms/Meeting/data';
 import Remote from '@pages/OfferPage/elms/Remote';
 
 import WithFormControlLabel from '@primitives/WithFormControlLabel';
 import WithRadioGroupColumn, { ILabel } from '@primitives/WithRadioGroupColumn';
 
-import { fetchOffices } from '@store/catalogsSlice';
+// import { fetchOffices } from '@store/catalogsSlice';
 import { IState } from '@store/types';
 import { changeMeetingType } from '@store/userDataSlice';
 
@@ -26,7 +26,7 @@ interface IMeeting {
   isCurrentStep: boolean;
 }
 
-const Meeting: NextPage<IMeeting> = ({ isCurrentStep }) => {
+const Meeting: NextPage<IMeeting> = function ({ isCurrentStep }) {
   const dispatch = useDispatch();
   const meetingType = useSelector((state: IState) => state.userData.meetingType);
 
@@ -34,7 +34,7 @@ const Meeting: NextPage<IMeeting> = ({ isCurrentStep }) => {
     ({ target: { value } }) => {
       dispatch(changeMeetingType(value));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (
@@ -42,7 +42,7 @@ const Meeting: NextPage<IMeeting> = ({ isCurrentStep }) => {
       value={meetingType}
       name="meetingType"
       handleChange={handleChange}
-      list={MeetingList}
+      list={meetingList}
       label={({ title, subTitle, key }: ILabel) => (
         <WithFormControlLabel className={wrapper} title={title} subTitle={subTitle} value={key} />
       )}

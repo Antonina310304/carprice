@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
+// eslint-disable-next-line import/prefer-default-export
 export const wrapper = style({
   width: '23px',
   height: '23px',

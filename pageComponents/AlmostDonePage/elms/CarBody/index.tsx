@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
@@ -7,21 +7,17 @@ import WithSelect from '@primitives/WithSelect';
 import { changeCarBody } from '@store/carSlice';
 import { IState } from '@store/types';
 
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 interface ICarBody {
   className?: string;
 }
 
-const CarBody: NextPage<ICarBody> = ({ className }) => {
+const CarBody: NextPage<ICarBody> = function ({ className }) {
   const dispatch = useDispatch();
-  const bodyId = useSelector((state: IState) => {
-    return state.carData.carDetail.bodyId;
-  });
+  const bodyId = useSelector((state: IState) => state.carData.carDetail.bodyId);
 
-  const { statusCarBodyList, carBodyList } = useSelector((state: IState) => {
-    return state.catalogs;
-  });
+  const { statusCarBodyList, carBodyList } = useSelector((state: IState) => state.catalogs);
 
   const disabled = useMemo(() => statusCarBodyList !== loadingStatus.RESOLVED, [statusCarBodyList]);
 
@@ -29,18 +25,18 @@ const CarBody: NextPage<ICarBody> = ({ className }) => {
     ({ target: { value } }) => {
       dispatch(changeCarBody(value));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (
     <WithSelect
-      name={'model'}
+      name="model"
       className={className}
       handleChange={handleChangeYear}
       currValue={bodyId}
       disabled={disabled}
       menuItemList={carBodyList}
-      placeholder={'Тип кузова'}
+      placeholder="Тип кузова"
       isLoading={statusCarBodyList === loadingStatus.LOADING}
     />
   );

@@ -12,15 +12,15 @@ interface IBurger {
   toggle: () => void;
 }
 
-const Burger = ({ isOpen, className, toggle }: IBurger) => {
+const Burger = function ({ isOpen, className, toggle }: IBurger) {
   const handlerClick = useCallback(() => {
     toggle();
   }, [toggle]);
 
   return (
     <div className={cn(className, burger)} onClick={handlerClick}>
-      {isOpen && <Icon className={iconWrapper} icon={'burgerOpen'} />}
-      {!isOpen && <Icon className={iconWrapper} icon={'burgerClose'} />}
+      {isOpen && <Icon className={iconWrapper} icon="burgerOpen" />}
+      {!isOpen && <Icon className={iconWrapper} icon="burgerClose" />}
     </div>
   );
 };

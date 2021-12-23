@@ -1,11 +1,13 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import Typography from '@primitives/Typography';
 
-import { switchItem, switchItemActive, switchWrapper, thumb } from './style.css';
+import {
+  switchItem, switchItemActive, switchWrapper, thumb,
+} from './style.css';
 
 interface ISwitch {
   className?: string;
@@ -14,7 +16,9 @@ interface ISwitch {
   changeState?: (arg: string) => void;
 }
 
-const Switch: NextPage<ISwitch> = ({ className, activeSwitch, switchNames, changeState }) => {
+const Switch: NextPage<ISwitch> = function ({
+  className, activeSwitch, switchNames, changeState,
+}) {
   const [state, setState] = useState(activeSwitch);
   const countSwitchers = useMemo(() => Object.keys(switchNames).length, [switchNames]);
 
@@ -25,10 +29,10 @@ const Switch: NextPage<ISwitch> = ({ className, activeSwitch, switchNames, chang
         changeState(switchedNames);
       }
     },
-    [changeState]
+    [changeState],
   );
 
-  const left = (100 / countSwitchers) * Object.keys(switchNames).indexOf(state) + '%';
+  const left = `${(100 / countSwitchers) * Object.keys(switchNames).indexOf(state)}%`;
 
   return (
     <div className={cn(className, switchWrapper)}>
@@ -36,15 +40,15 @@ const Switch: NextPage<ISwitch> = ({ className, activeSwitch, switchNames, chang
         className={thumb}
         style={{
           width: `${100 / countSwitchers}%`,
-          left: left,
+          left,
         }}
       />
       {Object.keys(switchNames).map((key: string, idx: number) => (
         <Typography
           key={idx}
           onClick={() => handleClick(key)}
-          as={'p'}
-          type={'caption'}
+          as="p"
+          type="caption"
           className={cn(switchItem, {
             [switchItemActive]: key === state,
           })}

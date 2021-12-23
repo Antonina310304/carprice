@@ -10,7 +10,7 @@ import { almostDoneStepMap } from '@pages/AlmostDonePage/constants';
 import { IState } from '@store/types';
 import { changeAlmostDoneStep } from '@store/viewSlice';
 
-import { getKeyByValue } from '@utils/getKeyByValue';
+import getKeyByValue from '@utils/getKeyByValue';
 
 import One from './elms/One';
 import Three from './elms/Three';
@@ -26,18 +26,16 @@ const currentStepMap: Record<AlmostDoneStepTypes, number> = {
   [almostDoneStepMap.HISTORY]: 2,
 };
 
-const Steps = () => {
+const Steps = function () {
   const dispatch = useDispatch();
-  const { almostDoneStep } = useSelector((state: IState) => {
-    return state.view;
-  });
+  const { almostDoneStep } = useSelector((state: IState) => state.view);
 
   const handleChangeActiveStep = useCallback(
     (activeStep: number | undefined) => {
       const currentStep = getKeyByValue(currentStepMap, activeStep) || almostDoneStepMap.CONFIRM;
       dispatch(changeAlmostDoneStep(currentStep));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (

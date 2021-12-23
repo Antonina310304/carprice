@@ -1,6 +1,7 @@
+/* eslint-disable react/require-default-props */
 import cn from 'classnames';
 
-import React, { CSSProperties, forwardRef, memo } from 'react';
+import { CSSProperties, forwardRef, memo } from 'react';
 
 import { typographyAlignVariants, typographyVariants } from '@primitives/Typography/css/index.css';
 import { TypographyTypes } from '@primitives/Typography/types';
@@ -18,13 +19,15 @@ interface ITypographyProps {
   [name: string]: any;
 }
 
-const Typography = (
-  { as = 'p', type, className, styles, color, align = 'left', onClick, ...props }: ITypographyProps,
-  ref: React.Ref<HTMLSpanElement>
-) => {
+const Typography = function (
+  {
+    as = 'p', type, className, styles, color, align = 'left', onClick, ...props
+  }: ITypographyProps,
+  ref: React.Ref<HTMLSpanElement>,
+) {
   return React.createElement(as, {
     className: cn(typographyVariants[type], typographyAlignVariants[align], className),
-    style: { ...styles, color: color },
+    style: { ...styles, color },
     ref,
     onClick,
     ...props,

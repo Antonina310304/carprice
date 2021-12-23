@@ -1,7 +1,9 @@
 import cn from 'classnames';
 
 import type { NextPage } from 'next';
-import React, { createRef, memo, useCallback, useEffect, useState } from 'react';
+import {
+  createRef, memo, useCallback, useEffect, useState,
+} from 'react';
 
 import { PageHeaderNavElms } from '@components/Layout/elms/PageHeader/types';
 
@@ -26,7 +28,7 @@ interface INavItem {
   navElement: PageHeaderNavElms;
 }
 
-const NavItem: NextPage<INavItem> = ({ navElement }) => {
+const NavItem: NextPage<INavItem> = function ({ navElement }) {
   const ref = createRef<HTMLDivElement>();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -37,14 +39,18 @@ const NavItem: NextPage<INavItem> = ({ navElement }) => {
         setIsOpen(false);
       }
     },
-    [ref]
+    [ref],
   );
 
   useEffect(() => {
     if (isOpen) {
       document.addEventListener('click', handleClickOutside);
-      return () => document.removeEventListener('click', handleClickOutside);
     }
+    return () => {
+      if (isOpen) {
+        document.removeEventListener('click', handleClickOutside);
+      }
+    };
   }, [handleClickOutside, isOpen]);
 
   const handleToggle = useCallback(() => {
@@ -59,7 +65,7 @@ const NavItem: NextPage<INavItem> = ({ navElement }) => {
           <i className={cn(iconWrapper, toggleIcon[isOpen ? 'open' : 'close'])}>
             <Icon
               className={cn(iconArrow, toggleSvg[isOpen ? 'open' : 'close'])}
-              icon={'arrow'}
+              icon="arrow"
               width={10}
               height={6}
             />
@@ -70,7 +76,7 @@ const NavItem: NextPage<INavItem> = ({ navElement }) => {
         <LinkWrapper
           href={navElement.href}
           className={cn(wrapper, title, titleLink, toggleTitle.close)}
-          isExternal={true}
+          isExternal
         >
           {navElement.title}
         </LinkWrapper>

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-import { memo, useCallback, useEffect, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useState,
+} from 'react';
 import { useDispatch } from 'react-redux';
 
 import { BUTTON_TEXT, SERVER_ERROR_TEXT } from '@components/AutoNumbersBlock/constants';
@@ -19,10 +21,12 @@ import { loadState } from '@store/localStorage';
 const KEY = 'regNumber';
 const definitions = { '#': /[а-яА-Я]/ };
 
-const StateNumberForm = () => {
+const StateNumberForm = function () {
   const dispatch = useDispatch();
   const [submitting, setSubmitting] = useState(false);
-  const { value, touched, valid, errorText, handleChange, onBlur, setErrors, setValue } = useStateNumber('');
+  const {
+    value, touched, valid, errorText, handleChange, onBlur, setErrors, setValue,
+  } = useStateNumber('');
 
   useEffect(() => {
     const localStorageData = loadState();
@@ -40,7 +44,7 @@ const StateNumberForm = () => {
       dispatch(changeRegNumber(newValue));
       handleChange(e);
     },
-    [dispatch, handleChange]
+    [dispatch, handleChange],
   );
 
   const onSubmit = useCallback(
@@ -70,7 +74,7 @@ const StateNumberForm = () => {
       }
       load();
     },
-    [dispatch, setErrors, value]
+    [dispatch, setErrors, value],
   );
 
   return (

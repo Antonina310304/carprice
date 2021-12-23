@@ -8,7 +8,7 @@ import {
   TABLET,
 } from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 

@@ -1,13 +1,10 @@
 import cn from 'classnames';
-
 import { NextPage } from 'next';
-import React from 'react';
-
 import { Modal as MaterialModal } from '@mui/material';
-
 import Icon from '@primitives/Icon';
-
-import { modalContent, mainWrapper, inner, closeButton } from './style.css';
+import {
+  modalContent, mainWrapper, inner, closeButton,
+} from './style.css';
 
 interface IModal {
   open: boolean;
@@ -17,7 +14,9 @@ interface IModal {
   closeIcon?: boolean;
 }
 
-const Modal: NextPage<IModal> = ({ open, className, handleClose, children, modalContentWidth, closeIcon = true }) => {
+const Modal: NextPage<IModal> = function ({
+  open, className, handleClose, children, modalContentWidth, closeIcon = true,
+}) {
   return (
     <MaterialModal
       className={mainWrapper}
@@ -29,8 +28,12 @@ const Modal: NextPage<IModal> = ({ open, className, handleClose, children, modal
       <div className={cn(modalContent, className)} style={{ width: `${modalContentWidth}px` }}>
         <div className={inner}>
           {closeIcon && (
-            <button className={closeButton} onClick={handleClose}>
-              <Icon icon={'cross'} width={16} height={16} />
+            <button
+              className={closeButton}
+              onClick={handleClose}
+              type="button"
+            >
+              <Icon icon="cross" width={16} height={16} />
             </button>
           )}
           {children}

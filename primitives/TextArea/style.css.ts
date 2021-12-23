@@ -2,12 +2,12 @@ import { globalStyle, style } from '@vanilla-extract/css';
 
 import { stepper } from '@components/WithStepperVertical/style.css';
 
-import { fontSizeMap } from '@primitives/Typography/css/fontSizeMap';
+import fontSizeMap from '@primitives/Typography/css/fontSizeMap';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { padding } from '@utils/padding';
-import { spacing } from '@utils/spacing';
+import padding from '@utils/padding';
+import spacing from '@utils/spacing';
 
 import { globalBorderRadius, globalThemeColorVars } from '@styles/globalTheme';
 
@@ -28,9 +28,9 @@ export const textareaWrap = style({});
 export const textarea = style({
   width: 'calc(100% - 34px)',
   resize: 'none',
-  //minHeight: '48px',
+  // minHeight: '48px',
   outline: 'none',
-  //maxHeight: '48px',
+  // maxHeight: '48px',
   borderRadius: globalBorderRadius.base,
   ...padding(1),
   ...fontSizeMap['12/18'],

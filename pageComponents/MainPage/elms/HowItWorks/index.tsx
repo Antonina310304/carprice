@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import Typography from '@primitives/Typography';
 
@@ -7,8 +7,10 @@ import useMediaQuery from '@hooks/useMediaQuery';
 
 import { DESKTOP } from '@constants/mediaQuery';
 
-import { howItWorks } from './data';
-import { titleBlock, item, stepsList, stepsListItem, stepsListInner, imgWrapper } from './style.css';
+import howItWorks from './howItWorks';
+import {
+  titleBlock, item, stepsList, stepsListItem, stepsListInner, imgWrapper,
+} from './style.css';
 import { IHowItWorks } from './types';
 
 const TITLE = 'Вот как это работает';
@@ -16,15 +18,15 @@ const SUBTITLE = 'Всего три простых шага, чтобы прод
 const MOBILE_HEIGHT = '100px';
 const DESKTOP_HEIGHT = '149px';
 
-const HowItWorks = () => {
+const HowItWorks = function () {
   const isDesktop = useMediaQuery(`(min-width: ${DESKTOP}px)`);
   return (
     <>
       <div className={titleBlock}>
-        <Typography as={'h2'} type={'sectionTitle'} align={'center'}>
+        <Typography as="h2" type="sectionTitle" align="center">
           {TITLE}
         </Typography>
-        <Typography as={'h3'} type={'sectionSubTitle'} align={'center'}>
+        <Typography as="h3" type="sectionSubTitle" align="center">
           {SUBTITLE}
         </Typography>
       </div>
@@ -33,18 +35,18 @@ const HowItWorks = () => {
           <li className={stepsListItem} key={i.title}>
             <div className={stepsListInner}>
               <div className={imgWrapper}>
-                <Image src={i.img} width={'120%'} height={isDesktop ? DESKTOP_HEIGHT : MOBILE_HEIGHT} alt={i.title} />
+                <Image src={i.img} width="120%" height={isDesktop ? DESKTOP_HEIGHT : MOBILE_HEIGHT} alt={i.title} />
               </div>
-              <Typography type={'headLine'} align={'inherit'}>
+              <Typography type="headLine" align="inherit">
                 {i.title}
               </Typography>
-              <Typography type={'main'} align={'inherit'}>
+              <Typography type="main" align="inherit">
                 {i.text}
               </Typography>
             </div>
           </li>
         ))}
-        <div className={item}></div>
+        <div className={item} />
       </ul>
     </>
   );

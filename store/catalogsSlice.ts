@@ -1,8 +1,8 @@
 import {
-  createAction, createAsyncThunk, createSlice, PayloadAction,
+  createAsyncThunk, createSlice, PayloadAction,
 } from '@reduxjs/toolkit';
 
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 import arrayToObj from '@utils/ArrayToObj';
 
@@ -130,6 +130,7 @@ export const fetchDates = createAsyncThunk(
   async (branchId: string, { rejectWithValue }: any) => {
     try {
       const response = await fetch(
+        // eslint-disable-next-line max-len
         `https://api.carprice.ru/client/api/v1.0.0/branch/dates?api_token=bl1xzytbbohfgrcvtcfurx2fl11xspe4&branch_id=${branchId}`,
       );
       if (!response.ok) {
@@ -148,6 +149,7 @@ export const fetchTimes = createAsyncThunk(
   async ({ branchId, date }: { branchId: string; date: string }, { rejectWithValue }: any) => {
     try {
       const response = await fetch(
+        // eslint-disable-next-line max-len
         `https://api.carprice.ru/client/api/v1.0.0/branch/times?api_token=bl1xzytbbohfgrcvtcfurx2fl11xspe4&branch_id=${branchId}&date=${date}`,
       );
       if (!response.ok) {

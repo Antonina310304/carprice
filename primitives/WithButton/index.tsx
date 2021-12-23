@@ -13,18 +13,20 @@ interface IWithButton {
   [key: string]: any;
 }
 
-const WithButton: NextPage<IWithButton> = ({ className, text, ...props }) => (
-  <Button
-    color="primary"
-    className={cn(button, className)}
-    variant="contained"
-    size="large"
-    fullWidth
-    type="submit"
-    {...props}
-  >
-    {text}
-  </Button>
-);
+const WithButton: NextPage<IWithButton> = function ({ className, text, ...props }) {
+  return (
+    <Button
+      color="primary"
+      className={cn(button, className)}
+      variant="contained"
+      size="large"
+      fullWidth
+      type="submit"
+      {...props}
+    >
+      {text}
+    </Button>
+  );
+};
 
 export default memo(WithButton);

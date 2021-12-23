@@ -1,6 +1,6 @@
 import { omit } from 'ramda';
 
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CheckBoxGroup from '@primitives/CheckBoxGroup';
@@ -11,40 +11,37 @@ import { updateBodyDamage } from '@store/userDataSlice';
 
 import { BodyDamageFields } from '@constants/fields';
 
-import { descriptionTitle, placeholder, fieldMap } from './data';
-
 import { row, twoColumn } from '@styles/baseStyle/baseStyle.css';
+import { descriptionTitle, placeholder, fieldMap } from './data';
 
 const bodyDescription = BodyDamageFields.BODY_DESCRIPTION;
 const noDamage = BodyDamageFields.NO_DAMAGE;
 
-const BodyDamage = () => {
+const BodyDamage = function () {
   const dispatch = useDispatch();
 
-  const bodyDamage = useSelector((state: IState) => {
-    return state.userData.bodyDamage;
-  });
+  const bodyDamage = useSelector((state: IState) => state.userData.bodyDamage);
 
   const disabled = useMemo(
     () => ({
       finishButtonDisabled: Object.values(omit([noDamage, bodyDescription], bodyDamage)).some((value) => value),
       disabledAll: bodyDamage[noDamage],
     }),
-    [bodyDamage]
+    [bodyDamage],
   );
 
   const handleChange = useCallback(
     ({ target: { name, checked } }: any) => {
       dispatch(updateBodyDamage({ name, value: checked }));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleChangeTextArea = useCallback(
     ({ target }) => {
       dispatch(updateBodyDamage(target));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (

@@ -13,8 +13,10 @@ interface ITextMaskCustom {
   [key: string]: any;
 }
 
-const TextMaskCustom: NextPage<ITextMaskCustom> = forwardRef(function TextMaskCustom(props, ref) {
-  const { onChange, mask = defaultMask, definitions, ...other } = props;
+const TextMaskCustom: NextPage<ITextMaskCustom> = forwardRef((props, ref) => {
+  const {
+    onChange, mask = defaultMask, definitions, ...other
+  } = props;
 
   const handleAccept = useCallback(
     (value) => {
@@ -22,15 +24,15 @@ const TextMaskCustom: NextPage<ITextMaskCustom> = forwardRef(function TextMaskCu
         onChange({ target: { name: props.name, value } });
       }
     },
-    [onChange, props.name]
+    [onChange, props.name],
   );
 
   return (
     <IMaskInput
       {...other}
       mask={mask}
-      unmask={true}
-      {...(definitions ? { definitions: definitions } : {})}
+      unmask
+      {...(definitions ? { definitions } : {})}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       onAccept={handleAccept}

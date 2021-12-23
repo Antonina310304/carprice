@@ -20,23 +20,25 @@ interface IRegNumberField {
   [key: string]: any;
 }
 
-const RegNumberField: NextPage<IRegNumberField> = ({
+const RegNumberField: NextPage<IRegNumberField> = function ({
   defaultTouched, value, name, onChange, valid, errorText, ...props
-}) => (
-  <WithTextField
-    className={blockWrapper}
-    inputComponent={TextMaskCustom}
-    inputProps={{ mask: MASK, definitions }}
-    success={valid}
-    error={!valid}
-    errorText={(!valid && errorText) || ''}
-    name={name}
-    defaultTouched={defaultTouched}
-    value={value}
-    onChange={onChange}
-    placeholder={PLACEHOLDER}
-    {...props}
-  />
-);
+}) {
+  return (
+    <WithTextField
+      className={blockWrapper}
+      inputComponent={TextMaskCustom}
+      inputProps={{ mask: MASK, definitions }}
+      success={valid}
+      error={!valid}
+      errorText={(!valid && errorText) || ''}
+      name={name}
+      defaultTouched={defaultTouched}
+      value={value}
+      onChange={onChange}
+      placeholder={PLACEHOLDER}
+      {...props}
+    />
+  );
+};
 
 export default memo(RegNumberField);

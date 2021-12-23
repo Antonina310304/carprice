@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import { Checkbox, FormControlLabel } from '@mui/material';
 
@@ -9,9 +9,8 @@ import Typography from '@primitives/Typography';
 import { typographyVariants } from '@primitives/Typography/css/index.css';
 import Wrapper from '@primitives/Wrappper';
 
-import { labelStyle, textStyle, wrapper } from './style.css';
-
 import { globalBorderRadius, globalThemeColorVars } from '@styles/globalTheme';
+import { labelStyle, textStyle, wrapper } from './style.css';
 
 interface ICheckBoxGroup {
   name: string;
@@ -22,7 +21,9 @@ interface ICheckBoxGroup {
   text?: string;
 }
 
-const CheckBoxGroup: NextPage<ICheckBoxGroup> = ({ className, name, label, text, onCLick, ...otherProps }) => {
+const CheckBoxGroup: NextPage<ICheckBoxGroup> = function ({
+  className, name, label, text, onCLick, ...otherProps
+}) {
   return (
     <Wrapper
       className={className}
@@ -32,18 +33,18 @@ const CheckBoxGroup: NextPage<ICheckBoxGroup> = ({ className, name, label, text,
       <FormControlLabel
         className={wrapper}
         control={<Checkbox sx={{ m: 0, p: 0, mr: 1 }} name={name} {...otherProps} />}
-        label={
+        label={(
           <span>
-            <Typography as={'span'} type={'main'} className={labelStyle}>
+            <Typography as="span" type="main" className={labelStyle}>
               {label}
             </Typography>
             {text && (
-              <Typography as={'span'} type={'main'} className={cn(typographyVariants.lead, textStyle)}>
+              <Typography as="span" type="main" className={cn(typographyVariants.lead, textStyle)}>
                 {text}
               </Typography>
             )}
           </span>
-        }
+        )}
       />
     </Wrapper>
   );

@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
-import { padding } from '@utils/padding';
-import { spacing } from '@utils/spacing';
+import padding from '@utils/padding';
+import spacing from '@utils/spacing';
 
 import { globalBorderRadius, globalThemeColorVars } from '@styles/globalTheme';
 

@@ -1,8 +1,6 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React from 'react';
-
 import { activeDot, dot, dots } from './style.css';
 
 interface IDots {
@@ -10,11 +8,11 @@ interface IDots {
   count: number;
   activeElement: number;
 }
-const Dots: NextPage<IDots> = ({ className, count, activeElement }) => {
+const Dots: NextPage<IDots> = function ({ className, count, activeElement }) {
   return (
     <ul className={cn(className, dots)}>
       {new Array(count).fill('').map((_, index) => (
-        <li key={index} className={cn(dot, activeElement == index && activeDot)}></li>
+        <li key={index} className={cn(dot, activeElement === index && activeDot)} />
       ))}
     </ul>
   );

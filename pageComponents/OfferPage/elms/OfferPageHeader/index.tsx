@@ -10,9 +10,10 @@ import useMediaQuery from '@hooks/useMediaQuery';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { flex, imageWrapper, offerWrapper, titleBlock, wrapper } from './style.css';
-
 import { mainContainer, textLeft } from '@styles/baseStyle';
+import {
+  flex, imageWrapper, offerWrapper, titleBlock, wrapper,
+} from './style.css';
 
 const TITLE = 'Ваше предложение готово!';
 const SUBTITLE = 'Мы будем рады выкупить вашу машину!';
@@ -21,7 +22,7 @@ interface IOfferPageHeader {
   handleClick: () => void;
 }
 
-const OfferPageHeader: NextPage<IOfferPageHeader> = ({ handleClick }) => {
+const OfferPageHeader: NextPage<IOfferPageHeader> = function ({ handleClick }) {
   const isDesktop = useMediaQuery(mediaQueryDesktop);
   return (
     <>

@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 export const accordionTitle = style({
   fontWeight: 500,

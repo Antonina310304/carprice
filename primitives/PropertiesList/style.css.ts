@@ -1,8 +1,8 @@
 import { style } from '@vanilla-extract/css';
 
-import { fontSizeMap } from '@primitives/Typography/css/fontSizeMap';
+import fontSizeMap from '@primitives/Typography/css/fontSizeMap';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 
@@ -19,7 +19,7 @@ export const itemStyle = style({
   paddingBottom: spacing(1),
 
   selectors: {
-    ['&:last-child']: {
+    '&:last-child': {
       paddingBottom: 0,
     },
   },

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import TooltipHeader from '@primitives/TooltipHeader';
 import WithTooltip from '@primitives/WithTooltip';
@@ -7,13 +7,13 @@ import { text, wrapper } from './style.css';
 
 const CREDIT_TITLE = 'Кредит';
 
-const TooltipContentCredit = () => {
+const TooltipContentCredit = function () {
   return (
     <>
       {CREDIT_TITLE}
       <WithTooltip
         className={wrapper}
-        tooltipContent={
+        tooltipContent={(
           <>
             <TooltipHeader title={CREDIT_TITLE} />
             <p className={text}>
@@ -25,7 +25,7 @@ const TooltipContentCredit = () => {
               you previously had a loan or a lease, but have already paid it off, select “neither”.
             </p>
           </>
-        }
+        )}
       />
     </>
   );

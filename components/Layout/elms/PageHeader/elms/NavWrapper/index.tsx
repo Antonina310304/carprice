@@ -10,7 +10,7 @@ interface INavWrapper {
   children: ReactNode;
 }
 
-const NavWrapper: NextPage<INavWrapper> = ({ isOpen, children }) => {
+const NavWrapper: NextPage<INavWrapper> = function ({ isOpen, children }) {
   return <div className={cn(menuWrapper, wrapperToggle[isOpen ? 'open' : 'close'])}>{children}</div>;
 };
 

@@ -8,7 +8,8 @@ const textError = {
 };
 
 const getError = (value: string): { valid: boolean; errorText: string } => {
-  let errorText: string, valid: boolean;
+  let errorText: string; let
+    valid: boolean;
 
   if (value.length === 0) {
     errorText = textError.EMPTY;
@@ -25,9 +26,7 @@ const getError = (value: string): { valid: boolean; errorText: string } => {
 };
 
 const useStateNumber = (initialValue: string) => {
-  const validate = useMemo(() => {
-    return getError(initialValue);
-  }, [initialValue]);
+  const validate = useMemo(() => getError(initialValue), [initialValue]);
 
   const [state, setState] = useState({
     value: initialValue,
@@ -42,7 +41,9 @@ const useStateNumber = (initialValue: string) => {
 
   const handleChange = useCallback(({ target: { value } }) => {
     const { valid, errorText } = getError(value);
-    setState((prevState) => ({ ...prevState, value, valid, errorText: errorText }));
+    setState((prevState) => ({
+      ...prevState, value, valid, errorText,
+    }));
   }, []);
 
   const setErrors = useCallback(({ valid, errorText }) => {

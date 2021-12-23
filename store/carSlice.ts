@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchModifications } from '@store/catalogsSlice';
 
 import fields, { carDetailFields } from '@constants/fields';
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 export const detectCar = createAsyncThunk(
   'car/detect',

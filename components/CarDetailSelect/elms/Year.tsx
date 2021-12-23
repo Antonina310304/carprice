@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
@@ -7,23 +7,19 @@ import WithSelect from '@primitives/WithSelect';
 import { changeYear } from '@store/carSlice';
 import { IState } from '@store/types';
 
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 interface IYear {
   handleChange: (arg: number) => void;
   className?: string;
 }
 
-const Year: NextPage<IYear> = ({ className, handleChange }) => {
+const Year: NextPage<IYear> = function ({ className, handleChange }) {
   const dispatch = useDispatch();
 
-  const { yearId } = useSelector((state: IState) => {
-    return state.carData.carDetail;
-  });
+  const { yearId } = useSelector((state: IState) => state.carData.carDetail);
 
-  const { years, statusYears } = useSelector((state: IState) => {
-    return state.catalogs;
-  });
+  const { years, statusYears } = useSelector((state: IState) => state.catalogs);
 
   const disabled = useMemo(() => statusYears !== 'resolved', [statusYears]);
 
@@ -32,18 +28,18 @@ const Year: NextPage<IYear> = ({ className, handleChange }) => {
       dispatch(changeYear(value as number));
       handleChange(value);
     },
-    [dispatch, handleChange]
+    [dispatch, handleChange],
   );
 
   return (
     <WithSelect
-      name={'year'}
+      name="year"
       className={className}
       handleChange={handleChangeYear}
       currValue={yearId === 0 ? null : yearId}
       disabled={disabled}
       menuItemList={years}
-      placeholder={'Год выпуска'}
+      placeholder="Год выпуска"
       isLoading={statusYears === loadingStatus.LOADING}
     />
   );

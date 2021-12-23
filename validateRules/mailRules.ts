@@ -6,7 +6,8 @@ const mailRules = (value: string): { valid: boolean; errorText: string } => {
     ERROR: 'E-mail адрес введен некорректно',
   };
 
-  let errorText: string, valid: boolean;
+  let errorText: string; let
+    valid: boolean;
 
   if (value.length === 0) {
     errorText = textError.EMPTY;

@@ -1,4 +1,4 @@
-import { internalIcons } from '@primitives/Icon/list';
+import internalIcons from '@primitives/Icon/list';
 
 export interface ISocialLink {
   name: string;

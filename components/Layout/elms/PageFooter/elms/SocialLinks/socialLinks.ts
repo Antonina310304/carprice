@@ -1,6 +1,6 @@
 import { ISocialLink } from '@components/Layout/elms/PageFooter/elms/SocialLinks/types';
 
-export const socialLinks: ISocialLink[] = [
+const socialLinks: ISocialLink[] = [
   {
     name: 'vk',
     icon: 'vk',
@@ -27,3 +27,5 @@ export const socialLinks: ISocialLink[] = [
     href: 'http://www.youtube.com/channel/UCrJ2zHfHGpXLcas9eNOUoOA/feed',
   },
 ];
+
+export default socialLinks;

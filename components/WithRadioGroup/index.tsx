@@ -21,13 +21,15 @@ interface IRadioGroup {
   }[];
 }
 
-const WithRadioGroup: NextPage<IRadioGroup> = ({ title, name, handleChange, value, subTitle, list }) => {
+const WithRadioGroup: NextPage<IRadioGroup> = function ({
+  title, name, handleChange, value, subTitle, list,
+}) {
   return (
     <>
       <Caption title={title} />
 
       {subTitle && (
-        <Typography as={'p'} type={'main'} className={subCaption}>
+        <Typography as="p" type="main" className={subCaption}>
           {subTitle}
         </Typography>
       )}
@@ -38,11 +40,11 @@ const WithRadioGroup: NextPage<IRadioGroup> = ({ title, name, handleChange, valu
             key={item.value}
             value={item.value}
             control={<Radio sx={{ m: 0, pt: 0, pb: 0 }} />}
-            label={
-              <Typography as={'span'} type={'main'}>
+            label={(
+              <Typography as="span" type="main">
                 {item.label}
               </Typography>
-            }
+            )}
           />
         ))}
       </RadioGroup>

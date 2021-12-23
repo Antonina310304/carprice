@@ -12,6 +12,7 @@ import useMediaQuery from '@hooks/useMediaQuery';
 
 import { DESKTOP, TABLET } from '@constants/mediaQuery';
 
+import { mainContainer } from '@styles/baseStyle';
 import NavWrapper from './elms/NavWrapper';
 import SiteNav from './elms/SiteNav';
 
@@ -28,12 +29,10 @@ import {
   header,
 } from './style.css';
 
-import { mainContainer } from '@styles/baseStyle';
-
 interface IPageHeader {
   openRegionModal: (arg: boolean) => void;
 }
-const PageHeader: NextPage<IPageHeader> = ({ openRegionModal }) => {
+const PageHeader: NextPage<IPageHeader> = function ({ openRegionModal }) {
   const isDesktop = useMediaQuery(`(min-width: ${DESKTOP}px)`);
   const isTablet = useMediaQuery(`(min-width: ${TABLET}px)`);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -74,7 +73,7 @@ const PageHeader: NextPage<IPageHeader> = ({ openRegionModal }) => {
 
           <SiteNav />
           <div className={siteNavWrapper} />
-          {!isTablet && <Telephone className={telWrapper} isNeedIcon={true} />}
+          {!isTablet && <Telephone className={telWrapper} isNeedIcon />}
         </NavWrapper>
       )}
     </header>

@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Brand from '@components/CarDetailSelect/elms/Brand';
@@ -14,14 +14,12 @@ interface ICarDetailSelect {
   classNameWrapper?: string;
 }
 
-const CarDetailSelect: NextPage<ICarDetailSelect> = ({ classNameWrapper }) => {
+const CarDetailSelect: NextPage<ICarDetailSelect> = function ({ classNameWrapper }) {
   const dispatch = useDispatch();
 
-  const { brandId, yearId, modelId } = useSelector((state: IState) => {
-    return state.carData.carDetail;
-  });
+  const { brandId, yearId, modelId } = useSelector((state: IState) => state.carData.carDetail);
 
-  /*нужно только при первой отрисовке*/
+  /* нужно только при первой отрисовке */
   useEffect(() => {
     if (yearId !== 0 && !!brandId) {
       if (brandId) {
@@ -29,10 +27,10 @@ const CarDetailSelect: NextPage<ICarDetailSelect> = ({ classNameWrapper }) => {
         dispatch(changeStatusModel(''));
       }
     }
-    /*  eslint-disable-next-line react-hooks/exhaustive-deps*/
+    /*  eslint-disable-next-line react-hooks/exhaustive-deps */
   }, []);
 
-  /*нужно только при первой отрисовке*/
+  /* нужно только при первой отрисовке */
   useEffect(() => {
     if (modelId !== '' && !!yearId) {
       dispatch(fetchModels({ yearId, brandId }));
@@ -44,7 +42,7 @@ const CarDetailSelect: NextPage<ICarDetailSelect> = ({ classNameWrapper }) => {
       dispatch(fetchYears(idBrand));
       dispatch(changeStatusModel(''));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleChangeYear = useCallback(
@@ -52,7 +50,7 @@ const CarDetailSelect: NextPage<ICarDetailSelect> = ({ classNameWrapper }) => {
       dispatch(changeYear(selectedYear));
       dispatch(fetchModels({ yearId: selectedYear, brandId }));
     },
-    [brandId, dispatch]
+    [brandId, dispatch],
   );
 
   return (

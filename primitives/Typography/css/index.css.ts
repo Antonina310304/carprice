@@ -1,11 +1,11 @@
 import { StyleRule, styleVariants } from '@vanilla-extract/css';
 
-import { fontSizeMap } from '@primitives/Typography/css/fontSizeMap';
+import fontSizeMap from '@primitives/Typography/css/fontSizeMap';
 import { TypographyTypes } from '@primitives/Typography/types';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 
@@ -85,7 +85,7 @@ export const typographyVariants = styleVariants<Record<TypographyTypes, StyleRul
     },
   },
   subTitle: {
-    //подзаголовки
+    // подзаголовки
     ...fontSizeMap['16/24'],
     margin: '0',
     fontWeight: 700,

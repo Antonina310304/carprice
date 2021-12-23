@@ -5,7 +5,7 @@ import { IMetaName, IMetaProperty } from '@components/Layout/types';
 
 import OfferPage from '@pages/OfferPage';
 
-import { fetchOffices } from '@store/catalogsSlice';
+// import { fetchOffices } from '@store/catalogsSlice';
 
 const PAGE_TITLE = 'Выкуп автомобилей в Москве и области - «CarPrice» – быстро, дорого, надежно';
 
@@ -19,14 +19,17 @@ const metaProperty: IMetaProperty = {
 const metaName: IMetaName = {
   title: 'Выкуп автомобилей в Москве и области – «CarPrice» – быстро, дорого, надежно',
   description:
-    'Выкуп автомобилей в Москве и области в любом состоянии срочно и дорого. Продай автомобиль за 2 часа: деньги сразу, без комиссий. Принимаем заявки с сайта, возможен выезд оценщика.',
+    'Выкуп автомобилей в Москве и области в любом состоянии срочно и дорого.'
+    + 'Продай автомобиль за 2 часа: деньги сразу, без комиссий. Принимаем заявки с сайта, возможен выезд оценщика.',
   keywords: 'CarPrice, выкуп подержанных автомобилей, выкуп автомобилей, выкуп мотоциклов, выкуп скутеров',
 };
 
-const Offer = () => (
-  <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
-    <OfferPage />
-  </Layout>
-);
+const Offer = function () {
+  return (
+    <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
+      <OfferPage />
+    </Layout>
+  );
+};
 
 export default memo(Offer);

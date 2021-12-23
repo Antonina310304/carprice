@@ -5,9 +5,6 @@
     "es2021": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "airbnb-typescript/base",
     "next/core-web-vitals",
     "@cartech/eslint-config",
     "plugin:@typescript-eslint/recommended"
@@ -26,8 +23,46 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx", ".css.ts"] }],
-    "quotes": ["error", "single"],
-    "@typescript-eslint/comma-dangle": ["off"]
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ],
+    "semi": "off",
+    "@typescript-eslint/semi": [
+      "error"
+    ],
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+          ".css.ts"
+        ]
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "@typescript-eslint/no-extra-semi": [
+      "off"
+    ],
+    "@typescript-eslint/comma-dangle": [
+      "off"
+    ],
+    "react/jsx-uses-react": "off",
+    "react/require-default-props": "off",
+    "react/react-in-jsx-scope": "off",
+    "flowtype/no-types-missing-file-annotation": "off",
+    "import/extensions": [
+      2,
+      {
+        "css": "always",
+        "json": "always"
+      }
+    ]
   }
 }

@@ -7,7 +7,7 @@ interface ITooltipHeader {
   title: string;
 }
 
-const TooltipHeader: NextPage<ITooltipHeader> = ({ title }) => {
+const TooltipHeader: NextPage<ITooltipHeader> = function ({ title }) {
   return <p className={titleStyle}>{title}</p>;
 };
 

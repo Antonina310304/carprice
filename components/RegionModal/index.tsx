@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import React, { memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import Modal from '@components/Modal';
@@ -10,18 +10,18 @@ import Typography from '@primitives/Typography';
 
 import { IState } from '@store/types';
 
-import { locationIcon, selectedRegion, regionWrapper, header, titleCity, wrapper, modal } from './style.css';
-import { listWrapper } from './style.css';
+import {
+  locationIcon, selectedRegion, regionWrapper, header, titleCity, wrapper, modal,
+  listWrapper,
+} from './style.css';
 
 interface IRegionModal {
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
 }
 
-const RegionModal: NextPage<IRegionModal> = ({ isOpen, setIsOpen }) => {
-  const activeRegion = useSelector((state: IState) => {
-    return state.region.activeRegion;
-  });
+const RegionModal: NextPage<IRegionModal> = function ({ isOpen, setIsOpen }) {
+  const activeRegion = useSelector((state: IState) => state.region.activeRegion);
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
@@ -31,18 +31,18 @@ const RegionModal: NextPage<IRegionModal> = ({ isOpen, setIsOpen }) => {
     <Modal className={modal} open={isOpen} handleClose={handleClose}>
       <>
         <div className={header}>
-          <Typography type={'subTitle'} styles={{ margin: '0 0 16px' }}>
+          <Typography type="subTitle" styles={{ margin: '0 0 16px' }}>
             Выберите ваш город
           </Typography>
           <div className={wrapper}>
-            <Typography type={'info'} className={titleCity} as={'span'}>
+            <Typography type="info" className={titleCity} as="span">
               Текущий город:{' '}
             </Typography>
             <div className={regionWrapper}>
               <i className={locationIcon}>
-                <Icon icon={'region'} width={14} height={18} />
+                <Icon icon="region" width={14} height={18} />
               </i>
-              <Typography className={selectedRegion} type={'base'} as={'span'}>
+              <Typography className={selectedRegion} type="base" as="span">
                 {activeRegion.name}
               </Typography>
             </div>

@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { IState } from '@store/types';
@@ -15,9 +15,9 @@ interface IPayment {
   changeCurrentStep: () => void;
 }
 
-const Payment: NextPage<IPayment> = ({
+const Payment: NextPage<IPayment> = function ({
   changeCurrentStep, toNextStep, isCurrentStep,
-}) => {
+}) {
   const dispatch = useDispatch();
   const paymentType = useSelector((state: IState) => state.userData.paymentType);
 

@@ -8,9 +8,8 @@ import BrandForm from '@components/BrandForm';
 
 import Wrapper from '@primitives/Wrappper';
 
-import { offerFormWrapper } from './style.css';
-
 import { globalThemeColorVars } from '@styles/globalTheme';
+import { offerFormWrapper } from './style.css';
 
 interface IOfferForm {
   className?: string;
@@ -21,7 +20,7 @@ const offerFormType = {
   BRAND: 'brand',
 };
 
-const OfferForm: NextPage<IOfferForm> = ({ className }) => {
+const OfferForm: NextPage<IOfferForm> = function ({ className }) {
   const [activeForm, setActiveForm] = useState(offerFormType.VIN);
 
   return (

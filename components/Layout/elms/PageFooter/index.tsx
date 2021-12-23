@@ -10,17 +10,18 @@ import Logo from '@primitives/Logo';
 import Telephone from '@primitives/Telephone';
 import Typography from '@primitives/Typography';
 
+import { mainContainer, textUppercase } from '@styles/baseStyle';
 import NavFooterList from './elms/NavFooterList';
 
-import { copyRight, footer, footerBottom, footerLogo, footerTop, footerTopItem, regionWrapper } from './style.css';
-
-import { mainContainer, textUppercase } from '@styles/baseStyle';
+import {
+  copyRight, footer, footerBottom, footerLogo, footerTop, footerTopItem, regionWrapper,
+} from './style.css';
 
 interface IPageFooter {
   openRegionModal: (arg: boolean) => void;
 }
 
-const PageFooter: NextPage<IPageFooter> = ({ openRegionModal }) => {
+const PageFooter: NextPage<IPageFooter> = function ({ openRegionModal }) {
   return (
     <footer className={footer}>
       <div className={mainContainer}>
@@ -33,7 +34,7 @@ const PageFooter: NextPage<IPageFooter> = ({ openRegionModal }) => {
           <NavFooterList />
           <SocialLinks />
         </div>
-        <Typography className={copyRight} type={'info'}>
+        <Typography className={copyRight} type="info">
           © 2014-{new Date().getFullYear()} <span className={textUppercase}>ооо «селаникар»</span>, официальный сайт,
           все права защищены.
         </Typography>

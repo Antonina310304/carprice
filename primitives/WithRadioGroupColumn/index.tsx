@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import React, { memo, PropsWithChildren } from 'react';
+import { memo, PropsWithChildren } from 'react';
 
 import { RadioGroup } from '@mui/material';
 
@@ -28,7 +28,7 @@ interface IWithRadioGroupColumn<T> {
   list: IListWithRadioGroupColumn<T>;
 }
 
-const WithRadioGroupColumn = <T,>(props: PropsWithChildren<IWithRadioGroupColumn<T>>) => {
+const WithRadioGroupColumn = function<T, > (props: PropsWithChildren<IWithRadioGroupColumn<T>>) {
   const { label, content } = props;
 
   return (

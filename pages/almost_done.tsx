@@ -20,7 +20,8 @@ const metaProperty: IMetaProperty = {
 const metaName: IMetaName = {
   title: 'Выкуп автомобилей в Москве и области – «CarPrice» – быстро, дорого, надежно',
   description:
-    'Выкуп автомобилей в Москве и области в любом состоянии срочно и дорого. Продай автомобиль за 2 часа: деньги сразу, без комиссий. Принимаем заявки с сайта, возможен выезд оценщика.',
+    'Выкуп автомобилей в Москве и области в любом состоянии срочно и дорого. Продай автомобиль за 2 часа: '
+    + ' деньги сразу, без комиссий. Принимаем заявки с сайта, возможен выезд оценщика.',
   keywords: 'CarPrice, выкуп подержанных автомобилей, выкуп автомобилей, выкуп мотоциклов, выкуп скутеров',
 };
 
@@ -28,10 +29,12 @@ interface IDone {
   locations: IRegion[];
 }
 
-const Done: NextPage<IDone> = () => (
-  <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
-    <AlmostDonePage />
-  </Layout>
-);
+const Done: NextPage<IDone> = function () {
+  return (
+    <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
+      <AlmostDonePage />
+    </Layout>
+  );
+};
 
 export default memo(Done);

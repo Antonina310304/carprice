@@ -54,7 +54,7 @@ export const BodyDamageFields: Record<string, TypeBodyDamage> = {
 };
 
 export const questionsStepThreeFields: Record<string, TypeQuestionsStepThree> = {
-  HAS_DTP: 'hasDtp', //ДТП
+  HAS_DTP: 'hasDtp', // ДТП
   DRIVEABLE: 'driveable',
   REPAIR_COST: 'repairCost',
 
@@ -80,7 +80,7 @@ const fields: Record<string, TypeCarData> = {
   REG_NUMBER: 'regNumber',
 
   // TRANSMISSION: 'transmission', // из справочника
-  //ENGINE_TYPE: 'engineType', //?
+  // ENGINE_TYPE: 'engineType', //?
   // ENGINE_VOLUME: 'engineVolume', //?
   // ENGINE_POWER: 'enginePower', //?
   // ?

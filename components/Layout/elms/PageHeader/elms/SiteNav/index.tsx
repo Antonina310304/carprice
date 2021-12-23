@@ -12,7 +12,7 @@ interface ISiteNav {
   className?: string;
 }
 
-const SiteNav: NextPage<ISiteNav> = ({ className }) => {
+const SiteNav: NextPage<ISiteNav> = function ({ className }) {
   return (
     <nav className={className}>
       <ul className={list}>

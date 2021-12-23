@@ -1,7 +1,6 @@
 import cn from 'classnames';
-
 import { NextPage } from 'next';
-import React, {
+import {
   memo, useCallback, useEffect, useState,
 } from 'react';
 
@@ -9,7 +8,8 @@ import { InputAdornment, TextField } from '@mui/material';
 
 import Icon from '@primitives/Icon';
 
-import { useStyles } from './style.css';
+// eslint-disable-next-line import/extensions
+import useStyles from './style.css.ts';
 
 interface IWithTextField {
   className?: string;
@@ -27,7 +27,7 @@ interface IWithTextField {
   [key: string]: any;
 }
 
-const WithTextField: NextPage<IWithTextField> = ({
+const WithTextField: NextPage<IWithTextField> = function ({
   className,
   inputProps,
   success,
@@ -41,7 +41,7 @@ const WithTextField: NextPage<IWithTextField> = ({
   defaultTouched = false,
   placeholder,
   ...props
-}) => {
+}) {
   const classes = useStyles();
   const [touched, setTouched] = useState(!!value || defaultTouched);
 

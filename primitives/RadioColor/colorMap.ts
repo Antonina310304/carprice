@@ -1,6 +1,6 @@
 import { ColorType } from '@primitives/RadioColor/types';
 
-export const colorMap: Record<ColorType, string> = {
+const colorMap: Record<ColorType, string> = {
   black: 'Черный',
   gray: 'Серый',
   silver: 'Серебристый',
@@ -18,3 +18,5 @@ export const colorMap: Record<ColorType, string> = {
   green: 'Зеленый',
   another: 'Другой',
 };
+
+export default colorMap;

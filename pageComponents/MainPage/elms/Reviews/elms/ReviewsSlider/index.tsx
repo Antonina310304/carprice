@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Carousel from '@primitives/Carousel';
 
@@ -15,7 +15,7 @@ import '@styles/globalTheme/index.css';
 interface IReviewsSlider {
   className?: string;
 }
-const ReviewsSlider: NextPage<IReviewsSlider> = ({ className }) => {
+const ReviewsSlider: NextPage<IReviewsSlider> = function ({ className }) {
   const [showReview, setShowReview] = useState(false);
   const isDesktop = useMediaQuery(mediaQueryDesktop);
 

@@ -3,4 +3,4 @@ export default interface EventMui {
     name: string;
     value: string;
   };
-}
+};

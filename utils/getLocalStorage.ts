@@ -6,9 +6,8 @@ const getLocalStorage = (key: string) => {
   const localStorageData = localStorage.getItem(key);
   if (localStorageData) {
     return JSON.parse(localStorageData);
-  } else {
-    return undefined;
   }
+  return undefined;
 };
 
 export default getLocalStorage;

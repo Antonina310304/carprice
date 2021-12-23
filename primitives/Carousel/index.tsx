@@ -1,12 +1,11 @@
+/* eslint-disable import/no-unresolved */
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { NextPage } from 'next';
-import React, {
-  useCallback, useEffect, useMemo, useState,
-} from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -31,14 +30,14 @@ interface ICarousel {
   [key: string]: any;
 }
 
-const Carousel: NextPage<ICarousel> = ({
+const Carousel: NextPage<ICarousel> = function ({
   data,
   slideTemplate,
   navigation = false,
   slideWith,
   spaceBetween,
   ...props
-}) => {
+}) {
   const Template = useMemo(() => slideTemplate, [slideTemplate]);
   const paginationRef = React.useRef(null);
   const [swiper, setSwiper] = useState<any>(null);

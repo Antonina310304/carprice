@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CarDetailSelect from '@components/CarDetailSelect';
@@ -22,14 +22,14 @@ import CarBody from '../CarBody';
 
 const BUTTON_TEXT = 'Подтвердить';
 
-const CarDetailStep = () => {
+const CarDetailStep = function () {
   const dispatch = useDispatch();
   const [isValid, setIsValid] = useState(false);
   const goToStep = useCallback((stepTo) => dispatch(changeAlmostDoneStep(stepTo)), [dispatch]);
 
-  const { brandId, modelId, yearId, modificationId, bodyId } = useSelector((state: IState) => {
-    return state.carData.carDetail;
-  });
+  const {
+    brandId, modelId, yearId, modificationId, bodyId,
+  } = useSelector((state: IState) => state.carData.carDetail);
 
   useEffect(() => {
     const validateField = [brandId, modelId, yearId, modificationId, bodyId];
@@ -39,7 +39,7 @@ const CarDetailStep = () => {
 
   useEffect(() => {
     if (modelId !== '' && yearId) {
-      //если полня модели и года заполнены сделать запрос на тип кузова
+      // если полня модели и года заполнены сделать запрос на тип кузова
       dispatch(fetchCarBody({ modelId, yearId }));
     } else {
       dispatch(changeStatusBodyList(''));

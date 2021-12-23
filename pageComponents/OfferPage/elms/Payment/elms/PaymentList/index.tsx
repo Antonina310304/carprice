@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
-import React, { memo, useEffect } from 'react';
+import { memo } from 'react';
 
-import { PaymentList as list } from '@pages/OfferPage/elms/Payment/data';
+import paymentList from '@pages/OfferPage/elms/Payment/paymentList';
 
 import WithFormControlLabel from '@primitives/WithFormControlLabel';
 import WithRadioGroupColumn, { ILabel } from '@primitives/WithRadioGroupColumn';
@@ -11,14 +11,16 @@ interface IPayment {
   value: string;
 }
 
-const PaymentList: NextPage<IPayment> = ({ onChange, value }) => (
-  <WithRadioGroupColumn
-    value={value}
-    name="paymentType"
-    handleChange={onChange}
-    list={list}
-    label={({ title, subTitle, key }: ILabel) => <WithFormControlLabel title={title} subTitle={subTitle} value={key} />}
-  />
-);
+const PaymentList: NextPage<IPayment> = function ({ onChange, value }) {
+  return (
+    <WithRadioGroupColumn
+      value={value}
+      name="paymentType"
+      handleChange={onChange}
+      list={paymentList}
+      label={({ title, subTitle, key }: ILabel) => <WithFormControlLabel title={title} subTitle={subTitle} value={key} />}
+    />
+  );
+};
 
 export default memo(PaymentList);

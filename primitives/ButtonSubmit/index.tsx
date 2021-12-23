@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, SyntheticEvent } from 'react';
+import { memo, SyntheticEvent } from 'react';
 
 import { CircularProgress } from '@mui/material';
 
@@ -12,14 +12,16 @@ interface IButtonSubmit {
   buttonText: string;
   className?: string;
 }
-const ButtonSubmit: NextPage<IButtonSubmit> = ({ className, handleSubmit, disabled, submitting, buttonText }) => {
+const ButtonSubmit: NextPage<IButtonSubmit> = function ({
+  className, handleSubmit, disabled, submitting, buttonText,
+}) {
   return (
     <WithButton
       text={buttonText}
       disabled={disabled}
       {...(handleSubmit ? { onClick: handleSubmit } : {})}
       className={className}
-      startIcon={submitting && <CircularProgress style={{ width: '20px', height: '20px' }} className={'test'} />}
+      startIcon={submitting && <CircularProgress style={{ width: '20px', height: '20px' }} className="test" />}
     />
   );
 };

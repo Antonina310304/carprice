@@ -1,4 +1,4 @@
-import React, {
+import {
   memo, useCallback, useMemo, useState,
 } from 'react';
 import Stepper from '@primitives/Stepper';
@@ -55,7 +55,7 @@ const getOfferStep = ({ paymentType, name, phone }: { paymentType: string, name:
   return step;
 };
 
-const OfferStepper = () => {
+const OfferStepper = function () {
   const name = useSelector((state: IState) => state.userData.userContacts.userName);
   const phone = useSelector((state: IState) => state.userData.userContacts.userPhone);
   const paymentType = useSelector((state: IState) => state.userData.paymentType);

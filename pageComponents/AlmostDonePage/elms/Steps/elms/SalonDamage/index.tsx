@@ -1,6 +1,6 @@
 import { omit } from 'ramda';
 
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CheckBoxGroup from '@primitives/CheckBoxGroup';
@@ -11,39 +11,36 @@ import { updateSalonDamage } from '@store/userDataSlice';
 
 import { SalonDamageFields } from '@constants/fields';
 
-import { fieldMap, descriptionTitle, placeholder } from './data';
-
 import { row, twoColumn } from '@styles/baseStyle/baseStyle.css';
+import { fieldMap, descriptionTitle, placeholder } from './data';
 
 const noSalonDamage = SalonDamageFields.NO_SALON_DAMAGE;
 const salonDescription = SalonDamageFields.SALON_DESCRIPTION;
-const SalonDamage = () => {
+const SalonDamage = function () {
   const dispatch = useDispatch();
 
-  const salonDamage = useSelector((state: IState) => {
-    return state.userData.salonDamage;
-  });
+  const salonDamage = useSelector((state: IState) => state.userData.salonDamage);
 
   const disabled = useMemo(
     () => ({
       finishButtonDisabled: Object.values(omit([noSalonDamage, salonDescription], salonDamage)).some((value) => value),
       disabledAll: salonDamage[noSalonDamage],
     }),
-    [salonDamage]
+    [salonDamage],
   );
 
   const handleChange = useCallback(
     ({ target: { name, checked } }: any) => {
       dispatch(updateSalonDamage({ name, value: checked }));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleChangeTextArea = useCallback(
     ({ target }) => {
       dispatch(updateSalonDamage(target));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (

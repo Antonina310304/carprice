@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { padding } from '@utils/padding';
+import padding from '@utils/padding';
 
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 

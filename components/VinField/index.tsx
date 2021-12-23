@@ -18,22 +18,24 @@ interface IVinField {
   [key: string]: any;
 }
 
-const VinField: NextPage<IVinField> = ({
+const VinField: NextPage<IVinField> = function ({
   value, name, onChange, valid, errorText, ...props
-}) => (
-  <WithTextField
-    className={blockWrapper}
-    inputComponent={TextMaskCustom}
-    inputProps={{ mask: MASK, definitions }}
-    success={valid}
-    error={!valid}
-    errorText={(!valid && errorText) || ''}
-    name={name}
-    value={value}
-    onChange={onChange}
-    placeholder={PLACEHOLDER}
-    {...props}
-  />
-);
+}) {
+  return (
+    <WithTextField
+      className={blockWrapper}
+      inputComponent={TextMaskCustom}
+      inputProps={{ mask: MASK, definitions }}
+      success={valid}
+      error={!valid}
+      errorText={(!valid && errorText) || ''}
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={PLACEHOLDER}
+      {...props}
+    />
+  );
+};
 
 export default VinField;

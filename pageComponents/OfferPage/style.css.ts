@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { mediaQueryDesktop, mediaQueryTablet } from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 import { basePageWrapper, mainContainer } from '@styles/baseStyle';
 import { globalThemeColorVars } from '@styles/globalTheme';

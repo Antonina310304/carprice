@@ -5,7 +5,7 @@ import { memo, useMemo } from 'react';
 
 import { icon } from '@primitives/Icon/style.css';
 
-import { internalIcons } from './list';
+import internalIcons from './list';
 
 interface IInternalSvg {
   icon: keyof typeof internalIcons;
@@ -16,11 +16,13 @@ interface IInternalSvg {
   fill?: string;
 }
 
-const Icon: NextPage<IInternalSvg> = ({ fill, icon: rawIcon, onClick, width, height, className }) => {
+const Icon: NextPage<IInternalSvg> = function ({
+  fill, icon: rawIcon, onClick, width, height, className,
+}) {
   const RenderIcon = useMemo(() => internalIcons[rawIcon].default, [rawIcon]);
   return (
     <RenderIcon
-      {...(fill ? { fill: fill } : {})}
+      {...(fill ? { fill } : {})}
       className={cn(icon, className)}
       height={height && `${height}px`}
       width={width && `${width}px`}

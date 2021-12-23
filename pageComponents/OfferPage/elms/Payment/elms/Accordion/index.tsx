@@ -1,17 +1,18 @@
 import { NextPage } from 'next';
-import React, {
+import {
   memo, useCallback, useEffect, useState,
 } from 'react';
 
 import { accordionTitle } from '@pages/OfferPage/elms/CarDetail/style.css';
-import { PaymentList } from '@pages/OfferPage/elms/Payment/data';
+import paymentList from '@pages/OfferPage/elms/Payment/paymentList';
 
 import Typography from '@primitives/Typography';
 import WithAccordion from '@primitives/WithAccordion';
 import WithFormControlLabel from '@primitives/WithFormControlLabel';
 import WithRadioGroupColumn, { ILabel } from '@primitives/WithRadioGroupColumn';
 
-import { label, wrapper, accordionDetails } from './style.css.ts';
+// eslint-disable-next-line import/extensions
+import { label, accordionDetails } from './style.css.ts';
 
 interface IAccordionPayment {
   toBackStep: () => void;
@@ -19,9 +20,9 @@ interface IAccordionPayment {
   isActive: boolean;
   value: string;
 }
-const Accordion: NextPage<IAccordionPayment> = ({
+const Accordion: NextPage<IAccordionPayment> = function ({
   value, isActive, toNextStep, toBackStep,
-}) => {
+}) {
   const [expanded, setExpanded] = useState(isActive);
 
   useEffect(() => {
@@ -57,7 +58,7 @@ const Accordion: NextPage<IAccordionPayment> = ({
           value={value}
           name="paymentType"
           handleChange={handleChange}
-          list={PaymentList}
+          list={paymentList}
           label={({ title, subTitle, key }: ILabel) => (
             <WithFormControlLabel title={title} subTitle={subTitle} value={key} className={label} />
           )}

@@ -15,7 +15,7 @@ interface INumberField {
   errorText: string;
 }
 
-const NumberField: NextPage<INumberField> = ({
+const NumberField: NextPage<INumberField> = function ({
   postfix,
   success,
   error,
@@ -24,7 +24,7 @@ const NumberField: NextPage<INumberField> = ({
   value,
   onChange,
   ...props
-}) => {
+}) {
   const handleChange = useCallback(
     (target: { floatValue: string; formattedValue: string; value: string }) => {
       const e = {
@@ -35,13 +35,13 @@ const NumberField: NextPage<INumberField> = ({
       };
       onChange(e);
     },
-    [name, onChange]
+    [name, onChange],
   );
 
   return (
     <WithTextField
       {...props}
-      inputProps={{ postfix: postfix }}
+      inputProps={{ postfix }}
       // в консоли выпадала ошибка, поэтому сделала строкой
       number={true.toString()}
       success={success}

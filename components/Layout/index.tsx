@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { memo, ReactNode, useState } from 'react';
+import { memo, ReactNode, useState } from 'react';
 
 import RegionModal from '@components/RegionModal';
 
@@ -7,7 +7,9 @@ import PageFooter from './elms/PageFooter';
 import PageHeader from './elms/PageHeader';
 
 import { mainWrapper } from './style.css';
-import { IMetaName, IMetaNameItem, IMetaNameProperty, IMetaProperty } from './types';
+import {
+  IMetaName, IMetaNameItem, IMetaNameProperty, IMetaProperty,
+} from './types';
 
 interface IMainContainer {
   children: ReactNode;
@@ -16,7 +18,9 @@ interface IMainContainer {
   metaName: IMetaName;
 }
 
-const Layout = ({ children, metaName, title, metaProperty }: IMainContainer) => {
+const Layout = function ({
+  children, metaName, title, metaProperty,
+}: IMainContainer) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -37,7 +41,7 @@ const Layout = ({ children, metaName, title, metaProperty }: IMainContainer) => 
       </Head>
       <div className={mainWrapper}>
         <PageHeader openRegionModal={setIsOpen} />
-        <>{children}</>
+        {children}
         <PageFooter openRegionModal={setIsOpen} />
         <RegionModal isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>

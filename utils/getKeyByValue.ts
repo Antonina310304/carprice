@@ -1,8 +1,8 @@
-export const getKeyByValue = (
+const getKeyByValue = (
   object: {
     [key: string]: any;
   },
-  value: any
-) => {
-  return Object.keys(object).find((key) => object[key] === value);
-};
+  value: any,
+) => Object.keys(object).find((key) => object[key] === value);
+
+export default getKeyByValue;

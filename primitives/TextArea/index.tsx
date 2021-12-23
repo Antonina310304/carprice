@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { TextareaAutosize } from '@mui/material';
 
@@ -9,9 +9,8 @@ import Caption from '@pages/AlmostDonePage/elms/Caption';
 
 import Wrapper from '@primitives/Wrappper';
 
-import { wrapper, textarea, textareaWrap } from './style.css';
-
 import { globalBorderRadius, globalThemeColorVars } from '@styles/globalTheme';
+import { wrapper, textarea, textareaWrap } from './style.css';
 
 interface ITextArea {
   title: string;
@@ -21,7 +20,9 @@ interface ITextArea {
   onChange: any;
   name: string;
 }
-const TextArea: NextPage<ITextArea> = ({ onChange, title, defaultValue, className, placeholder, name }) => {
+const TextArea: NextPage<ITextArea> = function ({
+  onChange, title, defaultValue, className, placeholder, name,
+}) {
   const handleChange = useCallback(
     ({ target: { value } }) => {
       const e = {
@@ -32,7 +33,7 @@ const TextArea: NextPage<ITextArea> = ({ onChange, title, defaultValue, classNam
       };
       onChange(e);
     },
-    [name, onChange]
+    [name, onChange],
   );
   return (
     <Wrapper
@@ -40,7 +41,7 @@ const TextArea: NextPage<ITextArea> = ({ onChange, title, defaultValue, classNam
       borderRadius={globalBorderRadius.base}
       bgColor={globalThemeColorVars.backgroundSecondary}
     >
-      <Caption title={title}></Caption>
+      <Caption title={title} />
       <div className={textareaWrap}>
         <TextareaAutosize
           onChange={handleChange}

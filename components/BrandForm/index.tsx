@@ -1,7 +1,6 @@
 import axios from 'axios';
-
 import { NextPage } from 'next';
-import React, {
+import {
   memo, useCallback, useMemo, useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +21,7 @@ import { regEmail } from '@utils/regExp';
 
 import { link } from '@styles/baseStyle';
 import { globalThemeColorVars } from '@styles/globalTheme';
+// eslint-disable-next-line import/extensions
 import { blockWrapper } from './style.css.ts';
 
 const BUTTON_TEXT = 'Получить предложение';
@@ -34,7 +34,7 @@ interface IBrandForm {
   onChangeForm?: (arg: any) => void;
 }
 
-const BrandForm: NextPage<IBrandForm> = ({ onChangeForm }) => {
+const BrandForm: NextPage<IBrandForm> = function ({ onChangeForm }) {
   const dispatch = useDispatch();
   const [submitting, setSubmitting] = useState(false);
 

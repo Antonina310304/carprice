@@ -2,7 +2,7 @@ import emptyRules from '@validateRules/emptyRules';
 import phoneValidate from '@validateRules/phoneValidate';
 
 import { NextPage } from 'next';
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import TextMaskCustom from '@primitives/TextMaskCustom';
@@ -32,7 +32,7 @@ interface IUserContacts {
   onClick: () => void;
 }
 
-const FieldsList: NextPage<IUserContacts> = ({ onClick }) => {
+const FieldsList: NextPage<IUserContacts> = function ({ onClick }) {
   const dispatch = useDispatch();
   const userContacts = useSelector((state: IState) => state.userData.userContacts);
 

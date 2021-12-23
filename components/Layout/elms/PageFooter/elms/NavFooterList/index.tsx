@@ -1,24 +1,24 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import { NavItem } from '@components/Layout/types';
 
 import LinkWrapper from '@primitives/LinkWrapper';
 
-import { FooterNavList } from './data';
+import footerNavList from './footerNavList';
 import { styleLink, wrapper } from './style.css';
 
 interface INavFooterList {
   className?: string;
 }
-const NavFooterList: NextPage<INavFooterList> = ({ className }) => {
+const NavFooterList: NextPage<INavFooterList> = function ({ className }) {
   return (
     <ul className={cn(className, wrapper)}>
-      {FooterNavList.map((item: NavItem) => (
+      {footerNavList.map((item: NavItem) => (
         <li key={item.href}>
-          <LinkWrapper href={item.href} isExternal={true} className={styleLink}>
+          <LinkWrapper href={item.href} isExternal className={styleLink}>
             {item.title}
           </LinkWrapper>
         </li>

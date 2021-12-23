@@ -2,10 +2,11 @@ import { style } from '@vanilla-extract/css';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { padding } from '@utils/padding';
+import padding from '@utils/padding';
 
 import { globalBorderRadius, globalThemeColorVars } from '@styles/globalTheme';
 
+// eslint-disable-next-line import/prefer-default-export
 export const wrapper = style({
   background: globalThemeColorVars.backgroundSecondary,
   borderRadius: globalBorderRadius.base,

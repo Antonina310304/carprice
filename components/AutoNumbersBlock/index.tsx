@@ -27,7 +27,7 @@ interface IVinForm {
   onChangeForm?: () => void;
 }
 
-const AutoNumbersBlock: NextPage<IVinForm> = ({ onChangeForm }) => {
+const AutoNumbersBlock: NextPage<IVinForm> = function ({ onChangeForm }) {
   const [typeNumber, setTypeNumber] = useState<Type>(STATE_NUMBER);
 
   const changeTypeNumber = useCallback(

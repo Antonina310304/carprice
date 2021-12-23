@@ -2,7 +2,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 
 import { tooltipClasses } from '@mui/material';
 
-import { padding } from '@utils/padding';
+import padding from '@utils/padding';
 
 import { globalThemeColorVars } from '@styles/globalTheme';
 
@@ -15,7 +15,7 @@ globalStyle(`${wrapper} .css-kudwh-MuiTooltip-arrow`, {
 });
 
 export const tooltipStyle = ({ theme }: any) => ({
-  ['&']: {
+  '&': {
     filter: 'drop-shadow(0px 20px 20px rgba(150, 152, 156, 0.12)) drop-shadow(20px 0px 20px rgba(150, 152, 156, 0.12))',
   },
   [`& .${tooltipClasses.tooltip}`]: {

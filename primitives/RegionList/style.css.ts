@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { mediaQueryMobileM, mediaQueryTablet } from '@constants/mediaQuery';
 
-import { padding } from '@utils/padding';
+import padding from '@utils/padding';
 
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 

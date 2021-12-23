@@ -1,11 +1,10 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { memo } from 'react';
-
-import { carDetailList, itemStyle, valueStyle } from './style.css';
+import { memo } from 'react';
 
 import { textMedium } from '@styles/baseStyle';
+import { carDetailList, itemStyle, valueStyle } from './style.css';
 
 interface IPropertiesList {
   className?: string;
@@ -14,7 +13,7 @@ interface IPropertiesList {
   };
 }
 
-const PropertiesList: NextPage<IPropertiesList> = ({ className, list }) => {
+const PropertiesList: NextPage<IPropertiesList> = function ({ className, list }) {
   return (
     <ul className={cn(className, carDetailList)}>
       {Object.entries(list).map(([key, value]) => (

@@ -5,7 +5,7 @@ import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import Icon from '@primitives/Icon';
-import { colorMap } from '@primitives/RadioColor/colorMap';
+import colorMap from '@primitives/RadioColor/colorMap';
 import { ColorType } from '@primitives/RadioColor/types';
 import Typography from '@primitives/Typography';
 import Wrapper from '@primitives/Wrappper';
@@ -14,12 +14,13 @@ import { IState } from '@store/types';
 
 import { questionsStepOneFields } from '@constants/fields';
 
-import { spacing } from '@utils/spacing';
-
-import { head, item, listItem, main, value, wrapper, edit } from './style.css';
+import spacing from '@utils/spacing';
 
 import { textMedium } from '@styles/baseStyle';
 import { globalThemeColorVars } from '@styles/globalTheme';
+import {
+  head, item, listItem, main, value, wrapper, edit,
+} from './style.css';
 
 const mileage = questionsStepOneFields.MILEAGE;
 const color = questionsStepOneFields.COLOR;
@@ -40,29 +41,19 @@ interface IAutoDetail {
   handleClick?: () => void;
 }
 
-const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, className }) => {
+const AutoDetail: NextPage<IAutoDetail> = function ({ handleClick, showDetail = true, className }) {
   const {
     vin,
     regNumber,
     carDetail: { brandId, modelId, yearId },
-  } = useSelector((state: IState) => {
-    return state.carData;
-  });
+  } = useSelector((state: IState) => state.carData);
 
-  const questionsStepOne = useSelector((state: IState) => {
-    return state.userData.questionsStepOne;
-  });
-  const { models, brands } = useSelector((state: IState) => {
-    return state.catalogs;
-  });
+  const questionsStepOne = useSelector((state: IState) => state.userData.questionsStepOne);
+  const { models, brands } = useSelector((state: IState) => state.catalogs);
 
-  const model = useMemo(() => {
-    return models.find((modelItem) => modelItem.value === modelId)?.text;
-  }, [modelId, models]);
+  const model = useMemo(() => models.find((modelItem) => modelItem.value === modelId)?.text, [modelId, models]);
 
-  const brand = useMemo(() => {
-    return brands.find((modelItem) => modelItem.value === brandId)?.text;
-  }, [brandId, brands]);
+  const brand = useMemo(() => brands.find((modelItem) => modelItem.value === brandId)?.text, [brandId, brands]);
 
   return (
     <Wrapper
@@ -72,12 +63,12 @@ const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, cla
       padding={spacing(3)}
     >
       <div className={head}>
-        <Typography as={'p'} type={'base'} className={cn(item, textMedium)}>
+        <Typography as="p" type="base" className={cn(item, textMedium)}>
           {`${brand}  ${yearId}  ${model}`}
           &nbsp;&nbsp;
-          <Icon icon={'edit'} width={20} height={20} onClick={handleClick} className={edit} />
+          <Icon icon="edit" width={20} height={20} onClick={handleClick} className={edit} />
         </Typography>
-        <Typography as={'p'} type={'base'} className={item}>
+        <Typography as="p" type="base" className={item}>
           {!regNumber && (
             <>
               <span className={textMedium}>{VIN}: </span>
@@ -95,7 +86,7 @@ const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, cla
       </div>
       {showDetail && (
         <div className={main}>
-          <Typography as={'p'} type={'base'} className={cn(item, listItem)}>
+          <Typography as="p" type="base" className={cn(item, listItem)}>
             <>
               <span className={value}>{carDetailMap[mileage]}</span>
               <span className={value}>
@@ -104,13 +95,13 @@ const AutoDetail: NextPage<IAutoDetail> = ({ handleClick, showDetail = true, cla
               </span>
             </>
           </Typography>
-          <Typography as={'p'} type={'base'} className={cn(item, listItem)}>
+          <Typography as="p" type="base" className={cn(item, listItem)}>
             <>
               <span className={value}>{carDetailMap[color]}</span>
               <span className={value}> {colorMap[questionsStepOne[color] as ColorType]}</span>
             </>
           </Typography>
-          <Typography as={'p'} type={'base'} className={cn(item, listItem)}>
+          <Typography as="p" type="base" className={cn(item, listItem)}>
             <>
               <span className={value}>{carDetailMap[wheel]}</span>
               <span className={value}> {questionsStepOne[wheel] === 'Left' ? 'Левый' : 'Правый'}</span>

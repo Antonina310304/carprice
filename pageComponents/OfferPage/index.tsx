@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import OfferPageHeader from '@pages/OfferPage/elms/OfferPageHeader';
 import Advantages from '@pages/OfferPage/elms/advantages';
@@ -13,13 +13,14 @@ import { globalThemeColorVars } from '@styles/globalTheme';
 
 import {
   aside, button, headerFirstStepWrapper, mainContent, page, pageFooter, pageWrapper,
+// eslint-disable-next-line import/extensions
 } from './style.css.ts';
 import OfferStepper from './elms/OfferStepper';
 
 const BUTTON_TEXT = 'Оценить другое авто';
 const TITLE = 'Хотите получить предложение по другому автомобилю?';
 
-const OfferPage = () => {
+const OfferPage = function () {
   const [showAccordion, setShowAccordion] = useState(false);
 
   const goToNextStep = useCallback(() => {

@@ -1,4 +1,5 @@
-export const colorIcons = {
+/* eslint-disable global-require */
+const colorIcons = {
   black: require('./colors/black.svg'),
   gray: require('./colors/gray.svg'),
   silver: require('./colors/silver.svg'),
@@ -16,3 +17,5 @@ export const colorIcons = {
   green: require('./colors/green.svg'),
   another: require('./colors/another.svg'),
 };
+
+export default colorIcons;

@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+// (immer)
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IActiveRegion } from '@store/types';

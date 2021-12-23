@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import React, { memo, ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 
 import Typography from '@primitives/Typography';
 
@@ -16,10 +16,12 @@ interface ILinkWrapper {
   type?: string;
 }
 
-const LinkWrapper: NextPage<ILinkWrapper> = ({ type = 'base', className, href, children, isExternal = false }) => {
+const LinkWrapper: NextPage<ILinkWrapper> = function ({
+  type = 'base', className, href, children, isExternal = false,
+}) {
   return (
-    <Link href={href} passHref={true}>
-      <Typography as={'a'} className={cn(link, className)} type={type} {...(isExternal ? { target: '_blank' } : {})}>
+    <Link href={href} passHref>
+      <Typography as="a" className={cn(link, className)} type={type} {...(isExternal ? { target: '_blank' } : {})}>
         {children}
       </Typography>
     </Link>

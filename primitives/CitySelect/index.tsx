@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useEffect, useMemo } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
@@ -7,7 +7,7 @@ import WithSelect from '@primitives/WithSelect';
 import { fetchCities } from '@store/catalogsSlice';
 import { IState } from '@store/types';
 
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 interface ICitySelect {
   className?: string;
@@ -15,7 +15,7 @@ interface ICitySelect {
   handleChange: (arg: any) => void;
 }
 
-const CitySelect: NextPage<ICitySelect> = ({ name = 'city', className, handleChange }) => {
+const CitySelect: NextPage<ICitySelect> = function ({ name = 'city', className, handleChange }) {
   const dispatch = useDispatch();
 
   const city = useSelector((state: IState) => state.userData.questionsStepOne.city);

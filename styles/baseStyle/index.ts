@@ -9,4 +9,6 @@ import {
   flex,
 } from './baseStyle.css';
 
-export { mainContainer, textUppercase, baseListStyle, link, basePageWrapper, textMedium, textLeft, flex };
+export {
+  mainContainer, textUppercase, baseListStyle, link, basePageWrapper, textMedium, textLeft, flex,
+};

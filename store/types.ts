@@ -23,6 +23,7 @@ export interface IYears {
 export interface IModels {
   code: string;
   end: string;
+  // eslint-disable-next-line camelcase
   model_group_id: string;
   start: string;
   text: string;

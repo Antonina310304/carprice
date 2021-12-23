@@ -12,7 +12,7 @@ import ButtonSubmit from '@primitives/ButtonSubmit';
 import { changeVin, detectCar } from '@store/carSlice';
 import { IState } from '@store/types';
 
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 import vinRules from '../../validateRules/vinRules';
 
@@ -22,7 +22,7 @@ interface IVinForm {
   handleSuccess: () => void;
 }
 
-const VinForm: NextPage<IVinForm> = ({ handleSuccess }) => {
+const VinForm: NextPage<IVinForm> = function ({ handleSuccess }) {
   const dispatch = useDispatch();
   const {
     statusDetect, statusRequest, errorDetect, vin,

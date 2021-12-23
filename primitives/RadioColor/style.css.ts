@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { mediaQueryMobile } from '@constants/mediaQuery';
 
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 
 import { globalThemeColorVars, globalThemeDurationVars } from '@styles/globalTheme';
 
@@ -20,7 +20,7 @@ export const colorList = style({
   scrollbarWidth: 'none',
 
   selectors: {
-    ['&::-webkit-scrollbar']: {
+    '&::-webkit-scrollbar': {
       width: 0,
       height: 0,
     },

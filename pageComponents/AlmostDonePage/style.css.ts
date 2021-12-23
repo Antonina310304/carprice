@@ -4,8 +4,8 @@ import { typographyVariants } from '@primitives/Typography/css/index.css';
 
 import { mediaQueryDesktop, mediaQueryTablet } from '@constants/mediaQuery';
 
-import { padding } from '@utils/padding';
-import { spacing } from '@utils/spacing';
+import padding from '@utils/padding';
+import spacing from '@utils/spacing';
 
 import { basePageWrapper, mainContainer } from '@styles/baseStyle';
 import { globalBorderRadius, globalThemeColorVars } from '@styles/globalTheme';

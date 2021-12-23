@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { spacing } from '@utils/spacing';
+import spacing from '@utils/spacing';
 import { globalThemeColorVars } from '@styles/globalTheme';
 
 export const iconStatus = style({

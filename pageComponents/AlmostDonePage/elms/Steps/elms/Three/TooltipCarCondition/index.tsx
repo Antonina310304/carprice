@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import TooltipHeader from '@primitives/TooltipHeader';
 import WithTooltip from '@primitives/WithTooltip';
@@ -8,13 +8,13 @@ import { text, wrapper } from './style.css';
 
 const TITLE = 'Состояние автомобиля';
 
-const TooltipCarCondition = () => {
+const TooltipCarCondition = function () {
   return (
     <>
       {titles.CAR_CONDITION}
       <WithTooltip
         className={wrapper}
-        tooltipContent={
+        tooltipContent={(
           <>
             <TooltipHeader title={TITLE} />
             <p className={text}>
@@ -26,7 +26,7 @@ const TooltipCarCondition = () => {
               you previously had a loan or a lease, but have already paid it off, select “neither”.
             </p>
           </>
-        }
+        )}
       />
     </>
   );

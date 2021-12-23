@@ -10,17 +10,17 @@ import {
   changeDateMeeting,
   changeOffice,
   updateLocations,
-  updateQuestionsStepOne,
 } from '@store/userDataSlice';
 import { row, twoColumn } from '@styles/baseStyle/baseStyle.css';
 import cn from 'classnames';
-import React, { memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// eslint-disable-next-line import/extensions
 import wrapper from './style.css.ts';
 
 const BUTTON_TEXT = 'Отправить данные';
 
-const BlockSelectSalon = () => {
+const BlockSelectSalon = function () {
   const dispatch = useDispatch();
   const officeId = useSelector(
     (state: IState) => state.userData.meeting.officeId,

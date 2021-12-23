@@ -1,7 +1,5 @@
 import { NextPage } from 'next';
-import React from 'react';
-
-import { colorIcons } from '@primitives/RadioColor/list';
+import colorIcons from '@primitives/RadioColor/colorIcons';
 
 import { ColorType } from '../types';
 import { icon } from './style.css';
@@ -10,7 +8,7 @@ interface IIconColor {
   color: ColorType;
 }
 
-const IconColor: NextPage<IIconColor> = ({ color }) => {
+const IconColor: NextPage<IIconColor> = function ({ color }) {
   const RenderIcon = colorIcons[color].default;
   return <RenderIcon className={icon} />;
 };

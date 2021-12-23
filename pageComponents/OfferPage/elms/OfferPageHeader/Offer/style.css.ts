@@ -4,8 +4,8 @@ import { auto } from '@pages/MainPage/elms/Reviews/elms/ReviewsSlide/style.css';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { padding } from '@utils/padding';
-import { spacing } from '@utils/spacing';
+import padding from '@utils/padding';
+import spacing from '@utils/spacing';
 
 import { flex, textMedium } from '@styles/baseStyle';
 import { globalBorderRadius, globalThemeColorVars } from '@styles/globalTheme';

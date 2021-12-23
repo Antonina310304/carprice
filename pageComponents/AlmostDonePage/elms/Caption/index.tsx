@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 
 import Typography from '@primitives/Typography';
 
@@ -9,9 +9,9 @@ interface ICaption {
   title: ReactNode;
 }
 
-const Caption: NextPage<ICaption> = ({ title }) => {
+const Caption: NextPage<ICaption> = function ({ title }) {
   return (
-    <Typography as={'p'} type={'main'} className={caption}>
+    <Typography as="p" type="main" className={caption}>
       {title}
     </Typography>
   );

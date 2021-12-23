@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import React, { memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Typography from '@primitives/Typography';
@@ -13,7 +13,7 @@ interface IRegionList {
   cb: () => void;
 }
 
-const RegionList: NextPage<IRegionList> = ({ cb }) => {
+const RegionList: NextPage<IRegionList> = function ({ cb }) {
   const dispatch = useDispatch();
   const regionList = useSelector((state: IState) => state.region.regions);
 
@@ -22,7 +22,7 @@ const RegionList: NextPage<IRegionList> = ({ cb }) => {
       dispatch(changeRegion({ name }));
       cb();
     },
-    [cb, dispatch]
+    [cb, dispatch],
   );
 
   return (
@@ -30,10 +30,10 @@ const RegionList: NextPage<IRegionList> = ({ cb }) => {
       {regionList.map((region: IActiveRegion, ind: number) => (
         <Typography
           key={region.name + ind}
-          type={'base'}
+          type="base"
           onClick={() => handleClick(region.name)}
           className={item}
-          as={'p'}
+          as="p"
         >
           {region.name}
         </Typography>

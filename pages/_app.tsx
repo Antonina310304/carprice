@@ -5,12 +5,12 @@ import { ThemeProvider } from '@mui/material';
 
 import theme from '@components/themeOptions';
 
-import store from '../store/';
+import store from '../store';
 
 import '@styles/globals.css';
 import '@styles/normalize.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = function ({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
@@ -18,6 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Provider>
     </ThemeProvider>
   );
-}
+};
 
 export default MyApp;

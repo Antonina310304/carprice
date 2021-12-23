@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import List from '@primitives/List';
 
@@ -12,10 +12,12 @@ const advantagesList = [
   'Платим больше, чем в трейд-ин',
 ];
 
-const Advantages = () => (
-  <div className={wrapper}>
-    <List list={advantagesList} />
-  </div>
-);
+const Advantages = function () {
+  return (
+    <div className={wrapper}>
+      <List list={advantagesList} />
+    </div>
+  );
+};
 
 export default memo(Advantages);

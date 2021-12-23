@@ -3,8 +3,8 @@ import vinRules from '@validateRules/vinRules';
 import axios from 'axios';
 
 import { NextPage } from 'next';
-import React, {
-  memo, useCallback, useEffect, useMemo, useRef, useState,
+import {
+  memo, useCallback, useEffect, useMemo, useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -28,7 +28,7 @@ interface IFieldBlock {
   activeNumber: 'STATE_NUMBER' | 'VIN';
 }
 
-const FieldBlock: NextPage<IFieldBlock> = ({ activeNumber }) => {
+const FieldBlock: NextPage<IFieldBlock> = function ({ activeNumber }) {
   const [regNumber, setRegNumber] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const dispatch = useDispatch();
@@ -78,29 +78,29 @@ const FieldBlock: NextPage<IFieldBlock> = ({ activeNumber }) => {
         };
       }
 
-      // async function load() {
-      //   axios
-      //     .post(papiHost, { params })
-      //     .then((response) => {
-      //       setSubmitting(false);
-      //       const { data } = response;
-      //       if (data.error === 'true') {
-      //         // setErrors({ valid: false, errorText: data.errorText });
-      //       }
-      //       if (data.error === 'false') {
-      //         const { carDetail, catalogs } = data.data;
-      //         // dispatch(fetchCarDetail(carDetail));
-      //         // dispatch(fetchData(catalogs));
-      //       }
-      //     })
-      //     .catch(() => {
-      //       // setErrors({ valid: false, errorText: SERVER_ERROR_TEXT });
-      //       setSubmitting(false);
-      //     });
-      // }
-      // load();
+      async function load() {
+        axios
+          .post(papiHost, { params })
+          .then((response) => {
+            setSubmitting(false);
+            const { data } = response;
+            if (data.error === 'true') {
+              // setErrors({ valid: false, errorText: data.errorText });
+            }
+            if (data.error === 'false') {
+              const { carDetail, catalogs } = data.data;
+              // dispatch(fetchCarDetail(carDetail));
+              // dispatch(fetchData(catalogs));
+            }
+          })
+          .catch(() => {
+            // setErrors({ valid: false, errorText: SERVER_ERROR_TEXT });
+            setSubmitting(false);
+          });
+      }
+      load();
     },
-    [dispatch],
+    [isVinChecked, regNumber, vin],
   );
 
   return (

@@ -1,5 +1,7 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import {
+  memo, useCallback, useMemo, useState,
+} from 'react';
 
 import { InputAdornment, TextField } from '@mui/material';
 
@@ -13,7 +15,8 @@ const textError = {
 };
 
 const getError = (value: string): { valid: boolean; errorText: string } => {
-  let errorText: string, valid: boolean;
+  let errorText: string; let
+    valid: boolean;
 
   if (value.length === 0) {
     errorText = textError.EMPTY;
@@ -36,13 +39,15 @@ interface IEmailField {
   className?: string;
 }
 
-const EmailField: NextPage<IEmailField> = ({ className, name, defaultValue, onChange }) => {
+const EmailField: NextPage<IEmailField> = function ({
+  className, name, defaultValue, onChange,
+}) {
   const [touched, setTouched] = useState(false);
 
   const properties = useMemo(() => {
     const { valid, errorText } = getError(defaultValue);
     return {
-      valid: valid,
+      valid,
       error: errorText,
     };
   }, [defaultValue]);
@@ -59,15 +64,15 @@ const EmailField: NextPage<IEmailField> = ({ className, name, defaultValue, onCh
       name={name}
       value={defaultValue}
       className={className}
-      fullWidth={true}
-      placeholder={'Email'}
+      fullWidth
+      placeholder="Email"
       onBlur={handleBlur}
       onChange={onChange}
       helperText={touched && !properties.valid && properties.error}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            {touched && properties.valid && <Icon icon={'checkOutline'} width={16} height={16} />}
+            {touched && properties.valid && <Icon icon="checkOutline" width={16} height={16} />}
           </InputAdornment>
         ),
       }}

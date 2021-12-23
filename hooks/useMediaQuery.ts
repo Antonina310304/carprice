@@ -15,6 +15,7 @@ function useMediaQuery(query: string): boolean {
       setMatches(media.matches);
     };
     media.addListener(listener);
+    // eslint-disable-next-line consistent-return
     return () => media.removeListener(listener);
   }, [matches, query, isBrowser]);
 

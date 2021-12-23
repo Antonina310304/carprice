@@ -18,12 +18,12 @@ export default class Theme {
 
   spacing: Record<number, string>;
 
-  static spacingStep = 8;
-
   constructor() {
-    this.colors = this.generateColors();
-    this.spacing = this.generateSpacing();
+    this.colors = Theme.generateColors();
+    this.spacing = Theme.generateSpacing();
   }
+
+  static spacingStep = 8;
 
   static alphaColor(color: string, alpha: number) {
     return chroma(color).alpha(alpha).css();
@@ -46,14 +46,14 @@ export default class Theme {
     medium: '8px',
   };
 
-  private generateSpacing() {
-    return new Array(15).fill('').reduce((acc, item, idx) => {
+  static generateSpacing() {
+    return new Array(15).fill('').reduce((acc, _, idx) => {
       acc[idx] = `${idx * Theme.spacingStep}px`;
       return acc;
     }, {});
   }
 
-  private generateColors() {
+  static generateColors() {
     const baseColors: Record<BaseColors, string> = {
       black: '#000000',
       white: '#ffffff',

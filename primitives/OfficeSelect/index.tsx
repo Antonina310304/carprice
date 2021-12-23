@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useEffect, useMemo } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import WithSelect from '@primitives/WithSelect';
@@ -7,7 +7,7 @@ import WithSelect from '@primitives/WithSelect';
 import { fetchOffices } from '@store/catalogsSlice';
 import { IState } from '@store/types';
 
-import { loadingStatus } from '@constants/loadingStatus';
+import loadingStatus from '@constants/loadingStatus';
 
 interface IOfficeSelect {
   className?: string;
@@ -15,7 +15,7 @@ interface IOfficeSelect {
   handleChange: (arg: any) => void;
 }
 
-const OfficeSelect: NextPage<IOfficeSelect> = ({ className, name = 'office', handleChange }) => {
+const OfficeSelect: NextPage<IOfficeSelect> = function ({ className, name = 'office', handleChange }) {
   const dispatch = useDispatch();
 
   const officeListMeeting = useSelector((state: IState) => state.catalogs.officeListMeeting);

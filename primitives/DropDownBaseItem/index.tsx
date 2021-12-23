@@ -1,13 +1,15 @@
 import { NextPage } from 'next';
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 interface IWithMenuItem {
   item: any;
 }
-const DropDownBaseItem: NextPage<IWithMenuItem> = ({ item }) => (
-  <>
-    {item.text}
-  </>
-);
+const DropDownBaseItem: NextPage<IWithMenuItem> = function ({ item }) {
+  return (
+    <>
+      {item.text}
+    </>
+  );
+};
 
 export default memo(DropDownBaseItem);

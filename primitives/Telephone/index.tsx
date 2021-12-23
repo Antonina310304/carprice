@@ -18,23 +18,21 @@ interface ITelephone {
   className?: string;
 }
 
-const Telephone: NextPage<ITelephone> = ({ className, isNeedIcon }) => {
+const Telephone: NextPage<ITelephone> = function ({ className, isNeedIcon }) {
   const { phone } = useSelector((state: IState) => state.region.activeRegion);
   const phoneToView = phone || DEFAULT_PHONE;
 
   return (
-    <>
-      <LinkWrapper className={cn(className, wrapper)} type={'base'} href={`tel:${phoneToView}`} isExternal={false}>
-        <>
-          {isNeedIcon && (
-            <i className={iconWrapper}>
-              <Icon icon={'phone'} width={16} height={16} />
-            </i>
-          )}
-          <span>{phoneToView}</span>
-        </>
-      </LinkWrapper>
-    </>
+    <LinkWrapper className={cn(className, wrapper)} type="base" href={`tel:${phoneToView}`} isExternal={false}>
+      <>
+        {isNeedIcon && (
+        <i className={iconWrapper}>
+          <Icon icon="phone" width={16} height={16} />
+        </i>
+        )}
+        <span>{phoneToView}</span>
+      </>
+    </LinkWrapper>
   );
 };
 

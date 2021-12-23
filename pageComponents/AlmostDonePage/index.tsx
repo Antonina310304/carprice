@@ -17,11 +17,12 @@ import { IState } from '@store/types';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { aside, carDetail, carDetailWrapper, mainContent, page, sectionWrapper, subtitle, text } from './style.css';
-
 import { textMedium } from '@styles/baseStyle';
+import {
+  aside, carDetail, carDetailWrapper, mainContent, page, sectionWrapper, subtitle, text,
+} from './style.css';
 
-const AlmostDonePage = () => {
+const AlmostDonePage = function () {
   const isDesktop = useMediaQuery(mediaQueryDesktop);
 
   // тут сделать запросы на получение списков
@@ -29,13 +30,9 @@ const AlmostDonePage = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const { almostDoneStep } = useSelector((state: IState) => {
-    return state.view;
-  });
+  const { almostDoneStep } = useSelector((state: IState) => state.view);
 
-  const { brandId, yearId, modelId } = useSelector((state: IState) => {
-    return state.carData.carDetail;
-  });
+  const { brandId, yearId, modelId } = useSelector((state: IState) => state.carData.carDetail);
 
   const openModal = useCallback(() => setShowModal(true), [setShowModal]);
   const hideModal = useCallback(() => setShowModal(false), [setShowModal]);
@@ -45,10 +42,10 @@ const AlmostDonePage = () => {
       <div className={isDesktop ? mainContent : ''}>
         <PageHeader />
         <section className={sectionWrapper}>
-          <Typography as={'h3'} type={'sectionSubTitle'} className={subtitle}>
+          <Typography as="h3" type="sectionSubTitle" className={subtitle}>
             Нам нужна дополнительная информация о вашем авто
           </Typography>
-          <Typography as={'p'} type={'main'} className={text}>
+          <Typography as="p" type="main" className={text}>
             Мы нашли ваш VIN-номер, теперь нам нужна дополнительная информация о вашем автомобиле. Пожалуйста, заполните
             форму ниже.
           </Typography>

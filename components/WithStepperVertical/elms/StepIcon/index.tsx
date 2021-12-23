@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import Icon from '@primitives/Icon';
 
@@ -13,7 +13,7 @@ interface IStepIcon {
   view: string;
 }
 
-const StepIcon: NextPage<IStepIcon> = ({ index, view }) => {
+const StepIcon: NextPage<IStepIcon> = function ({ index, view }) {
   return (
     <p
       className={cn(icon, {
@@ -21,10 +21,8 @@ const StepIcon: NextPage<IStepIcon> = ({ index, view }) => {
         [completed]: view === stepState.COMPLETED,
       })}
     >
-      <>
-        {view === stepState.COMPLETED && <Icon icon={'check'} width={16} height={16} />}
-        {view !== stepState.COMPLETED && index}
-      </>
+      {view === stepState.COMPLETED && <Icon icon="check" width={16} height={16} />}
+      {view !== stepState.COMPLETED && index}
     </p>
   );
 };

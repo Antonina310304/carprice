@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import { log } from 'util';
 
 import { NextPage } from 'next';
 import { memo, ReactNode } from 'react';
@@ -17,22 +16,22 @@ interface ISliderArrows {
   className?: string;
 }
 
-const SliderArrows: NextPage<ISliderArrows> = ({
+const SliderArrows: NextPage<ISliderArrows> = function ({
   children,
   handlePrevSlide,
   handleNextSlide,
   className,
   disabledPrev,
   disabledNext,
-}) => {
+}) {
   return (
     <div className={cn(wrapper, className)}>
-      <button className={navButton} onClick={handlePrevSlide} disabled={disabledPrev}>
-        <Icon className={icon} icon={'arrowPrev'} width={80} height={32}></Icon>
+      <button type="button" className={navButton} onClick={handlePrevSlide} disabled={disabledPrev}>
+        <Icon className={icon} icon="arrowPrev" width={80} height={32} />
       </button>
       {children}
-      <button className={navButton} disabled={disabledNext} onClick={handleNextSlide}>
-        <Icon className={icon} icon={'arrowNext'} width={80} height={32}></Icon>
+      <button type="button" className={navButton} disabled={disabledNext} onClick={handleNextSlide}>
+        <Icon className={icon} icon="arrowNext" width={80} height={32} />
       </button>
     </div>
   );

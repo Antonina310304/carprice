@@ -1,6 +1,6 @@
 import { PaymentType, TypePaymentType } from '@constants/fieldsValues';
 
-export const PaymentList: Record<TypePaymentType, any> = {
+const paymentList: Record<TypePaymentType, any> = {
   [PaymentType.NOW]: {
     title: 'Моментальный перевод на банковскую карту',
     subTitle: 'В этом случае комиссия перевода составит 3% (условно)',
@@ -14,3 +14,5 @@ export const PaymentList: Record<TypePaymentType, any> = {
     subTitle: 'Вы получите всю сумму целиком',
   },
 };
+
+export default paymentList;

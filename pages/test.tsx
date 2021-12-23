@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import Box from '@mui/material/Box';
 
 import { mainContainer } from '@styles/baseStyle';
 
-const Test = () => {
+const Test = function () {
   const [counter, setCounter] = useState(0);
 
   const handlerClick = useCallback(() => {
@@ -14,8 +14,8 @@ const Test = () => {
   return (
     <div className={mainContainer}>
       <Box>coounter {counter}</Box>
-      <Box sx={{ m: 100 }}>
-        <p onClick={handlerClick}>asdfasfd</p>
+      <Box onClick={handlerClick} sx={{ m: 100 }}>
+        asdfasfd
       </Box>
       <Box>
         <p> просто пустой текст</p>

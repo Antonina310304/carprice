@@ -16,7 +16,7 @@ interface IRatingList {
   className?: string;
 }
 
-const RatingList: NextPage<IRatingList> = ({ className }) => {
+const RatingList: NextPage<IRatingList> = function ({ className }) {
   const isTablet = useMediaQuery(mediaQuery670);
 
   return (
