@@ -4,8 +4,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import {
+  useRef, useCallback, useMemo, useState,
+} from 'react';
+
 import { NextPage } from 'next';
-import { useCallback, useMemo, useState } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -39,7 +42,7 @@ const Carousel: NextPage<ICarousel> = function ({
   ...props
 }) {
   const Template = useMemo(() => slideTemplate, [slideTemplate]);
-  const paginationRef = React.useRef(null);
+  const paginationRef = useRef(null);
   const [swiper, setSwiper] = useState<any>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const isDesktop = useMediaQuery(mediaQueryDesktop);
