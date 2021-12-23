@@ -11,14 +11,12 @@ interface IWithTooltip {
   className?: string;
 }
 
-const WithTooltip: NextPage<IWithTooltip> = ({ className, tooltipContent }) => {
-  return (
-    <LightTooltip className={className} component={tooltipContent} theme={undefined}>
-      <IconButton>
-        <Icon icon={'tooltip'} width={16} height={16} />
-      </IconButton>
-    </LightTooltip>
-  );
-};
+const WithTooltip: NextPage<IWithTooltip> = ({ className, tooltipContent }) => (
+  <LightTooltip className={className} component={tooltipContent} theme={undefined}>
+    <IconButton>
+      <Icon icon="tooltip" width={16} height={16} />
+    </IconButton>
+  </LightTooltip>
+);
 
 export default memo(WithTooltip);
