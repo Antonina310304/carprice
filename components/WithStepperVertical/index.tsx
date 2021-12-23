@@ -17,6 +17,15 @@ import {
   content, contentInner, label, step, stepper, success, wait,
 } from './style.css';
 
+const stepIcon = (idx: number, activeStep: number | undefined) => function () {
+  return (
+    <StepIcon
+      index={idx + 1}
+      view={cn(activeStep && activeStep > idx && stepState.COMPLETED, activeStep === idx && stepState.ACTIVE)}
+    />
+  );
+};
+
 interface IWithStepperVertical {
   steps: string[];
   children: any;
@@ -55,19 +64,12 @@ const WithStepperVertical: NextPage<IWithStepperVertical> = function ({
     }
   };
 
-  const stepIcon = (idx: number) => () => (
-    <StepIcon
-      index={idx + 1}
-      view={cn(activeStep && activeStep > idx && stepState.COMPLETED, activeStep === idx && stepState.ACTIVE)}
-    />
-  );
-
   return (
     <Stepper className={stepper} alternativeLabel activeStep={activeStep} orientation="vertical">
       {steps.map((item: string, idx: number) => (
         <Step key={idx} className={step}>
           <StepLabel
-            StepIconComponent={stepIcon(idx)}
+            StepIconComponent={stepIcon(idx, activeStep)}
             className={cn(label, activeStep && activeStep > idx && success, activeStep && activeStep < idx && wait)}
             onClick={() => handleBack(idx)}
           >

@@ -1,7 +1,8 @@
 /* eslint-disable react/require-default-props */
 import cn from 'classnames';
-
-import { CSSProperties, forwardRef, memo } from 'react';
+import React, {
+  CSSProperties, forwardRef, memo, FC, ComponentClass,
+} from 'react';
 
 import { typographyAlignVariants, typographyVariants } from '@primitives/Typography/css/index.css';
 import { TypographyTypes } from '@primitives/Typography/types';
@@ -9,7 +10,7 @@ import { TypographyTypes } from '@primitives/Typography/types';
 import { Colors } from '@styles/theme/types';
 
 interface ITypographyProps {
-  as?: React.FC<any> | React.ComponentClass<any> | string;
+  as?: FC<any> | ComponentClass<any> | string;
   type: TypographyTypes;
   className?: Colors;
   styles?: CSSProperties;
