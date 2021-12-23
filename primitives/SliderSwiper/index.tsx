@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { Global, css } from '@emotion/react';
-import Swiper from 'swiper';
+// import Swiper from 'swiper';
 
 const SliderSwiper = function () {
   return (
@@ -511,13 +511,13 @@ const SliderSwiper = function () {
         `}
       />
       <div style={{ width: '150px' }}>
-        <Swiper>
+        {/* <Swiper>
           <div>Slide 1</div>
           <div>Slide 2</div>
           <div>Slide 3</div>
           <div>Slide 4</div>
           <div>Slide 5</div>
-        </Swiper>
+        </Swiper> */}
       </div>
     </>
   );
