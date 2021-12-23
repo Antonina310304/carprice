@@ -20,7 +20,7 @@ export const detectCar = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 const carSlice = createSlice({
@@ -39,7 +39,7 @@ const carSlice = createSlice({
       [carDetailFields.BRAND]: '',
       [carDetailFields.YEAR]: null,
       [carDetailFields.MODEL]: '',
-      [carDetailFields.BODY]: '', //кузов
+      [carDetailFields.BODY]: '', // кузов
       [carDetailFields.MODIFICATION]: '', //
     },
   },
@@ -74,7 +74,16 @@ const carSlice = createSlice({
       state.errorDetect = '';
     },
 
-    /*при измении бренда всегда сбрасываются остальные данные (созависимые поля) */
+    changeRegNumber(state, action: PayloadAction<string>) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      state[fields.REG_NUMBER] = action.payload;
+      state.statusDetect = '';
+      state.statusRequest = '';
+      state.errorDetect = '';
+    },
+
+    /* при измении бренда всегда сбрасываются остальные данные (созависимые поля) */
     changeBrand(state, action: PayloadAction<string>) {
       state.carDetail[carDetailFields.BRAND] = action.payload;
       state.carDetail[carDetailFields.YEAR] = null;
@@ -83,7 +92,7 @@ const carSlice = createSlice({
       state.carDetail[carDetailFields.BODY] = '';
     },
 
-    /*при измении года всегда сбрасываются остальные данные (созависимые поля) */
+    /* при измении года всегда сбрасываются остальные данные (созависимые поля) */
     changeYear(state, action: PayloadAction<number>) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -93,7 +102,7 @@ const carSlice = createSlice({
       state.carDetail[carDetailFields.BODY] = '';
     },
 
-    /*при измении модели всегда сбрасываются остальные данные (созависимые поля) */
+    /* при измении модели всегда сбрасываются остальные данные (созависимые поля) */
     changeModel(state, action: PayloadAction<string>) {
       state.carDetail[carDetailFields.MODEL] = action.payload;
       state.carDetail[carDetailFields.MODEL_NAME] = action.payload;
@@ -149,5 +158,6 @@ export const {
   changeModel,
   changeCarBody,
   changeModification,
+  changeRegNumber,
   changeData,
 } = carSlice.actions;

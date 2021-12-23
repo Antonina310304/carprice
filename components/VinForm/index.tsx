@@ -1,5 +1,7 @@
 import { NextPage } from 'next';
-import { memo, useCallback, useEffect, useMemo } from 'react';
+import {
+  memo, useCallback, useEffect, useMemo,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { BUTTON_TEXT, SERVER_ERROR_TEXT } from '@components/AutoNumbersBlock/constants';
@@ -22,11 +24,11 @@ interface IVinForm {
 
 const VinForm: NextPage<IVinForm> = ({ handleSuccess }) => {
   const dispatch = useDispatch();
-  const { statusDetect, statusRequest, errorDetect, vin } = useSelector((state: IState) => state.carData);
+  const {
+    statusDetect, statusRequest, errorDetect, vin,
+  } = useSelector((state: IState) => state.carData);
 
-  const isSubmitting = useMemo(() => {
-    return statusRequest === loadingStatus.LOADING;
-  }, [statusRequest]);
+  const isSubmitting = useMemo(() => statusRequest === loadingStatus.LOADING, [statusRequest]);
 
   const state = useMemo(() => {
     // если с сервера пришла ошибка
@@ -63,7 +65,7 @@ const VinForm: NextPage<IVinForm> = ({ handleSuccess }) => {
 
       dispatch(changeVin(newValue));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const onSubmit = useCallback(
@@ -71,7 +73,7 @@ const VinForm: NextPage<IVinForm> = ({ handleSuccess }) => {
       evt.preventDefault();
       dispatch(detectCar({ key: KEY, value: vin }));
     },
-    [vin, dispatch]
+    [vin, dispatch],
   );
 
   return (

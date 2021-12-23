@@ -11,22 +11,14 @@ interface IPayment {
   value: string;
 }
 
-const PaymentList: NextPage<IPayment> = ({ onChange, value }) => {
-  useEffect(() => {
-    console.log('asdfasdf');
-  }, []);
-
-  return (
-    <WithRadioGroupColumn
-      value={value}
-      name={'paymentType'}
-      handleChange={onChange}
-      list={list}
-      label={({ title, subTitle, key }: ILabel) => (
-        <WithFormControlLabel title={title} subTitle={subTitle} value={key} />
-      )}
-    />
-  );
-};
+const PaymentList: NextPage<IPayment> = ({ onChange, value }) => (
+  <WithRadioGroupColumn
+    value={value}
+    name="paymentType"
+    handleChange={onChange}
+    list={list}
+    label={({ title, subTitle, key }: ILabel) => <WithFormControlLabel title={title} subTitle={subTitle} value={key} />}
+  />
+);
 
 export default memo(PaymentList);

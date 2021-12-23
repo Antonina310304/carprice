@@ -18,17 +18,13 @@ interface ICitySelect {
 const CitySelect: NextPage<ICitySelect> = ({ name = 'city', className, handleChange }) => {
   const dispatch = useDispatch();
 
-  const city = useSelector((state: IState) => {
-    return state.userData.questionsStepOne.city;
-  });
+  const city = useSelector((state: IState) => state.userData.questionsStepOne.city);
 
   useEffect(() => {
     dispatch(fetchCities());
   }, [dispatch]);
 
-  const { cities, statusCities } = useSelector((state: IState) => {
-    return state.catalogs;
-  });
+  const { cities, statusCities } = useSelector((state: IState) => state.catalogs);
 
   const disabled = useMemo(() => statusCities !== loadingStatus.RESOLVED, [statusCities]);
 
@@ -41,7 +37,7 @@ const CitySelect: NextPage<ICitySelect> = ({ name = 'city', className, handleCha
       currValue={city}
       disabled={disabled}
       menuItemList={cities}
-      placeholder={'Город'}
+      placeholder="Город"
       isLoading={statusCities === loadingStatus.LOADING}
     />
   );

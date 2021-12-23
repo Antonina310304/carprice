@@ -31,11 +31,11 @@ export const page = style([
 ]);
 
 export const mainContent = style({
-  maxWidth: '592px',
   width: '100%',
   marginBottom: spacing(4),
   '@media': {
     [mediaQueryDesktop]: {
+      maxWidth: '592px',
       marginBottom: 0,
     },
   },

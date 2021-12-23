@@ -42,14 +42,14 @@ const FieldsList: NextPage<IUserContacts> = ({ onClick }) => {
 
   const isValid = useMemo(
     () => [stateName.valid, statePhone.valid].every((value) => value),
-    [stateName.valid, statePhone.valid]
+    [stateName.valid, statePhone.valid],
   );
 
   const onChange = useCallback(
     ({ target: { name: field, value } }) => {
       dispatch(changeUserContacts({ name: field, value: value.trim() }));
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (

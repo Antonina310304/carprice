@@ -4,8 +4,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { NextPage } from 'next';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import React from 'react';
+import React, {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Dots from '@primitives/Dots';
@@ -15,7 +17,9 @@ import useMediaQuery from '@hooks/useMediaQuery';
 
 import { mediaQueryDesktop } from '@constants/mediaQuery';
 
-import { activeBullet, bullet, bulletsWrapper, dotWrapper, slide, wrapper } from './style.css';
+import {
+  activeBullet, bullet, bulletsWrapper, dotWrapper, slide, wrapper,
+} from './style.css';
 
 interface ICarousel {
   data: any[];
@@ -41,12 +45,6 @@ const Carousel: NextPage<ICarousel> = ({
   const [currentSlide, setCurrentSlide] = useState(0);
   const isDesktop = useMediaQuery(mediaQueryDesktop);
 
-  useEffect(() => {
-    if (swiper) {
-      //swiper.slideTo(1);
-    }
-  }, [swiper]);
-
   const prevSlide = useCallback(() => {
     const current = swiper.activeIndex;
     swiper.slideTo(current - 1);
@@ -69,8 +67,8 @@ const Carousel: NextPage<ICarousel> = ({
         }}
         style={{ padding: '0 12px' }}
         modules={[Navigation, Pagination]}
-        slidesPerView={'auto'}
-        slidesPerGroupAuto={true}
+        slidesPerView="auto"
+        slidesPerGroupAuto
         spaceBetween={spaceBetween}
         onSlideChange={(slider) => {
           setCurrentSlide(slider.activeIndex);

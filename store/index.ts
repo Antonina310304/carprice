@@ -1,16 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import throttle from 'lodash.throttle';
 
-import carReducer from '../store/carSlice';
-import regionReducer from '../store/regionSlice';
+import carReducer from './carSlice';
 import catalogsReducer from './catalogsSlice';
 import { loadState, saveState } from './localStorage';
+import regionReducer from './regionSlice';
 import userDataReducer from './userDataSlice';
 import viewSlice from './viewSlice';
 
 const persistedStore = loadState();
-
-console.log(loadState());
 
 const store = configureStore({
   reducer: {
@@ -23,6 +21,6 @@ const store = configureStore({
   preloadedState: persistedStore,
 });
 
-//store.subscribe(throttle(() => saveState(store.getState()), 1000));
+store.subscribe(throttle(() => saveState(store.getState()), 1000));
 
 export default store;

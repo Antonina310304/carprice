@@ -1,6 +1,6 @@
-import { createAction, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import store from '@store/index';
+import {
+  createAction, createAsyncThunk, createSlice, PayloadAction,
+} from '@reduxjs/toolkit';
 
 import { loadingStatus } from '@constants/loadingStatus';
 
@@ -9,7 +9,7 @@ import arrayToObj from '@utils/ArrayToObj';
 export const fetchCities = createAsyncThunk('collectionCar/fetchCities', async (id, { rejectWithValue }: any) => {
   try {
     const response = await fetch(
-      'https://api.carprice.ru/client/api/v1.0.0/cities?api_token=bl1xzytbbohfgrcvtcfurx2fl11xspe4'
+      'https://api.carprice.ru/client/api/v1.0.0/cities?api_token=bl1xzytbbohfgrcvtcfurx2fl11xspe4',
     );
     if (!response.ok) {
       throw new Error('Can delete task. Server error');
@@ -25,11 +25,11 @@ export const fetchModifications = createAsyncThunk(
   'collectionCar/fetchModifications',
   async (
     { brandId, modelId, yearId }: { brandId: string; modelId: string; yearId: number },
-    { rejectWithValue }: any
+    { rejectWithValue }: any,
   ) => {
     try {
       const response = await fetch(
-        `https://api.carprice.ru/client/evaluate-form/modifications?brand_id=${brandId}&model_id=${modelId}&year=${yearId}`
+        `https://api.carprice.ru/client/evaluate-form/modifications?brand_id=${brandId}&model_id=${modelId}&year=${yearId}`,
       );
       if (!response.ok) {
         throw new Error('Can delete task. Server error');
@@ -39,7 +39,7 @@ export const fetchModifications = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const fetchCarBody = createAsyncThunk(
@@ -47,7 +47,7 @@ export const fetchCarBody = createAsyncThunk(
   async ({ modelId, yearId }: { modelId: string; yearId: number }, { rejectWithValue }: any) => {
     try {
       const response = await fetch(
-        `https://api.carprice.ru/client/evaluate-form/body-types?model_id=${modelId}&year=${yearId}`
+        `https://api.carprice.ru/client/evaluate-form/body-types?model_id=${modelId}&year=${yearId}`,
       );
       if (!response.ok) {
         throw new Error('Can delete task. Server error');
@@ -57,7 +57,7 @@ export const fetchCarBody = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const fetchBrand = createAsyncThunk(
@@ -73,7 +73,7 @@ export const fetchBrand = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const fetchYears = createAsyncThunk(
@@ -89,7 +89,7 @@ export const fetchYears = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const fetchModels = createAsyncThunk(
@@ -97,7 +97,7 @@ export const fetchModels = createAsyncThunk(
   async ({ yearId, brandId }: { yearId: number; brandId: string }, { rejectWithValue }: any) => {
     try {
       const response = await fetch(
-        `https://api.carprice.ru/client/evaluate-form/models?brand_id=${brandId}&year=${yearId}`
+        `https://api.carprice.ru/client/evaluate-form/models?brand_id=${brandId}&year=${yearId}`,
       );
       if (!response.ok) {
         throw new Error('Can delete task. Server error');
@@ -107,7 +107,59 @@ export const fetchModels = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
+  },
+);
+
+export const fetchOffices = createAsyncThunk('collectionCar/fetchOffices', async (id, { rejectWithValue }: any) => {
+  try {
+    const response = await fetch(
+      'https://api.carprice.ru/client/api/v1.0.0/branches?api_token=bl1xzytbbohfgrcvtcfurx2fl11xspe4&remote_inspection_paid=0',
+    );
+    if (!response.ok) {
+      throw new Error('Can delete task. Server error');
+    }
+    const data = await response.json();
+    return data.branches;
+  } catch (error: any) {
+    return rejectWithValue(error.message);
   }
+});
+
+export const fetchDates = createAsyncThunk(
+  'collectionCar/fetchDates',
+  async (branchId: string, { rejectWithValue }: any) => {
+    try {
+      const response = await fetch(
+        `https://api.carprice.ru/client/api/v1.0.0/branch/dates?api_token=bl1xzytbbohfgrcvtcfurx2fl11xspe4&branch_id=${branchId}`,
+      );
+      if (!response.ok) {
+        throw new Error('Can delete task. Server error');
+      }
+      const data = await response.json();
+      return data.dates;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const fetchTimes = createAsyncThunk(
+  'collectionCar/fetchTimes',
+  async ({ branchId, date }: { branchId: string; date: string }, { rejectWithValue }: any) => {
+    try {
+      const response = await fetch(
+        `https://api.carprice.ru/client/api/v1.0.0/branch/times?api_token=bl1xzytbbohfgrcvtcfurx2fl11xspe4&branch_id=${branchId}&date=${date}`,
+      );
+      if (!response.ok) {
+        throw new Error('Can delete task. Server error');
+      }
+      const data = await response.json();
+
+      return data.times;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  },
 );
 
 const catalogsSlice = createSlice({
@@ -130,6 +182,19 @@ const catalogsSlice = createSlice({
 
     statusCities: '',
     errorCities: '',
+
+    statusOfficeListMeeting: '',
+    errorOfficeListMeeting: '',
+
+    statusDateListMeeting: '',
+    errorDateListMeeting: '',
+
+    statusTimeListMeeting: '',
+    errorTimeListMeeting: '',
+
+    officeListMeeting: [],
+    dateListMeeting: [],
+    timeListMeeting: [],
 
     brands: [],
     years: [],
@@ -165,6 +230,7 @@ const catalogsSlice = createSlice({
     changeStatusBodyList(state, action: PayloadAction<string>) {
       state.statusCarBodyList = action.payload;
     },
+
     fetchBrands(state, action: PayloadAction<any>) {
       state.brands = action.payload;
     },
@@ -236,8 +302,40 @@ const catalogsSlice = createSlice({
       state.statusCities = loadingStatus.RESOLVED;
       state.cities = action.payload;
     },
+
+    [fetchOffices.pending.type]: (state) => {
+      state.statusOfficeListMeeting = loadingStatus.LOADING;
+      state.errorOfficeListMeeting = '';
+    },
+
+    [fetchOffices.fulfilled.type]: (state, action) => {
+      state.statusOfficeListMeeting = loadingStatus.RESOLVED;
+      state.officeListMeeting = action.payload;
+    },
+
+    [fetchDates.pending.type]: (state) => {
+      state.statusDateListMeeting = loadingStatus.LOADING;
+      state.errorDateListMeeting = '';
+    },
+
+    [fetchDates.fulfilled.type]: (state, action) => {
+      state.statusDateListMeeting = loadingStatus.RESOLVED;
+      state.dateListMeeting = action.payload;
+    },
+
+    [fetchTimes.pending.type]: (state) => {
+      state.statusTimeListMeeting = loadingStatus.LOADING;
+      state.errorTimeListMeeting = '';
+    },
+
+    [fetchTimes.fulfilled.type]: (state, action) => {
+      state.statusTimeListMeeting = loadingStatus.RESOLVED;
+      state.timeListMeeting = action.payload;
+    },
   },
 });
 
 export default catalogsSlice.reducer;
-export const { changeStatusModel, fetchData, changeStatusBodyList, changeStatusModifications } = catalogsSlice.actions;
+export const {
+  changeStatusModel, fetchData, changeStatusBodyList, changeStatusModifications,
+} = catalogsSlice.actions;

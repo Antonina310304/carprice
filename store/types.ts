@@ -73,6 +73,11 @@ export interface ICatalogs {
   models: IModels[];
   modifications: IModifications[];
   carBodyList: ICarBodyList[];
+  dateListMeeting: any[]
+  timeListMeeting: any[]
+
+  officeListMeeting: any[];
+  statusOfficeListMeeting: string;
 }
 
 export interface ICarDetail {
@@ -95,14 +100,6 @@ export interface ICarData {
   wheel: string;
   statusDetect: string;
   credit: string;
-}
-
-export interface IState {
-  carData: ICarData;
-  catalogs: ICatalogs;
-  region: IRegion;
-  view: IView;
-  userData: IUserData;
 }
 
 export interface IBodyDamage {
@@ -164,6 +161,12 @@ export interface IQuestionsStepThree {
   carCondition: string;
 }
 
+interface IMeeting {
+  officeId: string;
+  date: string;
+  time: string;
+}
+
 export interface IUserData {
   bodyDamage: IBodyDamage;
   baseDamage: IBaseDamage;
@@ -174,6 +177,7 @@ export interface IUserData {
   userContacts: IUserContacts;
   paymentType: TypePaymentType;
   meetingType: TypeAppointment;
+  meeting: IMeeting;
 }
 
 export type TypeBodyDamage = keyof IBodyDamage;
@@ -184,3 +188,11 @@ export type TypeQuestionsStepThree = keyof IQuestionsStepThree;
 export type TypeCarData = keyof ICarData;
 export type TypeCarDetail = keyof ICarDetail;
 export type TypeUserContacts = keyof IUserContacts;
+
+export interface IState {
+  carData: ICarData;
+  catalogs: ICatalogs;
+  region: IRegion;
+  view: IView;
+  userData: IUserData;
+}

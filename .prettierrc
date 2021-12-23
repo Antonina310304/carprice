@@ -1,7 +1,4 @@
 {
-    "endOfLine": "lf",
-    "printWidth": 120,
-    "tabWidth": 2,
     "importOrder": [
         "^next|react(.*)$",
         "^@mui/(.*)$",
@@ -19,6 +16,4 @@
         "^@styles/(.*)$",
         "./style.css|^@baseStyle"
     ],
-    "importOrderSeparation": true,
-    "singleQuote": true
 }

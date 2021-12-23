@@ -36,7 +36,6 @@ const Index: NextPage<IIndex> = ({ locations: serverLocations }) => {
 
   useEffect(() => {
     if (serverLocations) {
-      console.log(serverLocations);
       dispatch(pushRegions(serverLocations));
       const region = loadState()?.region?.activeRegion;
 

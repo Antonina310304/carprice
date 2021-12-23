@@ -1,10 +1,7 @@
 import { NextPage } from 'next';
 import React, { useState } from 'react';
 
-import RatingElement from '@pages/MainPage/elms/Reviews/elms/RatingElement';
-
 import Carousel from '@primitives/Carousel';
-import Slider from '@primitives/Slider';
 
 import useMediaQuery from '@hooks/useMediaQuery';
 
@@ -25,7 +22,7 @@ const ReviewsSlider: NextPage<IReviewsSlider> = ({ className }) => {
   return (
     <div className={className}>
       <Carousel
-        navigation={true}
+        navigation
         data={reviewsList}
         showReview={showReview}
         setShowReview={setShowReview}

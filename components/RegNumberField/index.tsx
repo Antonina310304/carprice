@@ -1,25 +1,27 @@
 import { NextPage } from 'next';
+import { memo } from 'react';
 
 import { blockWrapper } from '@components/AutoNumbersBlock/style.css';
 
 import TextMaskCustom from '@primitives/TextMaskCustom';
 import WithTextField from '@primitives/WithTextField';
 
-const definitions = { '#': /[a-zA-Z]/ };
-const MASK = '##0######00000000';
-const PLACEHOLDER = 'XX0XXXXXX00000000';
+const definitions = { '#': /[а-яА-Я]/ };
+const MASK = '#000## 000';
+const PLACEHOLDER = 'X000XX 000';
 
-interface IVinField {
+interface IRegNumberField {
   value: string;
   name: string;
   onChange: (arg: any) => void;
   valid: boolean | string;
+  defaultTouched?: boolean;
   errorText: string;
   [key: string]: any;
 }
 
-const VinField: NextPage<IVinField> = ({
-  value, name, onChange, valid, errorText, ...props
+const RegNumberField: NextPage<IRegNumberField> = ({
+  defaultTouched, value, name, onChange, valid, errorText, ...props
 }) => (
   <WithTextField
     className={blockWrapper}
@@ -29,6 +31,7 @@ const VinField: NextPage<IVinField> = ({
     error={!valid}
     errorText={(!valid && errorText) || ''}
     name={name}
+    defaultTouched={defaultTouched}
     value={value}
     onChange={onChange}
     placeholder={PLACEHOLDER}
@@ -36,4 +39,4 @@ const VinField: NextPage<IVinField> = ({
   />
 );
 
-export default VinField;
+export default memo(RegNumberField);

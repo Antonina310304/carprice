@@ -75,14 +75,29 @@ export const text = style([
 ]);
 
 export const mainOfferBlock = style({
-  maxWidth: '328px',
+  width: '100%',
   display: 'flex',
   flexDirection: 'column',
+
+  '@media': {
+    [mediaQueryDesktop]: {
+      maxWidth: '328px',
+    },
+  },
+
 });
 
 export const blockWrapper = style([
   flex,
   {
     flex: 1,
+    justifyContent: 'center',
+
+    '@media': {
+      [mediaQueryDesktop]: {
+        justifyContent: 'flex-start',
+      },
+    },
+
   },
 ]);

@@ -1,12 +1,18 @@
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, {
+  memo, ReactNode, useEffect, useMemo, useState,
+} from 'react';
 
-import { CircularProgress, FormControl, InputAdornment, MenuItem, OutlinedInput, Select } from '@mui/material';
+import {
+  CircularProgress, FormControl, InputAdornment, MenuItem, OutlinedInput, Select,
+} from '@mui/material';
 
 import Icon from '@primitives/Icon';
+import DropDownBaseItem from '@primitives/DropDownBaseItem';
 
+import { globalThemeColorVars } from '@styles/globalTheme';
 import {
   wrapper,
   icon,
@@ -16,9 +22,7 @@ import {
   successProgressIcon,
   useStyles,
   dropDownList,
-} from './style.css';
-
-import { globalThemeColorVars } from '@styles/globalTheme';
+} from './style.css.ts';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -42,6 +46,7 @@ interface IWithSelect {
   isLoading: boolean;
   inputProps?: any;
   handleChange: (arg: any) => void;
+  selectItem?: (arg: any) => ReactNode,
   [key: string]: any;
 }
 
@@ -50,10 +55,12 @@ const WithSelect: NextPage<IWithSelect> = ({
   className,
   placeholder,
   menuItemList,
+
   currValue,
   name,
   handleChange,
   inputProps,
+  selectItem = (item: any) => <DropDownBaseItem item={item} />,
   isLoading,
   ...otherProps
 }) => {
@@ -70,13 +77,13 @@ const WithSelect: NextPage<IWithSelect> = ({
       <Select
         name={name}
         className={cn(className, classes.root)}
-        fullWidth={true}
+        fullWidth
         displayEmpty
         disabled={disabledSelect}
         value={currValue}
         input={<OutlinedInput />}
         onChange={handleChange}
-        endAdornment={
+        endAdornment={(
           <InputAdornment
             position="end"
             style={{
@@ -93,7 +100,7 @@ const WithSelect: NextPage<IWithSelect> = ({
               )}
               {changed && (
                 <Icon
-                  icon={'checkOutline'}
+                  icon="checkOutline"
                   width={16}
                   height={16}
                   className={cn(disabledSelect && disabledIcon, successIcon)}
@@ -101,9 +108,9 @@ const WithSelect: NextPage<IWithSelect> = ({
               )}
             </>
           </InputAdornment>
-        }
+        )}
         IconComponent={(props: any) => (
-          <Icon {...props} className={cn(icon, props.className)} icon={'arrowDown'} width={16} height={16} />
+          <Icon {...props} className={cn(icon, props.className)} icon="arrowDown" width={16} height={16} />
         )}
         MenuProps={MenuProps}
         renderValue={(selected) => {
@@ -121,7 +128,7 @@ const WithSelect: NextPage<IWithSelect> = ({
       >
         {menuItemList.map((item: any) => (
           <MenuItem className={dropDownList} key={item.value} value={item.value}>
-            {item.text}
+            {selectItem(item)}
           </MenuItem>
         ))}
       </Select>

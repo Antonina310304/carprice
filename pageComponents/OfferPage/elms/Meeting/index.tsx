@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import BlockSelectSalon from '@pages/OfferPage/elms/BlockSelectSalon';
@@ -9,6 +9,7 @@ import Remote from '@pages/OfferPage/elms/Remote';
 import WithFormControlLabel from '@primitives/WithFormControlLabel';
 import WithRadioGroupColumn, { ILabel } from '@primitives/WithRadioGroupColumn';
 
+import { fetchOffices } from '@store/catalogsSlice';
 import { IState } from '@store/types';
 import { changeMeetingType } from '@store/userDataSlice';
 

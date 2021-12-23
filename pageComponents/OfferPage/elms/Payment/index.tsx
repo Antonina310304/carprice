@@ -12,9 +12,12 @@ interface IPayment {
   toBackStep: () => void;
   toNextStep: () => void;
   isCurrentStep: boolean;
+  changeCurrentStep: () => void;
 }
 
-const Payment: NextPage<IPayment> = ({ toBackStep, changeCurrentStep, toNextStep, isCurrentStep }) => {
+const Payment: NextPage<IPayment> = ({
+  changeCurrentStep, toNextStep, isCurrentStep,
+}) => {
   const dispatch = useDispatch();
   const paymentType = useSelector((state: IState) => state.userData.paymentType);
 
@@ -23,12 +26,8 @@ const Payment: NextPage<IPayment> = ({ toBackStep, changeCurrentStep, toNextStep
       dispatch(changePaymentType(value));
       toNextStep();
     },
-    [dispatch, toNextStep]
+    [dispatch, toNextStep],
   );
-
-  useEffect(() => {
-    console.log('asdfasdf');
-  }, []);
 
   return (
     <div>

@@ -1,5 +1,8 @@
 import chroma from 'chroma-js';
 
+import { BaseColors } from '@styles/theme/types/BaseColors';
+import { BorderRadius } from '@styles/theme/types/BorderRadius';
+import { ShadowColors } from '@styles/theme/types/ShadowColors';
 import BackgroundColors from './types/BackgroundColors';
 import BorderColors from './types/BorderColors';
 import Durations from './types/Durations';
@@ -9,10 +12,6 @@ import LinkColors from './types/LinkColors';
 import MenuFontColors from './types/MenuFontColors';
 
 import { Colors } from './types';
-
-import { BaseColors } from '@styles/theme/types/BaseColors';
-import { BorderRadius } from '@styles/theme/types/BorderRadius';
-import { ShadowColors } from '@styles/theme/types/ShadowColors';
 
 export default class Theme {
   colors!: Record<Colors, string>;
@@ -59,6 +58,8 @@ export default class Theme {
       black: '#000000',
       white: '#ffffff',
       green: '#38AE83',
+      red: '#E25D4B',
+      yellow: '#F8DD53',
     };
 
     const backgroundColors: Record<BackgroundColors, string> = {

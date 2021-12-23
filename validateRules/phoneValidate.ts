@@ -1,12 +1,12 @@
-export const phoneValidate = (value: number): { valid: boolean; errorText: string } => {
+const phoneValidate = (value: number): { valid: boolean; errorText: string } => {
   const LENGTH = 10;
   const textError = {
     EMPTY: 'Поле не должно быть пустым',
     ERROR: 'Введите корректный номер телефона',
   };
 
-  let errorText = '',
-    valid = true;
+  let errorText = '';
+  let valid = true;
 
   if (!value) {
     errorText = textError.EMPTY;

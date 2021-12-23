@@ -1,8 +1,9 @@
-import phoneValidate from '@validateRules/phoneValidate';
 import cn from 'classnames';
 
 import { NextPage } from 'next';
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  memo, useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { IMaskInput } from 'react-imask';
 import { useSelector } from 'react-redux';
 
@@ -10,16 +11,16 @@ import Typography from '@primitives/Typography';
 import { typographyVariants } from '@primitives/Typography/css/index.css';
 import WithAccordion from '@primitives/WithAccordion';
 
-import { loadState } from '@store/localStorage';
 import { IState } from '@store/types';
-import userDataSlice from '@store/userDataSlice';
 
 import { userContactsFields } from '@constants/fields';
 
-import FieldsList from './elms/FieldsList';
+import phoneValidate from '@validateRules/phoneValidate';
+import contactsBlockValidate from '@validateRules/contactsBlockValidate';
+import FieldsList from './FieldsList';
 
-import { accordionTitle } from '../CarDetail/style.css';
-import { input, wrapper } from './style.css';
+import { accordionTitle } from '../CarDetail/style.css.ts';
+import { input, wrapper } from './style.css.ts';
 
 interface IAccordionUserContact {
   toBackStep: () => void;
@@ -30,6 +31,18 @@ const UserContacts: NextPage<IAccordionUserContact> = ({ toNextStep, isActive })
   const [expanded, setExpanded] = useState(isActive);
   const [dirty, setDirty] = useState(false);
   const userContacts = useSelector((state: IState) => state.userData.userContacts);
+
+  // только при первом рендере компонента
+  useEffect(() => {
+    const isValid = contactsBlockValidate({
+      phone: userContacts[userContactsFields.USER_PHONE] as number,
+      name: userContactsFields.USER_NAME,
+    });
+
+    if (isValid) {
+      setDirty(true);
+    }
+  }, []);
 
   const onSaveChanges = useCallback(() => {
     setExpanded(false);
@@ -52,7 +65,7 @@ const UserContacts: NextPage<IAccordionUserContact> = ({ toNextStep, isActive })
         <WithAccordion
           expanded={expanded}
           handleChange={handleClickAccordionSummary}
-          header={
+          header={(
             <div className={wrapper}>
               <Typography as="p" type="base" className={accordionTitle}>
                 {userContacts[userContactsFields.USER_NAME]}{' '}
@@ -66,7 +79,7 @@ const UserContacts: NextPage<IAccordionUserContact> = ({ toNextStep, isActive })
                 value={userContacts[userContactsFields.USER_PHONE]}
               />
             </div>
-          }
+          )}
         >
           <FieldsList onClick={onSaveChanges} />
         </WithAccordion>

@@ -1,5 +1,7 @@
 import { NextPage } from 'next';
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, {
+  memo, useCallback, useEffect, useState,
+} from 'react';
 
 import { accordionTitle } from '@pages/OfferPage/elms/CarDetail/style.css';
 import { PaymentList } from '@pages/OfferPage/elms/Payment/data';
@@ -9,7 +11,7 @@ import WithAccordion from '@primitives/WithAccordion';
 import WithFormControlLabel from '@primitives/WithFormControlLabel';
 import WithRadioGroupColumn, { ILabel } from '@primitives/WithRadioGroupColumn';
 
-import { label, wrapper, accordionDetails } from './style.css';
+import { label, wrapper, accordionDetails } from './style.css.ts';
 
 interface IAccordionPayment {
   toBackStep: () => void;
@@ -17,10 +19,10 @@ interface IAccordionPayment {
   isActive: boolean;
   value: string;
 }
-const Accordion: NextPage<IAccordionPayment> = ({ value, isActive, toNextStep, toBackStep }) => {
+const Accordion: NextPage<IAccordionPayment> = ({
+  value, isActive, toNextStep, toBackStep,
+}) => {
   const [expanded, setExpanded] = useState(isActive);
-
-  console.log(isActive);
 
   useEffect(() => {
     setExpanded(isActive);
@@ -36,7 +38,7 @@ const Accordion: NextPage<IAccordionPayment> = ({ value, isActive, toNextStep, t
       setExpanded(false);
       toNextStep(e);
     },
-    [toNextStep]
+    [toNextStep],
   );
 
   return (
@@ -44,16 +46,15 @@ const Accordion: NextPage<IAccordionPayment> = ({ value, isActive, toNextStep, t
       classNameDetails={accordionDetails}
       expanded={expanded}
       handleChange={handleClickAccordionSummary}
-      header={
+      header={(
         <Typography as="p" type="base" className={accordionTitle}>
           Перевод на банковскую карту в течение 3 банковских дней
         </Typography>
-      }
+      )}
     >
       <div className={accordionDetails}>
         <WithRadioGroupColumn
           value={value}
-          classNameWrapper={wrapper}
           name="paymentType"
           handleChange={handleChange}
           list={PaymentList}

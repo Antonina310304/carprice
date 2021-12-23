@@ -26,34 +26,31 @@ interface IStepper {
 
 const Stepper: NextPage<IStepper> = ({ steps, activeStep, children }) => (
   <>
-    {steps.map((item: any, idx: number) => {
-      console.log(item);
-      return (
-        <Accordion
-          // TransitionProps={{ timeout: 1000 }}
-          key={idx}
-          expanded={!(activeStep < idx)}
-          className={cn(accordionWrapper, {
-            [stepNext]: idx > activeStep,
-            [stepPrev]: idx < activeStep,
-            [stepCurrent]: idx === activeStep,
-            // [stepDirty]: idx !== activeStep,
-          })}
-        >
-          <div className={accordionHeader}>
-            <Typography as="p" type="main" className={title}>
-              {item.title}
-            </Typography>
-            <Typography as="p" type="main" className={subtitle}>
-              {item.subtitle}
-            </Typography>
-          </div>
-          <AccordionDetails className={accordionDetails}>
-            <div>{children(idx)}</div>
-          </AccordionDetails>
-        </Accordion>
-      );
-    })}
+    {steps.map((item: any, idx: number) => (
+      <Accordion
+        // TransitionProps={{ timeout: 1000 }}
+        key={idx}
+        expanded={!(activeStep < idx)}
+        className={cn(accordionWrapper, {
+          [stepNext]: idx > activeStep,
+          [stepPrev]: idx < activeStep,
+          [stepCurrent]: idx === activeStep,
+          // [stepDirty]: idx !== activeStep,
+        })}
+      >
+        <div className={accordionHeader}>
+          <Typography as="p" type="main" className={title}>
+            {item.title}
+          </Typography>
+          <Typography as="p" type="main" className={subtitle}>
+            {item.subtitle}
+          </Typography>
+        </div>
+        <AccordionDetails className={accordionDetails}>
+          <div>{children(idx)}</div>
+        </AccordionDetails>
+      </Accordion>
+    ))}
   </>
 );
 

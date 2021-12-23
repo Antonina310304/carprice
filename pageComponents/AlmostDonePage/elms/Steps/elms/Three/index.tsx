@@ -24,6 +24,7 @@ import { updateHasDTP, updateQuestionsStepThree } from '@store/userDataSlice';
 
 import { questionsStepThreeFields } from '@constants/fields';
 
+import { row, twoColumn } from '@styles/baseStyle/baseStyle.css';
 import {
   additionalEquipmentList,
   carConditionList,
@@ -36,8 +37,6 @@ import {
   titles,
 } from './data';
 import { header } from './style.css';
-
-import { row, twoColumn } from '@styles/baseStyle/baseStyle.css';
 
 const BUTTON_TEXT = 'Получить предложение';
 const FINAL_TITLE = 'Ваше предложение уже готово. Укажите ваш email, мы продублируем наше предложение вам на почту. ';
@@ -57,9 +56,9 @@ const mail = questionsStepThreeFields.MAIL;
 const Three = () => {
   const dispatch = useDispatch();
 
-  const { questionsStepThree, baseDamage, bodyDamage, salonDamage } = useSelector((state: IState) => {
-    return state.userData;
-  });
+  const {
+    questionsStepThree, baseDamage, bodyDamage, salonDamage,
+  } = useSelector((state: IState) => state.userData);
 
   const onChange = useCallback(
     ({ target: { name, value } }: any) => {
@@ -69,18 +68,16 @@ const Three = () => {
       }
       dispatch(updateQuestionsStepThree({ name, value }));
     },
-    [dispatch]
+    [dispatch],
   );
 
-  const emailState = useMemo(() => {
-    return mailRules(questionsStepThree[mail] as string);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [questionsStepThree[mail]]);
+  const emailState = useMemo(() => mailRules(questionsStepThree[mail] as string),
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+    [questionsStepThree[mail]]);
 
-  const repairCostState = useMemo(() => {
-    return emptyRules(questionsStepThree[repairCost]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [questionsStepThree[repairCost]]);
+  const repairCostState = useMemo(() => emptyRules(questionsStepThree[repairCost]),
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+    [questionsStepThree[repairCost]]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const dtp = useMemo(() => questionsStepThree[hasDtp], [questionsStepThree[hasDtp]]);
@@ -114,7 +111,7 @@ const Three = () => {
 
   return (
     <>
-      <Typography as={'p'} type={'base'} className={header}>
+      <Typography as="p" type="base" className={header}>
         Пожалуйста, опишите состояние своего автомобиля, ответив на вопросы ниже.
       </Typography>
       <Wrapper>
@@ -136,8 +133,8 @@ const Three = () => {
             <Caption title={titles.REPAIR_COST} />
             <NumberField
               className={twoColumn}
-              postfix={'₽'}
-              placeholder={'Стоимость ремонта'}
+              postfix="₽"
+              placeholder="Стоимость ремонта"
               name={repairCost}
               value={questionsStepThree[repairCost] as string}
               onChange={onChange}
@@ -229,7 +226,7 @@ const Three = () => {
           name={mail}
           value={questionsStepThree[mail] as string}
           onChange={onChange}
-          placeholder={'EMAIL'}
+          placeholder="Email"
         />
 
         <div className={twoColumn}>

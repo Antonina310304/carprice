@@ -1,9 +1,11 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 
 import Layout from '@components/Layout';
 import { IMetaName, IMetaProperty } from '@components/Layout/types';
 
 import OfferPage from '@pages/OfferPage';
+
+import { fetchOffices } from '@store/catalogsSlice';
 
 const PAGE_TITLE = 'Выкуп автомобилей в Москве и области - «CarPrice» – быстро, дорого, надежно';
 
@@ -21,12 +23,10 @@ const metaName: IMetaName = {
   keywords: 'CarPrice, выкуп подержанных автомобилей, выкуп автомобилей, выкуп мотоциклов, выкуп скутеров',
 };
 
-const Offer = () => {
-  return (
-    <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
-      <OfferPage />
-    </Layout>
-  );
-};
+const Offer = () => (
+  <Layout metaProperty={metaProperty} metaName={metaName} title={PAGE_TITLE}>
+    <OfferPage />
+  </Layout>
+);
 
 export default memo(Offer);

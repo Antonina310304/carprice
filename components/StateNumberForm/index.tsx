@@ -12,11 +12,11 @@ import WithTextField from '@primitives/WithTextField';
 
 import useStateNumber from '@hooks/useStateNumber';
 
-import { changeCarData, fetchCarDetail } from '@store/carSlice';
+import { changeCarData, changeRegNumber, fetchCarDetail } from '@store/carSlice';
 import { fetchData } from '@store/catalogsSlice';
 import { loadState } from '@store/localStorage';
 
-const KEY = 'number';
+const KEY = 'regNumber';
 const definitions = { '#': /[а-яА-Я]/ };
 
 const StateNumberForm = () => {
@@ -37,7 +37,7 @@ const StateNumberForm = () => {
     (e: any) => {
       const newValue = e.target.value;
 
-      dispatch(changeCarData({ key: KEY, value: newValue }));
+      dispatch(changeRegNumber(newValue));
       handleChange(e);
     },
     [dispatch, handleChange]
@@ -51,9 +51,9 @@ const StateNumberForm = () => {
       async function load() {
         axios
           .get(`http://localhost:4200/number?number=${value}`)
-          .then(function (response) {
+          .then((response) => {
             setSubmitting(false);
-            const data = response.data;
+            const { data } = response;
             if (data.error === 'true') {
               setErrors({ valid: false, errorText: data.errorText });
             }
@@ -63,7 +63,7 @@ const StateNumberForm = () => {
               dispatch(fetchData(catalogs));
             }
           })
-          .catch(function () {
+          .catch(() => {
             setErrors({ valid: false, errorText: SERVER_ERROR_TEXT });
             setSubmitting(false);
           });
@@ -77,7 +77,7 @@ const StateNumberForm = () => {
     <form onSubmit={onSubmit}>
       <WithTextField
         className={blockWrapper}
-        inputProps={{ mask: '#000## 000', definitions: definitions }}
+        inputProps={{ mask: '#000## 000', definitions }}
         inputComponent={TextMaskCustom}
         success={valid && touched}
         error={!valid && touched}
@@ -86,7 +86,7 @@ const StateNumberForm = () => {
         value={value}
         onChange={handleChangeVin}
         handleBlur={onBlur}
-        placeholder={'X000XX 000'}
+        placeholder="X000XX 000"
       />
       <ButtonSubmit buttonText={BUTTON_TEXT} disabled={!valid || submitting} submitting={submitting} />
     </form>

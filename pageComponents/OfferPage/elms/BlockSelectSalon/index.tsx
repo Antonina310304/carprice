@@ -1,70 +1,68 @@
-import cn from 'classnames';
-
-import React, { memo, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-
 import { buttonWrapper } from '@pages/OfferPage/style.css';
-
 import CitySelect from '@primitives/CitySelect';
+import DateSelect from '@primitives/DateSelect';
+import OfficeSelect from '@primitives/OfficeSelect';
+import TimeSelect from '@primitives/TimeSelect';
 import WithButton from '@primitives/WithButton';
-import WithSelect from '@primitives/WithSelect';
-
-import { updateQuestionsStepOne } from '@store/userDataSlice';
-
-import { wrapper } from './style.css';
-
+import { fetchDates, fetchTimes } from '@store/catalogsSlice';
+import { IState } from '@store/types';
+import {
+  changeDateMeeting,
+  changeOffice,
+  updateLocations,
+  updateQuestionsStepOne,
+} from '@store/userDataSlice';
 import { row, twoColumn } from '@styles/baseStyle/baseStyle.css';
+import cn from 'classnames';
+import React, { memo, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import wrapper from './style.css.ts';
 
 const BUTTON_TEXT = 'Отправить данные';
 
 const BlockSelectSalon = () => {
   const dispatch = useDispatch();
-  const handleChange = useCallback(
-    (e: any) => {
-      const { name, value: val } = e.target;
-      dispatch(updateQuestionsStepOne({ name, value: val }));
-    },
-    [dispatch]
+  const officeId = useSelector(
+    (state: IState) => state.userData.meeting.officeId,
   );
+
+  const changeCity = useCallback(
+    (e: any) => {
+      const { value } = e.target;
+      dispatch(updateLocations(value));
+    },
+    [dispatch],
+  );
+
+  const handleChangeOffice = useCallback(
+    (e: any) => {
+      const { value } = e.target;
+      dispatch(changeOffice(value));
+      dispatch(fetchDates(value));
+    },
+    [dispatch],
+  );
+
+  const changeDate = useCallback(
+    (e: any) => {
+      const { value } = e.target;
+      dispatch(changeDateMeeting(value));
+      dispatch(fetchTimes({ branchId: officeId, date: value }));
+    },
+    [dispatch, officeId],
+  );
+
   return (
     <>
       <div className={wrapper}>
-        <CitySelect name="city" handleChange={handleChange} />
-        <WithSelect
-          name="office"
-          style={{ padding: 0 }}
-          className="className"
-          handleChange={() => {}}
-          currValue=""
-          disabled={false}
-          menuItemList={[]}
-          placeholder="Офис"
-          isLoading={false}
-        />
+        <CitySelect name="city" handleChange={changeCity} />
+        <OfficeSelect name="office" handleChange={handleChangeOffice} />
         <div className={row}>
           <div className={twoColumn}>
-            <WithSelect
-              name="date"
-              style={{ padding: 0 }}
-              handleChange={() => {}}
-              currValue=""
-              disabled={false}
-              menuItemList={[]}
-              placeholder="Дата"
-              isLoading={false}
-            />
+            <DateSelect handleChange={changeDate} />
           </div>
           <div className={twoColumn}>
-            <WithSelect
-              name="time"
-              style={{ padding: 0 }}
-              handleChange={() => {}}
-              currValue=""
-              disabled={false}
-              menuItemList={[]}
-              placeholder="Время"
-              isLoading={false}
-            />
+            <TimeSelect name="time" />
           </div>
         </div>
       </div>

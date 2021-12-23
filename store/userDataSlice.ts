@@ -78,11 +78,32 @@ const userDataSlice = createSlice({
       [userContactsFields.USER_PHONE]: null,
     },
 
+    meeting: {
+      officeId: '',
+      date: '',
+      time: '',
+    },
+
     paymentType: '',
     meetingType: '',
   },
 
   reducers: {
+    changeTime(state, action: PayloadAction<TypePaymentType>) {
+      state.meeting.time = action.payload;
+    },
+
+    changeOffice(state, action: PayloadAction<TypePaymentType>) {
+      state.meeting.officeId = action.payload;
+      state.meeting.date = '';
+      state.meeting.time = '';
+    },
+
+    changeDateMeeting(state, action: PayloadAction<string>) {
+      state.meeting.date = action.payload;
+      state.meeting.time = '';
+    },
+
     changeMeetingType(state, action: PayloadAction<TypePaymentType>) {
       state.meetingType = action.payload;
     },
@@ -137,6 +158,13 @@ const userDataSlice = createSlice({
       state.questionsStepOne[name] = value;
     },
 
+    updateLocations(state, action: PayloadAction<string>) {
+      state.questionsStepOne[questionsStepOneFields.CITY] = action.payload;
+      state.meeting.officeId = '';
+      state.meeting.date = '';
+      state.meeting.time = '';
+    },
+
     updateBodyDamage(state, action: PayloadAction<{ name: TypeBodyDamage; value: boolean }>) {
       const { name, value } = action.payload;
       state.bodyDamage[name] = value;
@@ -178,4 +206,8 @@ export const {
   changeUserContacts,
   changePaymentType,
   changeMeetingType,
+  changeOffice,
+  changeDateMeeting,
+  updateLocations,
+  changeTime,
 } = userDataSlice.actions;
