@@ -1,4 +1,8 @@
 {
-  "presets": ["next/babel"],
-  "plugins": ["@vanilla-extract/babel-plugin", "styled-jsx/babel"]
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    "@vanilla-extract/babel-plugin"
+  ]
 }

@@ -1,0 +1,81 @@
+before_script:
+  - tar -z -c --exclude ".git" --exclude docker --exclude ".idea" --exclude ".gitlab-ci.yml" --exclude node_modules -f ./docker/source.tar.gz .
+
+include: 
+  - project: 'cartech/infrastructure/dev/ci-templates'
+    ref: master
+    file: 'eslint-check.yml'
+  - project: 'cartech/infrastructure/dev/ci-templates'
+    ref: master
+    file: 'sonarqube-check.yml'
+  - project: 'cartech/infrastructure/dev/ci-templates'
+    ref: master
+    file: 'sentry-send-release.yml'
+
+stages:
+  - eslint-check
+  - sonarqube-check
+  - build
+  - deploy
+  - sentry-send-release
+
+eslint-check:
+  allow_failure: true
+
+sonarqube-check:
+  allow_failure: true
+
+.build: &build
+  stage: build
+  image: nexus.carprice.ru/docker-mirrors/docker:19.03
+
+  script:
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
+    - tar -z -c --exclude ".git" --exclude docker --exclude ".idea" --exclude node_modules -f ./docker/source.tar.gz .
+    - $BUILD_COMMAND $BUILD_ARGS
+    - docker push $DOCKER_REGISTRY/$CI_PROJECT_NAME
+  tags:
+    - docker
+
+build:dev:
+  <<: *build
+  except:
+    - master
+  variables:
+    BUILD_ARGS: "--build-arg SENTRY_ENV=\"Staged\" --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_ORG=$SENTRY_ORG --build-arg CI_PROJECT_NAME=$CI_PROJECT_NAME ./"
+    BUILD_COMMAND: "docker build --tag $DOCKER_REGISTRY/$CI_PROJECT_NAME:${CI_COMMIT_REF_NAME}"
+
+build:prod:
+  <<: *build
+  only:
+    - master
+  variables:
+    BUILD_ARGS: "--build-arg USE_ANALYTICS=1 --build-arg SENTRY_ENV=\"Production\" --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_ORG=$SENTRY_ORG --build-arg CI_PROJECT_NAME=$CI_PROJECT_NAME ./"
+    BUILD_COMMAND: "docker build --tag $DOCKER_REGISTRY/$CI_PROJECT_NAME:latest --tag $DOCKER_REGISTRY/$CI_PROJECT_NAME:commit-${CI_COMMIT_SHORT_SHA}"
+
+.deploy: &deploy
+  stage: deploy
+  inherit:
+    default: false
+  image: nexus.carprice.ru/ansible
+  script:
+    - git clone https://${GIT_CI_USERNAME}:${GIT_CI_PASSWORD}@${ARGOCD_REPO}
+    - cd argocd
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+    - git config --global user.name "$GITLAB_USER_NAME"
+    - git checkout ${DEPLOY_BRANCH}
+    - yq write -i ${ARGOCD_PRODUCT_SERVICES_ENV_PATH}/prod/_docker_images.yaml ico_client_front.image ${DOCKER_REGISTRY}/${CI_PROJECT_NAME}:commit-${CI_COMMIT_SHORT_SHA}
+    - git commit -am "[skip ci] ${CI_PROJECT_NAME} image update. $CI_COMMIT_MESSAGE"
+    - git push origin ${DEPLOY_BRANCH}
+  tags:
+    - docker
+
+deploy:prod:
+  <<: *deploy
+  only:
+    - master
+  variables:
+    DEPLOY_BRANCH: master 
+
+sentry-send-release:
+  allow_failure: true 
