@@ -56,6 +56,7 @@ const TimeSelect: NextPage<ITimeSelect> = function ({ className, name = 'date' }
       currValue={time}
       disabled={disabled}
       menuItemList={timeList}
+      // eslint-disable-next-line react/no-unstable-nested-components
       selectItem={(item) => <SelectItem item={item} />}
       placeholder="Время"
       isLoading={statusTimeListMeeting === loadingStatus.LOADING}

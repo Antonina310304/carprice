@@ -110,8 +110,15 @@ const WithSelect: NextPage<IWithSelect> = function ({
             </>
           </InputAdornment>
         )}
+        // eslint-disable-next-line react/no-unstable-nested-components
         IconComponent={(props: any) => (
-          <Icon {...props} className={cn(icon, props.className)} icon="arrowDown" width={16} height={16} />
+          <Icon
+            {...props}
+            className={cn(icon, props.className)}
+            icon="arrowDown"
+            width={16}
+            height={16}
+          />
         )}
         MenuProps={MenuProps}
         renderValue={(selected) => {

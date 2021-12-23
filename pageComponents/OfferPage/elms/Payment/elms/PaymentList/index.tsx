@@ -18,7 +18,14 @@ const PaymentList: NextPage<IPayment> = function ({ onChange, value }) {
       name="paymentType"
       handleChange={onChange}
       list={paymentList}
-      label={({ title, subTitle, key }: ILabel) => <WithFormControlLabel title={title} subTitle={subTitle} value={key} />}
+      // eslint-disable-next-line react/no-unstable-nested-components
+      label={({ title, subTitle, key }: ILabel) => (
+        <WithFormControlLabel
+          title={title}
+          subTitle={subTitle}
+          value={key}
+        />
+      )}
     />
   );
 };

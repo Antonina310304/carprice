@@ -59,8 +59,14 @@ const Accordion: NextPage<IAccordionPayment> = function ({
           name="paymentType"
           handleChange={handleChange}
           list={paymentList}
+          // eslint-disable-next-line react/no-unstable-nested-components
           label={({ title, subTitle, key }: ILabel) => (
-            <WithFormControlLabel title={title} subTitle={subTitle} value={key} className={label} />
+            <WithFormControlLabel
+              title={title}
+              subTitle={subTitle}
+              value={key}
+              className={label}
+            />
           )}
         />
       </div>

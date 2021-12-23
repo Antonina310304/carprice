@@ -43,8 +43,14 @@ const Meeting: NextPage<IMeeting> = function ({ isCurrentStep }) {
       name="meetingType"
       handleChange={handleChange}
       list={meetingList}
+      // eslint-disable-next-line react/no-unstable-nested-components
       label={({ title, subTitle, key }: ILabel) => (
-        <WithFormControlLabel className={wrapper} title={title} subTitle={subTitle} value={key} />
+        <WithFormControlLabel
+          className={wrapper}
+          title={title}
+          subTitle={subTitle}
+          value={key}
+        />
       )}
       content={({ key }: { key: Appointment }) => MeetingListContent[key]}
     />

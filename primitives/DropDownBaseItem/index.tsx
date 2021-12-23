@@ -6,6 +6,8 @@ interface IWithMenuItem {
 }
 const DropDownBaseItem: NextPage<IWithMenuItem> = function ({ item }) {
   return (
+    // TODO fix
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {item.text}
     </>
