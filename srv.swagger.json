@@ -1,0 +1,821 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/proto/instant-cash-offer/srv/service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "InstantCashOfferService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/acceptOffer": {
+      "post": {
+        "summary": "Принять оффер(запись на встречу)",
+        "operationId": "InstantCashOfferService_AcceptOffer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.AcceptOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.AcceptOfferRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstantCashOfferService"
+        ]
+      }
+    },
+    "/v1/createOffer": {
+      "post": {
+        "summary": "Создать оффер",
+        "operationId": "InstantCashOfferService_CreateOffer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.CreateOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.CreateOfferRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstantCashOfferService"
+        ]
+      }
+    },
+    "/v1/getOffer/{offer_uuid}": {
+      "get": {
+        "summary": "Получить всю информацию по офферу",
+        "operationId": "InstantCashOfferService_GetOffer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.GetOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offer_uuid",
+            "description": "Uuid встречи",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "InstantCashOfferService"
+        ]
+      }
+    },
+    "/v1/getUploadLink/{offer_uuid}": {
+      "get": {
+        "summary": "Получить ссылку для загрузки фотографий",
+        "operationId": "InstantCashOfferService_GetUploadLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.GetUploadLinkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offer_uuid",
+            "description": "Uuid оффера",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "InstantCashOfferService"
+        ]
+      }
+    },
+    "/v1/getWebsocketConfig/{offer_uuid}": {
+      "get": {
+        "summary": "Получить websocket конфиг",
+        "operationId": "InstantCashOfferService_GetWebsocketConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.GetWebsocketConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offer_uuid",
+            "description": "Uuid оффера",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "InstantCashOfferService"
+        ]
+      }
+    },
+    "/v1/setCarInfo": {
+      "post": {
+        "summary": "Сохранить дополнительную информацию по авто",
+        "operationId": "InstantCashOfferService_SetCarInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.SetCarInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instant_cash_offer.sdk.SetCarInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "InstantCashOfferService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    },
+    "instant_cash_offer.sdk.AcceptOfferRequest": {
+      "type": "object",
+      "properties": {
+        "offer_uuid": {
+          "type": "string",
+          "title": "Uuid оффера"
+        },
+        "appointment": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Appointment",
+          "title": "Данные встречи"
+        }
+      },
+      "title": "Принять оффер по машине"
+    },
+    "instant_cash_offer.sdk.AcceptOfferResponse": {
+      "type": "object"
+    },
+    "instant_cash_offer.sdk.Appointment": {
+      "type": "object",
+      "properties": {
+        "client_name": {
+          "type": "string",
+          "title": "Имя клиента"
+        },
+        "client_email": {
+          "type": "string",
+          "title": "Email клиента"
+        },
+        "client_phone": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Телефон клиента"
+        },
+        "main_passport_photo": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id главной страницы паспорта"
+        },
+        "pts_photo": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id фото ПТС"
+        },
+        "sts_photo": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id фото СТС"
+        },
+        "payment_type": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.PaymentType",
+          "title": "Тип выплаты"
+        },
+        "type": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.AppointmentType",
+          "title": "Тип встречи"
+        },
+        "city_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id города"
+        },
+        "branch_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id филиала"
+        },
+        "date": {
+          "type": "string",
+          "title": "Дата встречи \"Y-m-d H:i:s\""
+        }
+      }
+    },
+    "instant_cash_offer.sdk.AppointmentType": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.AppointmentType.Value"
+        }
+      },
+      "title": "Тип встречи"
+    },
+    "instant_cash_offer.sdk.AppointmentType.Value": {
+      "type": "string",
+      "enum": [
+        "LOCATION",
+        "REMOTE"
+      ],
+      "default": "LOCATION",
+      "title": "- LOCATION: На локации\n - REMOTE: Удаленно(эвакуатор)"
+    },
+    "instant_cash_offer.sdk.BodyDamages": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.BodyDamages.Value"
+        }
+      },
+      "title": "Повреждения кузова"
+    },
+    "instant_cash_offer.sdk.BodyDamages.Value": {
+      "type": "string",
+      "enum": [
+        "WINDOW",
+        "DENT_OR_SCRATCH",
+        "CHIP",
+        "PAINT",
+        "RUST",
+        "NO_DAMAGES"
+      ],
+      "default": "WINDOW",
+      "title": "- WINDOW: Стекло\n - DENT_OR_SCRATCH: Вмятины или царапины\n - CHIP: Сколы\n - PAINT: Окрасы\n - RUST: Ржавчина\n - NO_DAMAGES: Нет повреждений"
+    },
+    "instant_cash_offer.sdk.Car": {
+      "type": "object",
+      "properties": {
+        "vin": {
+          "type": "string",
+          "title": "VIN-номер"
+        },
+        "reg_num": {
+          "type": "string",
+          "title": "Гос. номер"
+        },
+        "city_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id города"
+        },
+        "brand": {
+          "type": "string",
+          "title": "Бренд"
+        },
+        "brand_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id бренда"
+        },
+        "type": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.CarType",
+          "title": "Тип авто"
+        },
+        "year": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Год"
+        },
+        "model": {
+          "type": "string",
+          "title": "Модель"
+        },
+        "model_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id модели"
+        },
+        "body_type_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id типа кузова"
+        },
+        "modification": {
+          "type": "string",
+          "title": "Модификация"
+        },
+        "modification_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id модификации"
+        },
+        "mileage": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Пробег"
+        },
+        "color_id": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Id цвета"
+        },
+        "wheel": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Wheel",
+          "title": "Руль"
+        },
+        "has_loan": {
+          "type": "boolean",
+          "title": "Находится ли в кредите"
+        },
+        "bank": {
+          "type": "string",
+          "title": "Банк-кредитор"
+        },
+        "remaining_debt": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Остаток долга"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.CarCondition": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.CarCondition.Value"
+        }
+      },
+      "title": "Состояние автомобиля"
+    },
+    "instant_cash_offer.sdk.CarCondition.Value": {
+      "type": "string",
+      "enum": [
+        "BAD",
+        "NORMAL",
+        "PERFECT"
+      ],
+      "default": "BAD",
+      "title": "- BAD: Плохое\n - NORMAL: Нормальное\n - PERFECT: Отличное"
+    },
+    "instant_cash_offer.sdk.CarHistory": {
+      "type": "object",
+      "properties": {
+        "has_dtp": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.HasDtp",
+          "title": "Дтп"
+        },
+        "driveable": {
+          "type": "boolean",
+          "title": "На ходу"
+        },
+        "damages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/instant_cash_offer.sdk.Damages"
+          },
+          "title": "Повреждения"
+        },
+        "damages_description": {
+          "type": "string",
+          "title": "Описание повреждений"
+        },
+        "repair_cost": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Оценочная стоимость ремонта"
+        },
+        "body_damages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/instant_cash_offer.sdk.BodyDamages"
+          },
+          "title": "Повреждения кузова"
+        },
+        "body_damages_description": {
+          "type": "string",
+          "title": "Описание повреждений кузова"
+        },
+        "interior_damages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/instant_cash_offer.sdk.InteriorDamages"
+          },
+          "title": "Повреждения салона"
+        },
+        "interior_damages_description": {
+          "type": "string",
+          "title": "Описание повреждений салона"
+        },
+        "extra_equipment": {
+          "type": "boolean",
+          "title": "Установлено нестандартное дооснащение"
+        },
+        "extra_equipment_description": {
+          "type": "string",
+          "title": "Описание установленного дооснащения"
+        },
+        "smocking_in_car": {
+          "type": "boolean",
+          "title": "В машине курили"
+        },
+        "keys_count": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.KeysCount",
+          "title": "Кол-во ключей"
+        },
+        "uses_as_taxi": {
+          "type": "boolean",
+          "title": "Использовалась в такси"
+        },
+        "jumps_in_mileage": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.JumpsInMileage",
+          "title": "Резкие скачки в отчетах по пробегу"
+        },
+        "condition": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.CarCondition",
+          "title": "Состояние авто"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.CarType": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.CarType.Value"
+        }
+      },
+      "title": "Тип авто"
+    },
+    "instant_cash_offer.sdk.CarType.Value": {
+      "type": "string",
+      "enum": [
+        "PASSENGER"
+      ],
+      "default": "PASSENGER",
+      "title": "- PASSENGER: Легковые авто"
+    },
+    "instant_cash_offer.sdk.CreateOfferRequest": {
+      "type": "object",
+      "properties": {
+        "vin": {
+          "type": "string",
+          "title": "Vin номер"
+        },
+        "reg_num": {
+          "type": "string",
+          "title": "Гос. номер"
+        }
+      },
+      "title": "Создать оффер по машине"
+    },
+    "instant_cash_offer.sdk.CreateOfferResponse": {
+      "type": "object",
+      "properties": {
+        "offer_uuid": {
+          "type": "string",
+          "title": "uuid предложения по выкупу авто"
+        },
+        "car": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Car",
+          "title": "Информация о машине"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.Damages": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Damages.Value"
+        }
+      },
+      "title": "Повреждения авто"
+    },
+    "instant_cash_offer.sdk.Damages.Value": {
+      "type": "string",
+      "enum": [
+        "ENGINE",
+        "BRAKE_SYSTEM",
+        "STEERING_WHEEL",
+        "AIRBAG",
+        "TRANSMISSION",
+        "ELECTRONICS",
+        "SUSPENSION",
+        "NO_DAMAGES"
+      ],
+      "default": "ENGINE",
+      "title": "- ENGINE: Двигатель\n - BRAKE_SYSTEM: Тормозная система\n - STEERING_WHEEL: Рулевое управление\n - AIRBAG: Система безопасности\n - TRANSMISSION: Трансмиссия\n - ELECTRONICS: Электроника\n - SUSPENSION: Подвеска\n - NO_DAMAGES: Нет повреждений"
+    },
+    "instant_cash_offer.sdk.GetOfferResponse": {
+      "type": "object",
+      "properties": {
+        "offer": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Offer",
+          "title": "Оффер"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.GetUploadLinkResponse": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "title": "Url для загрузки фото"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.GetWebsocketConfigResponse": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.WebsocketConfig",
+          "title": "Конфиг websocket"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.HasDtp": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.HasDtp.Value"
+        }
+      },
+      "title": "Имеются ли ДТП"
+    },
+    "instant_cash_offer.sdk.HasDtp.Value": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "ONE",
+        "TWO_OR_MORE"
+      ],
+      "default": "NONE",
+      "title": "- NONE: нет\n - ONE: одно\n - TWO_OR_MORE: 2+ дтп"
+    },
+    "instant_cash_offer.sdk.InteriorDamages": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.InteriorDamages.Value"
+        }
+      },
+      "title": "Повреждения салона"
+    },
+    "instant_cash_offer.sdk.InteriorDamages.Value": {
+      "type": "string",
+      "enum": [
+        "SPOT",
+        "SMELL",
+        "DASHBOARD",
+        "SEAT_STRETCHING",
+        "MULTIMEDIA",
+        "NO_DAMAGES"
+      ],
+      "default": "SPOT",
+      "title": "- SPOT: Заметные пятна\n - SMELL: Посторонний запах\n - DASHBOARD: Повреждена приборная панель или внутренние панели\n - SEAT_STRETCHING: Растяжение или разныв сидений\n - MULTIMEDIA: Мультимедийная система повреждена\n - NO_DAMAGES: Нет повреждений"
+    },
+    "instant_cash_offer.sdk.JumpsInMileage": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.JumpsInMileage.Value"
+        }
+      },
+      "title": "Есть ли резкие скачки пробега в отчетах по пробегу"
+    },
+    "instant_cash_offer.sdk.JumpsInMileage.Value": {
+      "type": "string",
+      "enum": [
+        "NO",
+        "YES",
+        "DONT_KNOW"
+      ],
+      "default": "NO",
+      "title": "- NO: Нет\n - YES: Да\n - DONT_KNOW: Не знаю"
+    },
+    "instant_cash_offer.sdk.KeysCount": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.KeysCount.Value"
+        }
+      },
+      "title": "Количество ключей"
+    },
+    "instant_cash_offer.sdk.KeysCount.Value": {
+      "type": "string",
+      "enum": [
+        "ONE",
+        "TWO_OR_MORE"
+      ],
+      "default": "ONE",
+      "title": "- ONE: 1 ключ\n - TWO_OR_MORE: 2+ ключей"
+    },
+    "instant_cash_offer.sdk.Offer": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "title": "Uuid оффера"
+        },
+        "car": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Car",
+          "title": "Информация о машине"
+        },
+        "appointment": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Appointment",
+          "title": "Информация о встрече"
+        },
+        "car_history": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.CarHistory",
+          "title": "История машины"
+        },
+        "price": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Предложенная цена"
+        },
+        "offer_date": {
+          "type": "string",
+          "title": "Дата предложения"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.PaymentType": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.PaymentType.Value"
+        }
+      },
+      "title": "Способ оплаты"
+    },
+    "instant_cash_offer.sdk.PaymentType.Value": {
+      "type": "string",
+      "enum": [
+        "NOW",
+        "DAYS",
+        "MONTH"
+      ],
+      "default": "NOW",
+      "title": "- NOW: Моментальный\n - DAYS: В течении 3-х банковских дней\n - MONTH: В течении месяца"
+    },
+    "instant_cash_offer.sdk.SetCarInfoRequest": {
+      "type": "object",
+      "properties": {
+        "offer_uuid": {
+          "type": "string",
+          "title": "Uuid оффера"
+        },
+        "car": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Car",
+          "title": "Информация о машине"
+        },
+        "car_history": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.CarHistory",
+          "title": "История авто"
+        },
+        "email": {
+          "type": "string",
+          "title": "Email клиента"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.SetCarInfoResponse": {
+      "type": "object"
+    },
+    "instant_cash_offer.sdk.WebsocketConfig": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "title": "Url для подключения"
+        },
+        "token": {
+          "type": "string",
+          "title": "Токен"
+        },
+        "channel": {
+          "type": "string",
+          "title": "Канал сообщений"
+        }
+      }
+    },
+    "instant_cash_offer.sdk.Wheel": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/instant_cash_offer.sdk.Wheel.Value"
+        }
+      },
+      "title": "Руль"
+    },
+    "instant_cash_offer.sdk.Wheel.Value": {
+      "type": "string",
+      "enum": [
+        "LEFT",
+        "RIGHT"
+      ],
+      "default": "LEFT",
+      "title": "- LEFT: Левый\n - RIGHT: Правый"
+    }
+  }
+}

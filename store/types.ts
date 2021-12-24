@@ -91,6 +91,7 @@ export interface ICarDetail {
 export interface ICarData {
   vin: string;
   regNumber: string;
+  idOffer: string;
 
   agreement: boolean;
   carDetail: ICarDetail;

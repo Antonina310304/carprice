@@ -3,13 +3,18 @@ import cn from 'classnames';
 import { NextPage } from 'next';
 import { memo, useEffect, useState } from 'react';
 
-import { Step, StepContent, StepLabel, Stepper } from '@mui/material';
+import {
+  Step, StepContent, StepLabel, Stepper,
+} from '@mui/material';
 
 import { stepState } from '@pages/AlmostDonePage/elms/Steps/constants';
 
 import StepIcon from './elms/StepIcon';
 
-import { content, contentInner, label, step, stepper, success, wait } from './style.css';
+import {
+  content, contentInner, label, step, stepper, stepperState, success, wait,
+} from './style.css';
+import WithStepLabel from './elms/WithStepLabel';
 
 interface IWithStepperVertical {
   steps: string[];
@@ -32,7 +37,7 @@ const WithStepperVertical: NextPage<IWithStepperVertical> = ({
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => {
-      const currStep = prevActiveStep ? prevActiveStep : 0;
+      const currStep = prevActiveStep || 0;
       return currStep + 1;
     });
   };
@@ -48,9 +53,9 @@ const WithStepperVertical: NextPage<IWithStepperVertical> = ({
       setActiveStep(stepTo);
     }
   };
-
+  console.log(activeStep);
   return (
-    <Stepper className={stepper} alternativeLabel={true} activeStep={activeStep} orientation="vertical">
+    <Stepper className={stepper} alternativeLabel activeStep={activeStep} orientation="vertical">
       {steps.map((item: string, idx: number) => {
         const Icon = () => (
           <StepIcon
@@ -59,15 +64,27 @@ const WithStepperVertical: NextPage<IWithStepperVertical> = ({
           />
         );
 
+        const stepStyle = () => {
+          if (activeStep > idx) {
+            return stepperState.success;
+          } if (activeStep < idx) {
+            return stepperState.wait;
+          }
+        };
+
         return (
           <Step key={idx} className={step}>
-            <StepLabel
-              StepIconComponent={Icon}
-              className={cn(label, activeStep && activeStep > idx && success, activeStep && activeStep < idx && wait)}
+            <div className={stepStyle()} />
+            <WithStepLabel
+              icon={Icon}
               onClick={() => handleBack(idx)}
+              className={stepStyle()}
+              view={cn(activeStep && activeStep > idx && stepState.COMPLETED,
+                activeStep === idx && stepState.ACTIVE,
+                activeStep < idx && stepState.DISABLED)}
             >
               {item}
-            </StepLabel>
+            </WithStepLabel>
 
             <StepContent className={content}>
               <div className={contentInner}>{children(handleNext, activeStep, idx)}</div>

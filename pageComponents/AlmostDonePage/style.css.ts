@@ -95,13 +95,3 @@ export const aside = style({
   alignSelf: 'flex-start',
   marginLeft: spacing(3),
 });
-
-export const carDetail = style([
-  typographyVariants.main,
-  {
-    ...padding(2),
-    margin: 0,
-    border: `1px solid ${globalThemeColorVars.green}`,
-    borderRadius: globalBorderRadius.base,
-  },
-]);

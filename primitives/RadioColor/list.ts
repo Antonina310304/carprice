@@ -14,5 +14,4 @@ export const colorIcons = {
   orange: require('./colors/orange.svg'),
   yellow: require('./colors/yellow.svg'),
   green: require('./colors/green.svg'),
-  another: require('./colors/another.svg'),
 };

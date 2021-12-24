@@ -41,11 +41,6 @@ export const wait = style({
   background: globalThemeColorVars.backgroundSecondary,
 });
 
-export const stepIcon = style({
-  width: '32px',
-  height: '32px',
-});
-
 export const stepper = style({
   position: 'relative',
 });

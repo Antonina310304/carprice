@@ -4,22 +4,17 @@ import { fetchModifications } from '@store/catalogsSlice';
 
 import fields, { carDetailFields } from '@constants/fields';
 import { loadingStatus } from '@constants/loadingStatus';
+import axios from 'axios';
+import getStaticProps from '@utils/getStaticProps';
 
+const papiHost = getStaticProps().papiHost || '';
+
+// эту функцию потом переделать на post при интеграции
 export const detectCar = createAsyncThunk(
   'car/detect',
-  async ({ key, value }: { key: string; value: string }, { rejectWithValue }: any) => {
-    try {
-      const response = await fetch(`http://localhost:4200/detect?${key}=${value}`);
-      if (!response.ok) {
-        throw new Error('Can delete task. Server error');
-        const data = await response.json();
-        console.log(data);
-      }
-      const data = await response.json();
-      return data;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
-    }
+  async (params: { key: string; value: string }, { rejectWithValue }: any) => {
+    const response = await axios.get(`${papiHost}createOffer`);
+    return response.data;
   },
 );
 
@@ -34,6 +29,7 @@ const carSlice = createSlice({
 
     [fields.REG_NUMBER]: '',
     [fields.VIN]: '',
+    [fields.ID_OFFER]: '',
 
     carDetail: {
       [carDetailFields.BRAND]: '',
@@ -134,15 +130,16 @@ const carSlice = createSlice({
 
     // при распозрании автомобиля сбрасываю тип кузова и модификацию
     [detectCar.fulfilled.type]: (state, action) => {
-      const data = action.payload.data[0];
-      state.statusRequest = loadingStatus.RESOLVED;
+      console.log(action.payload);
+      state.carDetail[carDetailFields.BRAND] = action.payload.car.brand_id;
+      state.carDetail[carDetailFields.YEAR] = action.payload.car.year;
+      state.carDetail[carDetailFields.MODEL] = action.payload.car.model_id;
+      state.carDetail[carDetailFields.MODIFICATION] = action.payload.car.modification_id;
+      state[fields.ID_OFFER] = action.payload.offer_uuid;
 
-      state.carDetail[carDetailFields.BRAND] = data?.brand;
-      state.carDetail[carDetailFields.YEAR] = data?.year;
-      state.carDetail[carDetailFields.MODEL] = data?.model;
-      state.statusDetect = action.payload.success;
-      state.errorDetect = action.payload.error.message;
-      state.carDetail[carDetailFields.MODIFICATION] = '';
+      state.statusRequest = loadingStatus.RESOLVED;
+      state.statusDetect = 'true'; // потом надо будет переделать
+      state.errorDetect = '';
       state.carDetail[carDetailFields.BODY] = '';
     },
   },

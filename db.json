@@ -1,4 +1,31 @@
 {
+  "createOffer": {
+    "offer_uuid": "ecce2d90-181c-4cbf-8d39-5e6123c39b08",
+    "car": {
+      "vin": "XW8AC2NH7LK119943",
+      "reg_num": "",
+      "city_id": "0",
+      "brand": "Skoda",
+      "brand_id": "108",
+      "type": {
+        "value": "PASSENGER"
+      },
+      "year": "2019",
+      "model": "Rapid I Рейстайлинг",
+      "model_id": "16986",
+      "body_type_id": "0",
+      "modification": "",
+      "modification_id": "",
+      "mileage": "0",
+      "color_id": "0",
+      "wheel": {
+        "value": "LEFT"
+      },
+      "has_loan": false,
+      "bank": "",
+      "remaining_debt": "0"
+    }
+  },
   "number": {
     "success": "false",
     "data": [

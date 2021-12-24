@@ -1,4 +1,4 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 
 import { fontSizeMap } from '@primitives/Typography/css/fontSizeMap';
 import { typographyVariants } from '@primitives/Typography/css/index.css';
@@ -44,18 +44,15 @@ export const label = style([
     borderRadius: '4px',
   },
 ]);
-export const success = style({
-  background: globalThemeColorVars.backgroundTertiary,
-  cursor: 'pointer',
-});
 
-export const wait = style({
-  background: globalThemeColorVars.backgroundSecondary,
-});
-
-export const stepIcon = style({
-  width: '32px',
-  height: '32px',
+export const stepperState = styleVariants({
+  success: {
+    background: globalThemeColorVars.backgroundTertiary,
+    cursor: 'pointer',
+  },
+  wait: {
+    background: globalThemeColorVars.backgroundSecondary,
+  },
 });
 
 export const stepper = style({
@@ -70,23 +67,17 @@ globalStyle(`${stepper} .css-14yr603-MuiStepContent-root`, {
   borderLeft: 'none',
 });
 
-globalStyle(`${stepper} .css-14sza3e-MuiStepLabel-root.MuiStepLabel-alternativeLabel`, {
+globalStyle(`${stepper} .MuiStepLabel-root.MuiStepLabel-alternativeLabel`, {
   flexDirection: 'row',
 });
 
-globalStyle(`${stepper} .css-16ubnlw-MuiStepLabel-labelContainer`, {
-  width: 'auto',
-  paddingLeft: spacing(2),
-  color: globalThemeColorVars.fontsQuaternary,
-});
-
-globalStyle(`${stepper} .css-16ubnlw-MuiStepLabel-labelContainer`, {
+globalStyle(`${stepper} .MuiStepLabel-labelContainer`, {
   width: 'auto',
   paddingLeft: spacing(2),
   color: globalThemeColorVars.fontsPrimary,
 });
 
-globalStyle(`${stepper} .css-mt2lf4-MuiStepLabel-label`, {
+globalStyle(`${stepper} .MuiStepLabel-label`, {
   width: 'auto',
   color: globalThemeColorVars.fontsPrimary,
   fontWeight: 500,
@@ -100,27 +91,27 @@ globalStyle(`${stepper} .css-mt2lf4-MuiStepLabel-label`, {
   },
 });
 
-globalStyle(`${stepper} .css-mt2lf4-MuiStepLabel-label.Mui-disabled`, {
+globalStyle(`${stepper} .MuiStepLabel-label.Mui-disabled`, {
   color: globalThemeColorVars.fontsQuaternary,
 });
 
-globalStyle(`${stepper} .css-mt2lf4-MuiStepLabel-label.MuiStepLabel-alternativeLabel`, {
+globalStyle(`${stepper} .MuiStepLabel-label.MuiStepLabel-alternativeLabel`, {
   margin: '0',
 });
 
-globalStyle(`${stepper} .css-1k8dw67-MuiSvgIcon-root-MuiStepIcon-root`, {
+globalStyle(`${stepper} .MuiSvgIcon-root-MuiStepIcon-root`, {
   color: globalThemeColorVars.fontsGray,
 });
 
-globalStyle(`${stepper} .css-1k8dw67-MuiSvgIcon-root-MuiStepIcon-root.Mui-active`, {
+globalStyle(`${stepper} .MuiSvgIcon-root-MuiStepIcon-root.Mui-active`, {
   color: globalThemeColorVars.fillSecondaryLight,
 });
 
-globalStyle(`${stepper} .css-1k8dw67-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed`, {
+globalStyle(`${stepper} .MuiSvgIcon-root-MuiStepIcon-root.Mui-completed`, {
   color: globalThemeColorVars.fontsBaseGreen,
 });
 
-globalStyle(`${stepper} .css-1u79k1e-MuiStepIcon-text`, {
+globalStyle(`${stepper} .MuiStepIcon-text`, {
   fontWeight: 500,
   ...fontSizeMap['20/30'],
 });

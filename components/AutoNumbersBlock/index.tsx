@@ -6,8 +6,7 @@ import Switch from '@primitives/Switch';
 import Typography from '@primitives/Typography';
 
 import { link } from '@styles/baseStyle';
-import StateNumberForm from '../StateNumberForm';
-import VinForm from '../VinForm';
+
 import FieldBlock from './FieldBlock';
 import { blockWrapper } from './style.css';
 
@@ -54,8 +53,6 @@ const AutoNumbersBlock: NextPage<IVinForm> = ({ onChangeForm }) => {
       </Typography>
       <div className={blockWrapper}>
         <FieldBlock activeNumber={typeNumber} />
-        {/* {STATE_NUMBER === typeNumber && <StateNumberForm />} */}
-        {/* {VIN === typeNumber && <VinForm handleSuccess={handleSuccess} />} */}
       </div>
       <div>
         <Typography as="span" className={blockWrapper} type="min">

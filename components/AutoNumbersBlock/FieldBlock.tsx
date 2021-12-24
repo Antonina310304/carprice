@@ -8,19 +8,22 @@ import React, {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { BUTTON_TEXT } from '@components/AutoNumbersBlock/constants';
+import { BUTTON_TEXT, SERVER_ERROR_TEXT } from '@components/AutoNumbersBlock/constants';
 import RegNumberField from '@components/RegNumberField';
 import VinField from '@components/VinField';
 
 import ButtonSubmit from '@primitives/ButtonSubmit';
 
-import { changeRegNumber, changeVin } from '@store/carSlice';
+import {
+  changeRegNumber, changeVin, detectCar, saveCarDetail,
+} from '@store/carSlice';
 import { loadState } from '@store/localStorage';
 import { IState } from '@store/types';
 
 import fields from '@constants/fields';
 
 import getStaticProps from '@utils/getStaticProps';
+import { loadingStatus } from '@constants/loadingStatus';
 
 const VIN = 'VIN';
 
@@ -30,14 +33,37 @@ interface IFieldBlock {
 
 const FieldBlock: NextPage<IFieldBlock> = ({ activeNumber }) => {
   const [regNumber, setRegNumber] = useState('');
-  const [submitting, setSubmitting] = useState(false);
   const dispatch = useDispatch();
 
-  const vin = useSelector((state: IState) => state.carData.vin);
+  const {
+    vin, errorDetect, statusDetect, statusRequest,
+  } = useSelector((state: IState) => state.carData);
+  const isVinChecked = useMemo(() => activeNumber === VIN, [activeNumber]);
 
-  const vinState = useMemo(() => vinRules(vin), [vin]);
-  const numberState = useMemo(() => regNumberValidate(regNumber), [regNumber]);
+  const stateField = useMemo(() => {
+    // если с сервера пришла ошибка
+    if (statusRequest === loadingStatus.REJECTED) {
+      return {
+        valid: false,
+        errorText: SERVER_ERROR_TEXT,
+      };
+    }
 
+    // если пришли данные с сервера
+    if (errorDetect && statusDetect) {
+      return {
+        valid: statusDetect === 'true',
+        errorText: errorDetect,
+      };
+    }
+    if (isVinChecked) {
+      return vinRules(vin);
+    }
+
+    return regNumberValidate(regNumber);
+  }, [statusRequest, errorDetect, statusDetect, isVinChecked, regNumber, vin]);
+
+  const isSubmitting = useMemo(() => statusRequest === loadingStatus.LOADING, [statusRequest]);
   useEffect(() => {
     const localStorageData = loadState();
     if (!localStorageData) return;
@@ -45,8 +71,6 @@ const FieldBlock: NextPage<IFieldBlock> = ({ activeNumber }) => {
     if (!number) return;
     setRegNumber(number);
   }, []);
-
-  const isVinChecked = useMemo(() => activeNumber === VIN, [activeNumber]);
 
   const onChange = useCallback(
     ({ target: { name, value } }) => {
@@ -63,7 +87,6 @@ const FieldBlock: NextPage<IFieldBlock> = ({ activeNumber }) => {
   const onSubmit = useCallback(
     (evt) => {
       evt.preventDefault();
-      setSubmitting(true);
       const papiHost = getStaticProps().papiHost || '';
 
       let params = {};
@@ -78,29 +101,28 @@ const FieldBlock: NextPage<IFieldBlock> = ({ activeNumber }) => {
         };
       }
 
-      // async function load() {
-      //   axios
-      //     .post(papiHost, { params })
-      //     .then((response) => {
-      //       setSubmitting(false);
-      //       const { data } = response;
-      //       if (data.error === 'true') {
-      //         // setErrors({ valid: false, errorText: data.errorText });
-      //       }
-      //       if (data.error === 'false') {
-      //         const { carDetail, catalogs } = data.data;
-      //         // dispatch(fetchCarDetail(carDetail));
-      //         // dispatch(fetchData(catalogs));
-      //       }
-      //     })
-      //     .catch(() => {
-      //       // setErrors({ valid: false, errorText: SERVER_ERROR_TEXT });
-      //       setSubmitting(false);
-      //     });
-      // }
-      // load();
+      // потом заменить на post
+      async function load() {
+        axios
+          .get(`${papiHost}createOffer`)
+          .then((response) => {
+            const { data } = response;
+            console.log(response);
+            if (!data) {
+              console.log('dafsdasfd');
+            }
+            if (data) {
+              dispatch(saveCarDetail(data));
+            }
+          })
+          .catch(() => {
+            console.log('catch');
+            // setErrors({ valid: false, errorText: SERVER_ERROR_TEXT });
+          });
+      }
+      dispatch(detectCar(params));
     },
-    [dispatch],
+    [dispatch, isVinChecked, regNumber, vin],
   );
 
   return (
@@ -111,8 +133,8 @@ const FieldBlock: NextPage<IFieldBlock> = ({ activeNumber }) => {
           value={regNumber}
           name={fields.REG_NUMBER}
           onChange={onChange}
-          valid={numberState.valid}
-          errorText={numberState.errorText}
+          valid={stateField.valid}
+          errorText={stateField.errorText}
         />
       )}
 
@@ -121,15 +143,15 @@ const FieldBlock: NextPage<IFieldBlock> = ({ activeNumber }) => {
           value={vin}
           name={fields.VIN}
           onChange={onChange}
-          valid={vinState.valid}
-          errorText={vinState.errorText}
+          valid={stateField.valid}
+          errorText={stateField.errorText}
         />
       )}
 
       <ButtonSubmit
         buttonText={BUTTON_TEXT}
-        disabled={isVinChecked ? !vinState.valid : !numberState.valid}
-        submitting={submitting}
+        disabled={!stateField.valid || isSubmitting}
+        submitting={isSubmitting}
       />
     </form>
   );

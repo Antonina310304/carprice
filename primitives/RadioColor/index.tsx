@@ -4,15 +4,16 @@ import { NextPage } from 'next';
 import React, { useCallback, useState } from 'react';
 
 import Icon from '@primitives/Icon';
-import { colorMap } from '@primitives/RadioColor/colorMap';
+import colorMap from '@primitives/RadioColor/colorMap';
 import { colorIcons } from '@primitives/RadioColor/list';
 import Typography from '@primitives/Typography';
 
-import IconColor from './IconColor';
-import { input, wrapper, label, iconCheck, activeCheck, checkedColor, colorList } from './style.css';
-import { ColorType } from './types';
-
 import { globalThemeColorVars } from '@styles/globalTheme';
+import IconColor from './IconColor';
+import {
+  input, wrapper, label, iconCheck, activeCheck, checkedColor, colorList,
+} from './style.css';
+import { ColorType } from './types';
 
 interface IRadioColor {
   name: string;
@@ -30,7 +31,7 @@ const RadioColor: NextPage<IRadioColor> = ({ name, handleChange, value }) => {
       };
       handleChange(e);
     },
-    [handleChange, name]
+    [handleChange, name],
   );
 
   const handleHover = useCallback((key) => {
@@ -52,7 +53,7 @@ const RadioColor: NextPage<IRadioColor> = ({ name, handleChange, value }) => {
               <Icon
                 fill={key === 'white' ? globalThemeColorVars.fillCheck : globalThemeColorVars.white}
                 className={cn(iconCheck, key === value && activeCheck)}
-                icon={'check'}
+                icon="check"
                 width={16}
                 height={16}
               />
@@ -60,8 +61,8 @@ const RadioColor: NextPage<IRadioColor> = ({ name, handleChange, value }) => {
           </React.Fragment>
         ))}
       </div>
-      <Typography as={'p'} type={'base'} className={checkedColor}>
-        {colorMap[hover as ColorType]}
+      <Typography as="p" type="base" className={checkedColor}>
+        {colorMap[hover as ColorType]?.name}
       </Typography>
     </div>
   );
